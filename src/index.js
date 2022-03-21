@@ -4,9 +4,45 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { MoralisProvider } from 'react-moralis';
+
+// TODO: Extract into config file
+const moralisConfig = {
+  hardhat: {
+    serverUrl: 'https://xsty5vsxh3wr.usemoralis.com:2053/server',
+    appId: 'FMa48srGU8WBnvEDSdPVq19EzJilpf3zetM4Gpi1',
+  },
+  rinkeby: {
+    serverUrl: 'https://hejknhfi7e6d.usemoralis.com:2053/server',
+    appId: 'FuDzzNJqepkfhrBdsfYLYdy9RvsCYVBfgpriWdVs',
+  },
+  mainnet: {
+    serverUrl: '://hejknhfi7e6d.usemoralis.com:2053/server',
+    appId: '',
+  }
+}
+
+let currentMoralisConfig = null
+switch(process.env.REACT_APP_NODE_ENV) {
+  case 'development':
+    currentMoralisConfig = moralisConfig.hardhat;
+  break;
+  case 'production':
+    currentMoralisConfig = moralisConfig.mainnet;
+  break;
+  case 'staging':
+    currentMoralisConfig = moralisConfig.rinkeby;
+  break;
+  default:
+    currentMoralisConfig = moralisConfig.hardhat;
+  break;
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MoralisProvider serverUrl={currentMoralisConfig.serverUrl} appId={currentMoralisConfig.appId}>
+      <App />
+    </MoralisProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
