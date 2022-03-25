@@ -105,7 +105,7 @@ function App() {
     <div className="App">
       <div>
         { !isAuthenticated && (
-          <button onClick={login}>Moralis Metamask Login</button>
+          <button onClick={login}>Login with MetaMask</button>
         )}
         { isAuthenticated && (
           <>
@@ -118,7 +118,7 @@ function App() {
 
       { isAuthenticated && (
         <div>
-          <h2>Legend Collection</h2>
+          <h2 className="text-2xl">Legend Collection</h2>
           <p>The legend collection is a deck of cards (including Joker). Features perks: perk 1, perk 2, etc.</p>
 
           <p>Price: 1 ETH</p>
