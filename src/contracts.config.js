@@ -24,4 +24,6 @@ switch(process.env.REACT_APP_NODE_ENV) {
   break;
 }
 
-export default networkConfigs[network];
+let contractConfig = networkConfigs[network];
+
+export { network, contractConfig};

@@ -1,8 +1,7 @@
-import contractConfig from '../../contracts.config.js';
+import {network as chain, contractConfig} from '../../contracts.config.js';
 
 const LegendsConfig = contractConfig['VegasVickieLegend'];
 
-const chain = "eth";
 const ABI = LegendsConfig['abi'];
 const address = LegendsConfig['address'];
 
