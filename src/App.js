@@ -2,6 +2,8 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { useMoralis } from "react-moralis";
 import { chain, address as contractAddress, ABI} from "./models/contracts/Legend";
+import TransactionDialog from './components/dialogs/TransactionDialog';
+import MintableCollection from './components/MintableCollection';
 
 function App() {
   const { Moralis, authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
@@ -9,7 +11,15 @@ function App() {
   // Fetching Data
   const [totalSupply, setTotalSupply] = useState(0);
   const [maxSupply, setMaxSupply] = useState(0);
+  const [mintPrice, setMintPrice] = useState(0);
   const [allNfts, setAllNfts] = useState([]);
+
+  // Transactions
+  const [mintTransaction, setMintTransaction] = useState(null);
+  const [showTx, setShowTx] = useState(false);
+
+  // Errors
+  const [mintError, setMintError] = useState(null);
 
   // NFT Functions
 
@@ -58,12 +68,25 @@ function App() {
     return Moralis.executeFunction(readOptions);
   };
 
+  const getMintPrice = async () => {
+    const readOptions = {
+      contractAddress: contractAddress,
+      functionName: "MINT_PRICE",
+      abi: ABI,
+    };
+  
+    return Moralis.executeFunction(readOptions);
+  };
+
   const refreshLegends = async () => {
     const totalSupply = await getTotalSupply();
     setTotalSupply(totalSupply);
 
     const maxSupply = await getMaxSupply();
     setMaxSupply(maxSupply);
+
+    const mintPrice = await getMintPrice();
+    setMintPrice(mintPrice);
   };
 
   useEffect(() => {
@@ -119,14 +142,23 @@ function App() {
       contractAddress: contractAddress,
       functionName: "mint",
       abi: ABI,
-      msgValue: Moralis.Units.ETH("1"),
+      msgValue: mintPrice,
       params: {
         _quantity: 1,
       },
     };
-    const transaction = await Moralis.executeFunction(sendOptions);
 
-    await transaction.wait();
+    try {
+      const transaction = await Moralis.executeFunction(sendOptions);
+      setMintTransaction(transaction);
+      setShowTx(true);
+    
+      const receipt = await transaction.wait(3);
+
+    } catch (error) {
+      setMintError(error);
+      console.log(error);
+    };
     
     // Read new value
     let totalSupply = await getTotalSupply();
@@ -147,16 +179,16 @@ function App() {
         )}
       </div>
 
-      { isAuthenticated && (
-        <div className="col-span-12 p-6">
-          <h2 className="text-2xl">Legend Collection</h2>
-          <p>The legend collection is a deck of cards (including Joker). Features perks: perk 1, perk 2, etc.</p>
-
-          <p>Price: 1 ETH</p>
-          <button onClick={callMint} className="w-auto flex items-center justify-center px-2 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">Mint 1 @ 1 ETH</button>
-          <p>Minted {totalSupply.toString()}/{maxSupply.toString()}.</p>
-        </div>
-      )}
+      <MintableCollection
+        name="Legends"
+        description="Test this"
+        mintPrice={mintPrice}
+        callMint={callMint}
+        mintError={mintError}
+        totalSupply={totalSupply}
+        maxSupply={maxSupply}
+        user={user}
+      />
 
       { isAuthenticated && allNfts && (
         <div className="col-span-12 p-6">
@@ -178,6 +210,8 @@ function App() {
           </ul>
         </div>
       )}
+
+      <TransactionDialog subtitle="Vegas Vickie NFT" isShowing={showTx} setShowTxModal={setShowTx} transaction={mintTransaction} />
     </div>
   );
 }
