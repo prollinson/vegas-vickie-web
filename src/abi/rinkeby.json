@@ -3,7 +3,7 @@
   "chainId": "4",
   "contracts": {
     "VegasVickieLegend": {
-      "address": "0x6131D43fd767f0C7697c83e8611e0F12e82e520b",
+      "address": "0x25E3eb7e47A6EE03e2fb9e68d409FAcd0653Ff43",
       "abi": [
         {
           "inputs": [],
@@ -219,6 +219,32 @@
           "type": "function"
         },
         {
+          "inputs": [],
+          "name": "MINT_PRICE",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "allowlistMerkleTreeRoot",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
           "inputs": [
             {
               "internalType": "address",
@@ -386,6 +412,24 @@
           "type": "function"
         },
         {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_quantity",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "proof",
+              "type": "bytes32[]"
+            }
+          ],
+          "name": "mintAllowlist",
+          "outputs": [],
+          "stateMutability": "payable",
+          "type": "function"
+        },
+        {
           "inputs": [],
           "name": "name",
           "outputs": [
@@ -545,6 +589,19 @@
         {
           "inputs": [
             {
+              "internalType": "bytes32",
+              "name": "_root",
+              "type": "bytes32"
+            }
+          ],
+          "name": "setAllowlistMerkleTreeRoot",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "address",
               "name": "operator",
               "type": "address"
@@ -569,6 +626,32 @@
             }
           ],
           "name": "setBaseURI",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_price",
+              "type": "uint256"
+            }
+          ],
+          "name": "setMintPrice",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_time",
+              "type": "uint256"
+            }
+          ],
+          "name": "setPublicSaleStartTime",
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
