@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { MoralisProvider } from 'react-moralis';
+import { BrowserRouter } from 'react-router-dom';
 
 // TODO: Extract into config file
 const moralisConfig = {
@@ -41,7 +42,9 @@ switch(process.env.REACT_APP_NODE_ENV) {
 ReactDOM.render(
   <React.StrictMode>
     <MoralisProvider serverUrl={currentMoralisConfig.serverUrl} appId={currentMoralisConfig.appId}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </MoralisProvider>
   </React.StrictMode>,
   document.getElementById('root')
