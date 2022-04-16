@@ -24,7 +24,7 @@ function Header() {
   }
 
   return (
-    <header className="flex flex-col">
+    <header className="flex flex-col mb-12">
       <h1 className="text-6xl text-white text-center h-20">Vegas Vickie NFT</h1>
       
       <div className="">
@@ -34,14 +34,14 @@ function Header() {
         </ul>
       </div>
 
-      <div className='flex items-center gap-6'>
+      <div className='flex items-center gap-6 justify-center'>
         { !isAuthenticated && (
-          <button onClick={login} className='w-96 flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10'>Login with MetaMask</button>
+          <button onClick={login} className='w-96 flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 md:py-4 md:text-lg md:px-10'>Login with MetaMask</button>
         )}
         { isAuthenticated && (
           <>
             <p className="text-white">Wallet: {user.get("ethAddress")}</p>
-            <button onClick={logOut} disabled={isAuthenticating} className='w-32 flex items-center justify-center p-1 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-indigo-700'>Logout</button>
+            <button onClick={logOut} disabled={isAuthenticating} className='w-32 flex items-center justify-center p-1 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-amber-700'>Logout</button>
           </>
         )}
       </div>

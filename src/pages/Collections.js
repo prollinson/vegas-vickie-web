@@ -4,6 +4,12 @@ import { chain, address as contractAddress, ABI} from "../models/contracts/Legen
 import TransactionDialog from '../components/dialogs/TransactionDialog';
 import MintableCollection from '../components/MintableCollection';
 
+// Assets
+// import collectorNftImage from '../assets/collector_nft_preview.png';
+import legendNftImage from '../assets/legend_nft_preview.jpg';
+import maverickNftImage from '../assets/maverick_nft_preview.jpg';
+import gamblerNftImage from '../assets/gambler_nft_preview.jpg';
+
 function Collections() {
   const { Moralis, authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
 
@@ -151,16 +157,18 @@ function Collections() {
     'Original Vegas Vickie Borbay painting',
     'Annual Legendary package',
     'VIP access to the initial kick-off party including a meet & greet with Borbay amd Serek Stevens',
-    'Invitaions to excludive, holder-only events including an annual VIP party at Lecacy Club',
+    'Invitaions to exclusive, holder-only events including an annual VIP party at Lecacy Club',
     'Unlockable content'
   ]
 
   let maverickCollectorPerks = [
-    'Original Vegas Vickie Borbay painting',
-    'Annual Legendary package',
-    'VIP access to the initial kick-off party including a meet & greet with Borbay amd Serek Stevens',
-    'Invitaions to excludive, holder-only events including an annual VIP party at Lecacy Club',
-    'Unlockable content'
+    'SMALL GLASS PRINT OF VEGAS VICKIE BORBAY PAINTING',
+    'ACCESS TO THE INITIAL KICKOFF PARTY',
+    'ANNUAL COMPLIMENTARY ROOM AT CIRCA RESORT & CASINO, THE D LAS VEGAS, OR GOLDEN GATE HOTEL & CASINO',
+    'Invitaions to exclusive, holder-only events including an annual VIP party at Lecacy Club',
+    'Unlockable content',
+    'COMPLIMENTARY DAYBED AT STADIUM SWIM',
+    'HOLDER-ONLY RATES AT CIRCA RESORT & CASINO'
   ]
 
   return (
@@ -171,6 +179,7 @@ function Collections() {
         dressed in beautiful attire, dancing, and creating lifelong memories
         together. By attending, you will participate in a way that broadens your
         view of the world and enriches the depth of your experience."
+        nftImage={legendNftImage}
         perks={legendCollectorPerks}
         mintPrice={mintPrice}
         callMint={callMint}
@@ -186,6 +195,7 @@ function Collections() {
         dressed in beautiful attire, dancing, and creating lifelong memories
         together. By attending, you will participate in a way that broadens your
         view of the world and enriches the depth of your experience."
+        nftImage={maverickNftImage}
         perks={maverickCollectorPerks}
         mintPrice={mintPrice}
         callMint={callMint}
@@ -201,6 +211,7 @@ function Collections() {
         dressed in beautiful attire, dancing, and creating lifelong memories
         together. By attending, you will participate in a way that broadens your
         view of the world and enriches the depth of your experience."
+        nftImage={gamblerNftImage}
         perks={maverickCollectorPerks}
         mintPrice={mintPrice}
         callMint={callMint}

@@ -3,7 +3,15 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
-    extend: {},
+    fontFamily: {
+      'display': ['gilroy', 'sans-serif'],
+      'body': ['gilroy', 'sans-serif'],
+    },
+    extend: {
+      fontFamily: {
+        'gilroy': ['Gilroy-Bold', 'sans-serif'] 
+      },
+    },
   },
   plugins: [],
 }
