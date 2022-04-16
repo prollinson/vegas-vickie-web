@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useMoralis } from "react-moralis";
 import { chain, address as contractAddress, ABI} from "../models/contracts/Legend";
 import TransactionDialog from '../components/dialogs/TransactionDialog';
-import MintableCollection from '../components/MintableCollection';
+import MintableCollection from '../components/elements/MintableCollection';
 
 // Assets
 // import collectorNftImage from '../assets/collector_nft_preview.png';
@@ -173,6 +173,8 @@ function Collections() {
 
   return (
     <>
+      <h2 className='font-display font-black uppercase text-white text-4xl col-span-12 text-center pb-6'>The Collections</h2>
+
       <MintableCollection
         name="Legend"
         description="The best words to describe this event: Rich, Classy & Elegant. Everyone is

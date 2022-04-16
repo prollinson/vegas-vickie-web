@@ -13,4 +13,9 @@
     font-weight: 500;
     src: url("../public/fonts/gilroy/Gilroy-Bold.otf") format("otf");
   }
+  @font-face {
+    font-family: "Gilroy";
+    font-weight: 900;
+    src: url("../public/fonts/gilroy/Gilroy-Black.otf") format("otf");
+  }
 }

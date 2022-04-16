@@ -9,7 +9,7 @@ function MintableCollection ({name, description, nftImage, perks, mintPrice, cal
         <img src={nftImage} alt="Preview of NFT"/>
       </div>
       <div className="flex-none basic-3/4 pl-6 pr-6 max-w-lg">
-        <h2 className="text-2xl text-white font-gilroy uppercase">{name}</h2>
+        <h2 className="text-2xl text-white font-gilroy font-black uppercase">{name}</h2>
         <p className="font-display text-white">{description}</p>
 
         <p className='font-body text-white'>Price: {Moralis.Units.FromWei(mintPrice.toString())} ETH</p>

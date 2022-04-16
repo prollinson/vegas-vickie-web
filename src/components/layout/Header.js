@@ -2,6 +2,7 @@ import { useMoralis } from "react-moralis";
 
 import { Link } from 'react-router-dom';
 
+
 function Header() {
   const { Moralis, authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
 
@@ -24,13 +25,13 @@ function Header() {
   }
 
   return (
-    <header className="flex flex-col mb-12">
-      <h1 className="text-6xl text-white text-center h-20">Vegas Vickie NFT</h1>
+    <header className="flex flex-col pt-12 mb-12">
+      <h1 className="font-gilroy font-black uppercase text-6xl text-white text-center h-20">Vegas Vickie NFT</h1>
       
-      <div className="">
+      <div className="font-display font-black uppercase">
         <ul className="flex flex-inital justify-center text-white">
-          <li className="p-3"><Link to="/">Home</Link></li>
-          <li className="p-3"><Link to="/collections">Collections</Link></li>
+          <li className="p-3 hover:text-amber-700"><Link to="/">Home</Link></li>
+          <li className="p-3 hover:text-amber-700"><Link to="/collections">Collections</Link></li>
         </ul>
       </div>
 

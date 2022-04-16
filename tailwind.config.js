@@ -8,8 +8,11 @@ module.exports = {
       'body': ['gilroy', 'sans-serif'],
     },
     extend: {
+      backgroundImage: {
+        "vegas-scene-dark": "url('/src/assets/background.png')",
+      },
       fontFamily: {
-        'gilroy': ['Gilroy-Bold', 'sans-serif'] 
+        'gilroy': ['Gilroy-Regular','Gilroy-Bold','Gilroy-Black']
       },
     },
   },
