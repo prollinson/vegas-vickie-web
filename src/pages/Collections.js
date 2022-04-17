@@ -17,17 +17,11 @@ function Collections() {
   const { Moralis, authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
 
   // Fetching Data
-  const [totalSupply, setTotalSupply] = useState(0);
-  const [maxSupply, setMaxSupply] = useState(0);
-  const [mintPrice, setMintPrice] = useState(0);
   const [allNfts, setAllNfts] = useState([]);
 
   // Transactions
   const [mintTransaction, setMintTransaction] = useState(null);
   const [showTx, setShowTx] = useState(false);
-
-  // Errors
-  const [mintError, setMintError] = useState(null);
 
   // NFT Functions
 
@@ -56,51 +50,9 @@ function Collections() {
 
   // Contract Functions
 
-  const getTotalSupply = async () => {
-    const readOptions = {
-      contractAddress: contractAddress,
-      functionName: "totalSupply",
-      abi: ABI,
-    };
-  
-    return Moralis.executeFunction(readOptions);
-  };
-
-  const getMaxSupply = async () => {
-    const readOptions = {
-      contractAddress: contractAddress,
-      functionName: "MAX_SUPPLY",
-      abi: ABI,
-    };
-  
-    return Moralis.executeFunction(readOptions);
-  };
-
-  const getMintPrice = async () => {
-    const readOptions = {
-      contractAddress: contractAddress,
-      functionName: "MINT_PRICE",
-      abi: ABI,
-    };
-  
-    return Moralis.executeFunction(readOptions);
-  };
-
-  const refreshLegends = async () => {
-    const totalSupply = await getTotalSupply();
-    setTotalSupply(totalSupply);
-
-    const maxSupply = await getMaxSupply();
-    setMaxSupply(maxSupply);
-
-    const mintPrice = await getMintPrice();
-    setMintPrice(mintPrice);
-  };
-
   useEffect(() => {
     const interval = setInterval(async () => {
       if (user) {      
-        await refreshLegends();
         await getNFTs();
       }
     }, 5000);
@@ -110,7 +62,6 @@ function Collections() {
   useEffect(() => {
     async function fetchData() {
       await Moralis.enableWeb3();
-      await refreshLegends();
       await getNFTs();
     }
     fetchData();
@@ -123,38 +74,8 @@ function Collections() {
   // Actions
 
 
-  // Minting
-  const callMint = async () => {
-    if(!account) { console.log('No account'); return; };
-    
-    await Moralis.enableWeb3();
 
-    const sendOptions = {
-      contractAddress: contractAddress,
-      functionName: "mint",
-      abi: ABI,
-      msgValue: mintPrice,
-      params: {
-        _quantity: 1,
-      },
-    };
-
-    try {
-      const transaction = await Moralis.executeFunction(sendOptions);
-      setMintTransaction(transaction);
-      setShowTx(true);
-    
-      const receipt = await transaction.wait(3);
-
-    } catch (error) {
-      setMintError(error);
-      console.log(error);
-    };
-    
-    // Read new value
-    let totalSupply = await getTotalSupply();
-    setTotalSupply(totalSupply);
-  };
+  // Data
 
   let legendCollectorPerks = [
     'Original Vegas Vickie Borbay painting',
@@ -200,12 +121,11 @@ function Collections() {
         view of the world and enriches the depth of your experience."
         nftImage={legendNftImage}
         perks={legendCollectorPerks}
-        mintPrice={mintPrice}
-        totalSupply={totalSupply}
-        maxSupply={maxSupply}
+        mintPrice={10000}
+        maxSupply={"54"}
         user={user}
 
-        actionBox={<MintBox callMint={callMint} mintError={mintError} mintPrice={mintPrice} totalSupply={totalSupply} maxSupply={maxSupply} />}
+        actionBox={<MintBox />}
       />
 
       <NftCollection
@@ -216,12 +136,11 @@ function Collections() {
         view of the world and enriches the depth of your experience."
         nftImage={maverickNftImage}
         perks={maverickCollectorPerks}
-        mintPrice={mintPrice}
-        totalSupply={totalSupply}
-        maxSupply={maxSupply}
+        mintPrice={1000}
+        maxSupply={"250"}
         user={user}
 
-        actionBox={<MintBox callMint={callMint} mintError={mintError} mintPrice={mintPrice} totalSupply={totalSupply} maxSupply={maxSupply} />}
+        actionBox={<MintBox />}
       />
 
       <NftCollection
@@ -232,12 +151,11 @@ function Collections() {
         view of the world and enriches the depth of your experience."
         nftImage={gamblerNftImage}
         perks={maverickCollectorPerks}
-        mintPrice={mintPrice}
-        totalSupply={totalSupply}
-        maxSupply={maxSupply}
+        mintPrice={100}
+        maxSupply={"2500"}
         user={user}
 
-        actionBox={<MintBox callMint={callMint} mintError={mintError} mintPrice={mintPrice} totalSupply={totalSupply} maxSupply={maxSupply} />}
+        actionBox={<MintBox />}
       />
 
       { isAuthenticated && allNfts && (
