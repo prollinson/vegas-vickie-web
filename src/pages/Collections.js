@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useMoralis } from "react-moralis";
 import { chain, address as contractAddress, ABI} from "../models/contracts/Legend";
+
 import TransactionDialog from '../components/dialogs/TransactionDialog';
-import MintableCollection from '../components/elements/MintableCollection';
+import NftCollection from '../components/elements/NftCollection';
 
 // Assets
-// import collectorNftImage from '../assets/collector_nft_preview.png';
+import collectorNftImage from '../assets/collector_nft_preview.jpg';
 import legendNftImage from '../assets/legend_nft_preview.jpg';
 import maverickNftImage from '../assets/maverick_nft_preview.jpg';
 import gamblerNftImage from '../assets/gambler_nft_preview.jpg';
+import MintBox from '../components/elements/MintBox';
+import AuctionBox from '../components/elements/AuctionBox';
 
 function Collections() {
   const { Moralis, authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
@@ -175,7 +178,21 @@ function Collections() {
     <>
       <h2 className='font-display font-black uppercase text-white text-4xl col-span-12 text-center pb-6'>The Collections</h2>
 
-      <MintableCollection
+      <NftCollection
+        name="Collector"
+        description="The best words to describe this event: Rich, Classy & Elegant. Everyone is
+        dressed in beautiful attire, dancing, and creating lifelong memories
+        together. By attending, you will participate in a way that broadens your
+        view of the world and enriches the depth of your experience."
+        nftImage={collectorNftImage}
+        perks={legendCollectorPerks}
+        totalSupply={1}
+        maxSupply={1}
+
+        actionBox={<AuctionBox totalSupply={1} maxSupply={1}/>}
+      />
+
+      <NftCollection
         name="Legend"
         description="The best words to describe this event: Rich, Classy & Elegant. Everyone is
         dressed in beautiful attire, dancing, and creating lifelong memories
@@ -184,14 +201,14 @@ function Collections() {
         nftImage={legendNftImage}
         perks={legendCollectorPerks}
         mintPrice={mintPrice}
-        callMint={callMint}
-        mintError={mintError}
         totalSupply={totalSupply}
         maxSupply={maxSupply}
         user={user}
+
+        actionBox={<MintBox callMint={callMint} mintError={mintError} mintPrice={mintPrice} totalSupply={totalSupply} maxSupply={maxSupply} />}
       />
 
-      <MintableCollection
+      <NftCollection
         name="Maverick"
         description="The best words to describe this event: Rich, Classy & Elegant. Everyone is
         dressed in beautiful attire, dancing, and creating lifelong memories
@@ -200,14 +217,14 @@ function Collections() {
         nftImage={maverickNftImage}
         perks={maverickCollectorPerks}
         mintPrice={mintPrice}
-        callMint={callMint}
-        mintError={mintError}
         totalSupply={totalSupply}
         maxSupply={maxSupply}
         user={user}
+
+        actionBox={<MintBox callMint={callMint} mintError={mintError} mintPrice={mintPrice} totalSupply={totalSupply} maxSupply={maxSupply} />}
       />
 
-      <MintableCollection
+      <NftCollection
         name="Gambler"
         description="The best words to describe this event: Rich, Classy & Elegant. Everyone is
         dressed in beautiful attire, dancing, and creating lifelong memories
@@ -216,11 +233,11 @@ function Collections() {
         nftImage={gamblerNftImage}
         perks={maverickCollectorPerks}
         mintPrice={mintPrice}
-        callMint={callMint}
-        mintError={mintError}
         totalSupply={totalSupply}
         maxSupply={maxSupply}
         user={user}
+
+        actionBox={<MintBox callMint={callMint} mintError={mintError} mintPrice={mintPrice} totalSupply={totalSupply} maxSupply={maxSupply} />}
       />
 
       { isAuthenticated && allNfts && (
