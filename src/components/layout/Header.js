@@ -26,7 +26,7 @@ function Header() {
 
   return (
     <header className="flex flex-col pt-12 mb-12">
-      <h1 className="font-gilroy font-black uppercase text-6xl text-white text-center h-20">Vegas Vickie NFT</h1>
+      <h1 className="font-gilroy black uppercase text-3xl tracking-widest text-white text-center h-20">Vegas Vickie NFT</h1>
       
       <div className="font-display font-black uppercase">
         <ul className="flex flex-inital justify-center text-white">
