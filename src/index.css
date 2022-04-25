@@ -4,18 +4,34 @@
 
 @layer base {
   @font-face {
-    font-family: "Gilroy";
-    font-weight: 400;
-    src: url("../public/fonts/gilroy/Gilroy-Regular.otf") format("otf");
-  }
-  @font-face {
-    font-family: "Gilroy";
-    font-weight: 500;
-    src: url("../public/fonts/gilroy/Gilroy-Bold.otf") format("otf");
-  }
-  @font-face {
-    font-family: "Gilroy";
+    font-family: 'Gilroy';
+    src: local('Gilroy Bold'), local('Gilroy-Bold'),
+        url('../public/fonts/gilroy/Gilroy-Bold.woff2') format('woff2'),
+        url('../public/fonts/gilroy/Gilroy-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: local('Gilroy Black'), local('Gilroy-Black'),
+        url('../public/fonts/gilroy/Gilroy-Black.woff2') format('woff2'),
+        url('../public/fonts/gilroy/Gilroy-Black.woff') format('woff');
     font-weight: 900;
-    src: url("../public/fonts/gilroy/Gilroy-Black.otf") format("otf");
-  }
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: local('Gilroy Regular'), local('Gilroy-Regular'),
+        url('../public/fonts/gilroy/Gilroy-Regular.woff2') format('woff2'),
+        url('../public/fonts/gilroy/Gilroy-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 }

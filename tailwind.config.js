@@ -4,7 +4,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'display': ['gilroy', 'sans-serif'],
+      'display': ['Gilroy', 'sans-serif'],
       'body': ['gilroy', 'sans-serif'],
     },
     extend: {
@@ -12,7 +12,7 @@ module.exports = {
         "vegas-scene-dark": "url('/src/assets/background.png')",
       },
       fontFamily: {
-        'gilroy': ['Gilroy-Regular','Gilroy-Bold','Gilroy-Black']
+        'gilroy': ['Gilroy', 'sans-serif'],
       },
     },
   },
