@@ -21,7 +21,7 @@ function App() {
 
 function Layout() {
   return (
-    <div className="relative min-h-screen bg-black bg-vegas-scene-dark bg-cover">
+    <div className="relative min-h-screen bg-black bg-fixed bg-vegas-scene-dark bg-cover bg-top bg-no-repeat">
       <Header />
       <div className="max-w-7xl mx-auto grid grid-cols-12">
         <Outlet />

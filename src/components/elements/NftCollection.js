@@ -4,11 +4,11 @@ function NftCollection ({name, description, nftImage, perks, mintPrice, maxSuppl
   const { Moralis } = useMoralis();
 
   return (
-    <div className="flex justify-center col-span-12 pb-12">
-      <div className="flex-none basis-1/4 justify-items-center">
-        <img src={nftImage} alt="Preview of NFT"/>
+    <div className="md:flex justify-center col-span-12 pb-12">
+      <div className="w-full md:w-1/2 flex-none basis-1/4 justify-items-center pb-4">
+        <img src={nftImage} alt="Preview of NFT" className="max-h-72 md:max-h-full m-auto"/>
       </div>
-      <div className="flex-none basic-3/4 pl-6 pr-6 max-w-lg">
+      <div className="w-full md:w-1/2 flex-none pl-6 pr-6">
         <h2 className="text-2xl text-white font-gilroy font-bold tracking-widest uppercase">{name}</h2>
         <p className="font-display text-white">{description}</p>
 
