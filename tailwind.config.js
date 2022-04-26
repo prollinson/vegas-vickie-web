@@ -14,6 +14,9 @@ module.exports = {
       fontFamily: {
         'gilroy': ['Gilroy', 'sans-serif'],
       },
+      colors: {
+        'vickie-yellow': '#F7CB56',
+      }
     },
   },
   plugins: [],

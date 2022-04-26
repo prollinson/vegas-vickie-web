@@ -44,7 +44,7 @@ participate in a way that broadens your view of
 the world and enriches the depth of your
 experience.
             </p>
-            <Link to="/collections" className="block font-gilroy uppercase bg-amber-400 rounded-lg py-2 px-4 mt-4 text-lg text-white">View Collections</Link>
+            <Link to="/collections" className="block font-gilroy font-bold uppercase bg-vickie-yellow rounded-lg py-2 px-4 mt-4 text-lg text-black">View Collections</Link>
           </div>
         </div>
       </div>

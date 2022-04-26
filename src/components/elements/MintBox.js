@@ -56,7 +56,7 @@ function MintBox() {
   }, []);
 
   return (
-    <div className="border-2 border-color-amber bg-amber-900 mt-9 pt-3 pr-6 pb-3 pl-6">
+    <div className="border-2 border-color-vickie-yellow bg-vickie-yellow mt-9 pt-3 pr-6 pb-3 pl-6">
     { isWaiting && (
       <div>Loading...</div>
     )}
@@ -66,11 +66,11 @@ function MintBox() {
         <h2 className="font-display uppercase text-white text-lg text-bold">Available to Mint</h2>
 
         { isAuthenticated && (
-          <button onClick={callMint} className="w-auto flex items-center justify-center px-2 py-2 border border-transparent text-base font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700">Mint 1 @ {Moralis.Units.FromWei(mintPrice.toString())} ETH</button>
+          <button onClick={callMint} className="w-auto flex items-center justify-center px-2 py-2 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-vickie-yellow">Mint 1 @ {Moralis.Units.FromWei(mintPrice.toString())} ETH</button>
         )}
 
         { !isAuthenticated && (
-          <button onClick={ () => { alert("todo") }} className="w-auto flex items-center justify-center px-2 py-2 border border-transparent text-base font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700">Connect Wallet</button>
+          <button onClick={ () => { alert("todo") }} className="w-auto flex items-center justify-center px-2 py-2 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-vickie-yellow">Connect Wallet</button>
         )}
 
         { totalSupply && maxSupply && (

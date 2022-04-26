@@ -100,7 +100,7 @@ function Collections() {
       <h2 className='font-display font-black uppercase text-white text-4xl col-span-12 text-center pb-6'>The Collections</h2>
 
       <NftCollection
-        name="Collector"
+        name="The Collector"
         description="The best words to describe this event: Rich, Classy & Elegant. Everyone is
         dressed in beautiful attire, dancing, and creating lifelong memories
         together. By attending, you will participate in a way that broadens your
