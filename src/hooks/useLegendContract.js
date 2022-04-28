@@ -35,6 +35,38 @@ function useLegendContract() {
     return Moralis.executeFunction(readOptions);
   };
 
+  const getStages = async () => {
+
+    const allowlistReadOptions = {
+      contractAddress: contractAddress,
+      functionName: "allowlistSaleStartTime",
+      abi: ABI,
+    };
+  
+    const allowlistSaleStartTime =  await Moralis.executeFunction(allowlistReadOptions);
+
+    const publicReadOptions = {
+      contractAddress: contractAddress,
+      functionName: "publicSaleStartTime",
+      abi: ABI,
+    };
+  
+    const publicSaleStartTime = await Moralis.executeFunction(publicReadOptions);
+
+    return [
+      {
+        stage: 0,
+        name: 'Allowlist',
+        startTime: allowlistSaleStartTime
+      },
+      {
+        stage: 1,
+        name: 'Public',
+        startTime: publicSaleStartTime
+      }
+    ]
+  };
+
   // Mint
   const mint = async (mintPrice, _quantity) => {  
     const sendOptions = {
@@ -57,6 +89,7 @@ function useLegendContract() {
     getTotalSupply: getTotalSupply,
     getMaxSupply: getMaxSupply,
     getMintPrice: getMintPrice,
+    getStages: getStages,
     mint: mint,
   }
 };

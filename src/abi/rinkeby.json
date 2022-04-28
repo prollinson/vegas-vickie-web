@@ -3,7 +3,7 @@
   "chainId": "4",
   "contracts": {
     "VegasVickieLegend": {
-      "address": "0x25E3eb7e47A6EE03e2fb9e68d409FAcd0653Ff43",
+      "address": "0x6ac207a046Aa2b6D796550cC609F30a9a9640ff5",
       "abi": [
         {
           "inputs": [],
@@ -77,6 +77,19 @@
             }
           ],
           "name": "OwnershipTransferred",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Paused",
           "type": "event"
         },
         {
@@ -180,6 +193,19 @@
           "type": "event"
         },
         {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Unpaused",
+          "type": "event"
+        },
+        {
           "inputs": [],
           "name": "ADMIN_ROLE",
           "outputs": [
@@ -239,6 +265,19 @@
               "internalType": "bytes32",
               "name": "",
               "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "allowlistSaleStartTime",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
             }
           ],
           "stateMutability": "view",
@@ -494,6 +533,39 @@
         },
         {
           "inputs": [],
+          "name": "pause",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "paused",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "publicSaleStartTime",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "renounceOwnership",
           "outputs": [],
           "stateMutability": "nonpayable",
@@ -595,6 +667,19 @@
             }
           ],
           "name": "setAllowlistMerkleTreeRoot",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_time",
+              "type": "uint256"
+            }
+          ],
+          "name": "setAllowlistSaleStartTime",
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
@@ -795,6 +880,13 @@
             }
           ],
           "name": "transferOwnership",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "unpause",
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
