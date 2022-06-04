@@ -1,37 +1,15 @@
 
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
-
-import { useMoralis } from "react-moralis";
 
 import { Link } from 'react-router-dom';
 
 function Header() {
-  const { Moralis, authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
-
   const navItems = [
     { name: 'Home', link: "/" },
     { name: 'Collections', link: "/collections" },
     { name: 'Our Story', link: "/story" }
-  ]
-
-  const login = async () => {
-    if (!isAuthenticated) {
-      await authenticate({signingMessage: "Log into Vegas Vickie NFT" })
-        .then(function (user) {
-          console.log("logged in user:", user);
-          console.log(user.get("ethAddress"));
-        })
-        .catch(function (error) {
-          console.log(error);
-        });  
-    }
-  }
-
-  const logOut = async () => {
-    await logout();
-    console.log("logged out");
-  }
+  ];
 
   return (
     <header className="flex flex-col bg-black border-b border-white">
@@ -61,17 +39,6 @@ function Header() {
                     ))}
                   </ul>
                 </div>
-              </div>
-              <div className="hidden sm:flex items-center gap-6 justify-center mr-6">
-                { !isAuthenticated && (
-                  <button onClick={login} className='flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-black font-bold bg-vickie-yellow hover:bg-vickie-yellow md:py-1 md:text-md md:px-4 uppercase font-gilroy'>Login</button>
-                )}
-                { isAuthenticated && (
-                  <>
-                    <p className="text-white">Wallet: {user.get("ethAddress")}</p>
-                    <button onClick={logOut} disabled={isAuthenticating} className='w-32 flex items-center justify-center p-1 border border-transparent text-base font-medium rounded-md text-black bg-gray-600 hover:bg-vickie-yellow'>Logout</button>
-                  </>
-                )}
               </div>
             </div>
 
