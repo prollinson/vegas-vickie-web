@@ -3,6 +3,7 @@ import { Routes, Route, Outlet } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Collections from './pages/Collections';
+import Story from './pages/Story';
 
 import Header from './components/layout/Header';
 
@@ -14,6 +15,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="collections" element={<Collections />} />
+        <Route path="story" element={<Story />} />
       </Route>
     </Routes>
   );
