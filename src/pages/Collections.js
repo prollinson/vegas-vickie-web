@@ -4,6 +4,7 @@ import { chain, address as contractAddress, ABI} from "../models/contracts/Legen
 
 import TransactionDialog from '../components/dialogs/TransactionDialog';
 import NftCollection from '../components/elements/NftCollection';
+import PageHeader from '../components/layout/PageHeader';
 
 // Assets
 import collectorNftImage from '../assets/collector_nft_preview.jpg';
@@ -97,7 +98,7 @@ function Collections() {
 
   return (
     <>
-      <h2 className='font-display font-black uppercase text-white text-4xl col-span-12 text-center pb-6'>The Collections</h2>
+      <PageHeader pageTitle="The Collections" />
 
       <NftCollection
         name="The Collector"

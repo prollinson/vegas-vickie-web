@@ -1,22 +1,40 @@
 import * as React from 'react';
 
 import { Link } from 'react-router-dom';
+import PageHeader from '../components/layout/PageHeader';
 
 // Assets
 import borbayLogo from '../assets/BORBAY_LOGO.jpg';
-import legendCard from '../assets/legend_bv-01.jpg';
+import vegasVickie from '../assets/vegas-vickie.jpg';
+import circaImage from '../assets/circa-rooftop.jpg';
 
 function Story() {
   return (
     <>
-      {/* Vision Section */}
+      <PageHeader pageTitle="Our Story" />
+
+      {/* Vegas Vickie Section */}
       <div className="col-span-12">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 border-b-2 border-white md:flex md:space-x-4">
+          <div className='w-1/2 mx-auto md:w-1/3'>
+            <img src={vegasVickie} alt="Vegas Vickie in Circa" className="w-full mx-auto max-h-4xl"/>
+          </div>
+          <div className="max-w-3xl md:w-2/3 mx-auto pt-6 text-center">
+            <h2 className="text-2xl text-white tracking-widest uppercase">Who is Vegas Vickie?</h2>
+            <p className="font-gilroy mt-4 text-lg text-white">Originally designed by Charles F Bernard and installed over Bob Stupak's Glitter Gulch Casino in 1980 - Vegas Vickie has always been a dazzling tourist attraction. To this day, the old gal doesn’t disappoint, still driving visitors to see her famous leg kick one more time at her new home at Circa Resort &amp; Casino in Downtown Las Vegas. You can even grab a drink with her at her very own bar - Vegas Vickie's.</p>
+            <p className="font-gilroy mt-4 text-lg text-white">Follow her on Twitter: <a href="https://twitter.com/vegasvickie">@VegasVickie</a></p>
+          </div>
+        </div>
+      </div>
+
+      {/* BORBAY Section */}
+      <div className="col-span-12">
+        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 border-b-2 border-white md:flex md:space-x-4 md:flex-row-reverse">
           <div className='w-1/2 mx-auto md:w-1/3'>
             <img src={borbayLogo} alt="BORBAY Logo" className="w-full mx-auto max-h-4xl"/>
           </div>
           <div className="max-w-3xl md:w-2/3 mx-auto pt-6 text-center">
-            <h2 className="text-2xl text-white tracking-widest uppercase">Vision</h2>
+            <h2 className="text-2xl text-white tracking-widest uppercase">Who is BORBAY?</h2>
             <p className="font-gilroy mt-4 text-lg text-white">Borbay's work is collected globally and has been featured in Forbes, BBC World, Wall Street Journal Japan,
              Los Angeles Magazine, and the New York Post. From Time Out New York Magazine naming him their Most Creative New Yorker, to having original works in
 the permanent Universal Hip Hop Museum collection, to
@@ -27,64 +45,19 @@ circumventing the art world since 2009.</p>
         </div>
       </div>
 
-      {/* Collections Section */}
+      {/* Circa Section */}
       <div className="col-span-12">
-        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 border-b-2 border-white md:flex md:flex-row-reverse">
-          <div className='w-1/2 mx-auto md:w-1/3 md:ml-4'>
-            <img src={legendCard} alt="Legend Card" className=""/>
+        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 border-b-2 border-white md:flex md:space-x-4">
+          <div className='w-1/2 mx-auto md:w-1/3'>
+            <img src={circaImage} alt="Circa's rooftop" className="w-full mx-auto max-h-4xl"/>
           </div>
           <div className="max-w-3xl md:w-2/3 mx-auto pt-6 text-center">
-            <h2 className="text-2xl text-white tracking-widest uppercase">Collections</h2>
-            <p className="font-gilroy mt-4 text-lg text-white">
-            The best words to describe this event: Rich,
-Classy &amp; Elegant. Everyone is dressed in
-beautiful attire, dancing, and creating lifelong
-memories together. By attending, you will
-participate in a way that broadens your view of
-the world and enriches the depth of your
-experience.
-            </p>
-            <Link to="/collections" className="block font-gilroy font-bold uppercase bg-vickie-yellow rounded-lg py-2 px-4 mt-4 text-lg text-black">View Collections</Link>
+            <h2 className="text-2xl text-white tracking-widest uppercase">About Circa</h2>
+            <p className="font-gilroy mt-4 text-lg text-white">Circa Resort &amp; Casino is Downtown Las Vegas's newest entertainment destination located downtown on Fremont Street. This AAA Four Diamond resort features luxurious rooms, a two-level casino, the world's largest sportsbook, Stadium Swim® - a multi-tiered pool amphitheatre, million-dollar rooftop views at Legacy Club, and 12 restaurants and bars. Circa is the place to have the time of your life.</p>
+            <p className="font-gilroy mt-4 text-lg text-white">Follow him on Twitter: <a href="https://twitter.com/borbay">@Borbay</a></p>
           </div>
         </div>
       </div>
-
-      {/* Join Section */}
-      <div className="col-span-12">
-        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 border-b-2 border-white md:flex">
-          <div className="max-w-3xl md:w-1/2 mx-auto text-center">
-            <h2 className="text-2xl text-white tracking-widest uppercase">
-              Join The
-              <span className='block text-4xl'>Vegas Vickie</span>
-              NFT
-              Community
-            </h2>
-
-          </div>
-          <div className="max-w-3xl md:w-1/2 mx-auto text-center">
-            <p className="font-gilroy  mt-4 text-lg text-white">
-            Originally designed by Charles F Bernard and
-installed over Bob Stupa's Glitter Gulch Casino
-in 1980 - Vegas Vickie has always been a
-dazzling tourist attraction.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* FAQ Section */}
-      <div className="col-span-12">
-        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 border-b-2 border-white">
-          <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl text-white tracking-widest uppercase">FAQ</h2>
-            <ul className='text-white'>
-              <li>Who is Vegas Vickie?</li>
-              <li>Who is BORBAY?</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
     </>
   )
 }
