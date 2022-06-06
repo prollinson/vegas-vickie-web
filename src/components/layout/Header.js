@@ -12,7 +12,7 @@ function Header() {
   ];
 
   return (
-    <header className="flex flex-col bg-black border-b border-white">
+    <header className="flex flex-col bg-black border-b-2 border-white">
       <Disclosure as="nav" >
         {({ open }) => (
           <>
@@ -30,9 +30,9 @@ function Header() {
               </div>
               <div className="flex-1 flex-cols items-center justify-center">
                 <div className="flex items-center justify-center">
-                  <h1 className="font-gilroy black uppercase text-3xl tracking-widest text-white text-center pt-3">Vegas Vickie NFT</h1>
+                  <h1 className="font-gilroy font-bold uppercase text-4xl tracking-widest text-white text-center mt-8">Vegas Vickie NFT</h1>
                 </div>
-                <div className="hidden sm:flex sm:space-x-8 font-display justify-center font-gilroy uppercase">
+                <div className="hidden sm:flex sm:space-x-8 font-display justify-center font-gilroy uppercase mb-6">
                   <ul className="flex flex-inital text-white">
                     {navItems.map((item, index) => (
                       <li key={index} className="p-3 hover:text-vickie-yellow"><Link to={item.link}>{item.name}</Link></li>
