@@ -28,7 +28,7 @@ function Home() {
       </div>
 
       {/* The collections */}
-      <div className="col-span-12 bg-black bg-neon-bg bg-center">
+      <div className="col-span-12 bg-black bg-center">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex h-screen md:align-center md:items-center">
           <div className='md:flex md:items-stretch md:space-x-10'>
             <div className='w-1/4 h-fit'>
