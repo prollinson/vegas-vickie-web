@@ -9,7 +9,10 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        "vegas-scene-dark": "url('/src/assets/background_vickie.jpg')"
+        "vegas-scene-dark": "url('/src/assets/background_vickie.jpg')",
+        "header-dark": "url('/src/assets/header-bg.png')",
+        "legacy-lounge": "url('/src/assets/legacy-lounge-bg.png')",
+        "pattern": "url('/src/assets/pattern-bg.png')",
       },
       fontFamily: {
         'gilroy': ['Gilroy', 'sans-serif'],
