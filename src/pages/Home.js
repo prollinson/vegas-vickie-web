@@ -148,7 +148,7 @@ function Home() {
             <img src={utilitySuiteStays} className='w-full' />
             <div className=''>
               <h1 className={`${sectionHeading2} text-white pt-8 pb-2`}>Suite Stays</h1>
-              <p className={`${bodyTextSmall}`}>An exclusive VIP party for all Vegas Vickie NFT holders held at Circa Resort &amp; Casino. This three day event will incorporate some of Circa's top venues such as Stadium Swim, Legacy Club Rooftop Cocktails, and more. </p>
+              <p className={`${bodyTextSmall}`}>Enjoy up to 3 nights stay at Circa.</p>
             </div>
           </div>
 
@@ -156,7 +156,7 @@ function Home() {
             <img src={utilityVIPExperiences} className='w-full' />
             <div className=''>
               <h1 className={`${sectionHeading2} text-white pt-8 pb-2`}>VIP Experiences</h1>
-              <p className={`${bodyTextSmall}`}>An exclusive VIP party for all Vegas Vickie NFT holders held at Circa Resort &amp; Casino. This three day event will incorporate some of Circa's top venues such as Stadium Swim, Legacy Club Rooftop Cocktails, and more. </p>
+              <p className={`${bodyTextSmall}`}>Unique experiences crafted just for you. Feel like a vip with exclusive events, perks, and venue content.</p>
             </div>
           </div>
         </div>

@@ -65,7 +65,7 @@ function Collections() {
       description :'Round trip limo transportation from the airport to Circa Resort & Casino.'
     },
     {
-      name: '',
+      name: 'Welcome Cocktail',
       description :'Welcome cocktail at Vegas Vickies.'
     },
     {
@@ -81,8 +81,8 @@ function Collections() {
       description: '$500 to spend on food & drinks during your stay.'
     },
     {
-      name: '',
-      description :'Circa Coffee Table Book.'
+      name: 'Circa Coffee Table Book',
+      description :''
     },
     {
       name: 'Plus future perks, benefits and utility',
@@ -107,6 +107,10 @@ function Collections() {
       name: '$250 Food & Beverage Credit',
       description: '$250 to spend on food & drink during your stay.'
     },
+    {
+      name: 'Plus future perks, benefits and utility',
+      description:  ''
+     }
   ]
 
   let tier4CollectorPerks = [
@@ -126,6 +130,10 @@ function Collections() {
       name: 'Welcome Cocktail',
       description :'Welcome cocktail at Vegas Vickies.'
     },
+    {
+      name: 'Plus future perks, benefits and utility',
+      description:  ''
+     }
   ]
 
   return (
