@@ -12,7 +12,7 @@ function Header() {
   ];
 
   return (
-    <header className="flex flex-col bg-black border-b-2 border-white">
+    <header className="col-span-12 flex flex-col bg-black border-b-2 border-[#130E04]">
       <Disclosure as="nav" >
         {({ open }) => (
           <>

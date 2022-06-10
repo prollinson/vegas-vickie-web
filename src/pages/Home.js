@@ -64,7 +64,7 @@ function Home() {
       </div>
 
       {/* Hero Section */}
-      <div className="col-span-12 bg-legacy-lounge bg-cover border-t border-[#130E04] border-t border-[#130E04]">
+      <div className="col-span-12 bg-legacy-lounge bg-cover border-t border-[#130E04]">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex min-h-screen md:items-center md:justify-center">
           <div className='w-full h-fit'>
             <h1 className={`${heroHeading} text-white mb-4`}>Own iconic artwork. Access legendary perks and VIP experiences at Circa Resort &amp; Casino</h1>
