@@ -1,10 +1,17 @@
-function NftCollection ({name, description, nftImage, perks, mintPrice, maxSupply, actionBox}) {
+function NftCollection ({name, description, nftImage, availableText, perks, mintPrice, maxSupply, actionBox}) {
+  let sectionHeading2 = "text-lg text-white font-bold tracking-widest uppercase";
+  let bodyTextSmall = 'font-gilroy text-white text-lg';
+
   return (
-    <div className="md:flex justify-center col-span-12 pb-24">
-      <div className="w-full md:w-1/2 flex-none basis-1/4 justify-items-center pb-4">
+    <div className="md:flex justify-center pb-52 space-x-24">
+      <div className="w-full md:w-1/2 flex-none basis-1/4 justify-items-center">
         <img src={nftImage} alt="Preview of NFT" className="max-h-72 md:max-h-full m-auto"/>
+        <div className="w-full pt-8">
+          <p className="font-gilroy text-white text-md text-center">{availableText}</p>
+        </div>
       </div>
-      <div className="w-full md:w-1/2 flex-none pl-16 pr-6">
+
+      <div className="w-full md:w-1/2 flex-none">
         <h2 className="text-3xl text-white font-gilroy font-bold tracking-widest uppercase">{name}</h2>
         <p className="font-display text-white">{description}</p>
 
@@ -18,9 +25,12 @@ function NftCollection ({name, description, nftImage, perks, mintPrice, maxSuppl
           )}
         </div>
 
-        <ul className="font-body text-white uppercase pt-4">
+        <ul className="font-body text-white pt-4">
           {perks.map((perk, index) => (
-            <li key={index} className="border-vickie-yellow border-b-2 pt-3 pb-3">{perk}</li>
+            <li key={index} className="pt-3 pb-3">
+              <h2 className={`${sectionHeading2}`}>{perk.name}</h2>
+              <p className={`${bodyTextSmall}`}>{perk.description}</p>
+            </li>
           ))}
         </ul>
 

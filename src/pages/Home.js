@@ -196,7 +196,7 @@ function Home() {
             <a href={discordLink} className="block w-fit p-3 rounded-full bg-[#5865F2] aspect-square flex justify-center items-center">
               <img src={discordLogo} className="w-8"/>
             </a>
-            <a href={discordLink} className="block w-fit p-3 rounded-full bg-[#1DA1F2] aspect-square flex justify-center items-center">
+            <a href={twitterLink} className="block w-fit p-3 rounded-full bg-[#1DA1F2] aspect-square flex justify-center items-center">
               <img src={twitterLogo} className="w-8"/>
             </a>
           </div>
