@@ -24,7 +24,6 @@ function App() {
 function Layout() {
   return (
     <div className="relative min-h-screen bg-black">
-      <Header />
       <div className="max-w-full mx-auto grid grid-cols-12">
         <Outlet />
       </div>

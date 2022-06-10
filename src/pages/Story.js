@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Link } from 'react-router-dom';
+import Header from '../components/layout/Header';
 import PageHeader from '../components/layout/PageHeader';
 
 // Assets
@@ -11,6 +12,7 @@ import circaImage from '../assets/circa-rooftop.jpg';
 function Story() {
   return (
     <>
+      <Header />
       <PageHeader pageTitle="Our Story" />
 
       {/* Vegas Vickie Section */}
