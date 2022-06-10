@@ -11,6 +11,7 @@ import twitterLogo from '../assets/twitter-logo.svg';
 
 import tier1Preview from '../assets/the-one-and-only.png';
 import tier2Preview from '../assets/dealers-choice.png';
+import tier2PreviewVideo from '../assets/dealers-choice.mp4'
 import tier3Preview from '../assets/neon-idol.png';
 import tier4Preview from '../assets/off-the-rack.png';
 
@@ -57,14 +58,14 @@ function Home() {
   return (
     <>
       {/* logo Section */}
-      <div className="col-span-12 bg-header-dark ">
+      <div className="col-span-12 bg-header-dark bg-cover">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex min-h-screen md:items-center md:justify-center">
             <img src={neonLogo} alt="Neon Logo" className="max-h-72 md:max-h-full m-auto"/>
         </div>
       </div>
 
       {/* Hero Section */}
-      <div className="col-span-12 bg-legacy-lounge bg-cover border-t border-[#130E04]">
+      <div className="col-span-12 bg-legacy-lounge bg-cover border-t border-[#1E1708]">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex min-h-screen md:items-center md:justify-center">
           <div className='w-full h-fit'>
             <h1 className={`${heroHeading} text-white mb-4`}>Own iconic artwork. Access legendary perks and VIP experiences at Circa Resort &amp; Casino</h1>
@@ -85,13 +86,13 @@ function Home() {
       </div>
 
       {/* The collections */}
-      <div className="col-span-12 bg-pattern bg-center py-24 border-t border-[#130E04]">
+      <div className="col-span-12 bg-pattern bg-center py-24 border-t border-[#1E1708]">
         <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>The Collections</h2>
         </div>
 
         <div className="max-w-8xl mx-auto py-16 px-20 sm:px-6 lg:px-20 md:flex md:flex-row md:align-center md:items-start md:space-x-16">
-          <div className='w-full flex flex-col'>
+          <div className='w-full flex flex-col'>            
             <img src={tier1Preview} className='w-full' />
             <div className=''>
               <h1 className={`${sectionHeading2} text-white pt-8 pb-2`}>The one and only</h1>
@@ -100,7 +101,16 @@ function Home() {
           </div>
 
           <div className='w-full flex flex-col'>
-            <img src={tier2Preview} className='w-full' />
+            <video autoPlay muted playsinline loop>
+              {/* <source src="/media/cc0-videos/flower.webm"
+                      type="video/webm"> */}
+
+              <source src={tier2PreviewVideo}
+                      type="video/mp4"/>
+
+              {/* <img src={tier2Preview} className='w-full' /> */}
+            </video>
+            
             <div className=''>
               <h1 className={`${sectionHeading2} text-white pt-8 pb-2`}>Dealer's Choice</h1>
               <p className={`${bodyTextSmall}`}>A deck of 54 cards. Includes suite stays, entry to Summer Bash, Food &amp; Beverage credit.</p>
@@ -130,7 +140,7 @@ function Home() {
       </div>
 
       {/* Utility */}
-      <div className="col-span-12 bg-black bg-center py-24 border-t border-[#130E04]">
+      <div className="col-span-12 bg-black bg-center py-24 border-t border-[#1E1708]">
         <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Utility</h2>
         </div>
@@ -167,7 +177,7 @@ function Home() {
       </div>
 
       {/* Our Story */}
-      <div className="col-span-12 bg-pattern bg-center py-24 border-t border-[#130E04]">
+      <div className="col-span-12 bg-pattern bg-center py-24 border-t border-[#1E1708]">
         <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Our Story</h2>
         </div>
@@ -184,7 +194,7 @@ function Home() {
       </div>
 
       {/* Join the Community */}
-      <div className="col-span-12 bg-center py-24 border-t border-[#130E04]">
+      <div className="col-span-12 bg-center py-24 border-t border-[#1E1708]">
         <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Keep up-to-date &amp; Join Fellow Fans</h2>
         </div>
@@ -204,7 +214,7 @@ function Home() {
       </div>
 
       {/* FAQs */}
-      <div className="col-span-12 bg-pattern bg-center py-24 border-t border-[#130E04]">
+      <div className="col-span-12 bg-pattern bg-center py-24 border-t border-[#1E1708]">
         <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Common Questions</h2>
         </div>

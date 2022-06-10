@@ -141,51 +141,53 @@ function Collections() {
       <Header />
       <PageHeader pageTitle="The Collections" />
 
-      <div className="col-span-12 w-full max-w-7xl mx-auto py-24 border-t border-[#130E04] bg-pattern">
-        <NftCollection
-          name="The One and Only"
-          description=""
-          nftImage={tier1NftImage}
-          perks={tier1CollectorPerks}
-          totalSupply={1}
-          maxSupply={"1/1"}
-          mintPrice={"TBD"}
-          availableText={"Available at auction early Summer"}
-        />
+      <div className="col-span-12 w-full mx-auto py-24 border-t border-[#1E1708] bg-pattern">
+        <div className='max-w-7xl mx-auto'>
+          <NftCollection
+            name="The One and Only"
+            description=""
+            nftImage={tier1NftImage}
+            perks={tier1CollectorPerks}
+            totalSupply={1}
+            maxSupply={"1/1"}
+            mintPrice={"TBD"}
+            availableText={"Available at auction early Summer"}
+          />
 
-        <NftCollection
-          name="Dealer's Choice"
-          description=""
-          nftImage={tier2NftImage}
-          perks={tier2CollectorPerks}
-          mintPrice={"TBD"}
-          maxSupply={"54"}
-          availableText={"Available to mint early Summer"}
-        />
+          <NftCollection
+            name="Dealer's Choice"
+            description=""
+            nftImage={tier2NftImage}
+            perks={tier2CollectorPerks}
+            mintPrice={"TBD"}
+            maxSupply={"54"}
+            availableText={"Available to mint early Summer"}
+          />
 
-        <NftCollection
-          name="Neon Idol"
-          description=""
-          nftImage={tier3NftImage}
-          perks={tier3CollectorPerks}
-          mintPrice={"TBD"}
-          maxSupply={"250"}
-          availableText={"Available to mint early Summer"}
-        />
+          <NftCollection
+            name="Neon Idol"
+            description=""
+            nftImage={tier3NftImage}
+            perks={tier3CollectorPerks}
+            mintPrice={"TBD"}
+            maxSupply={"250"}
+            availableText={"Available to mint early Summer"}
+          />
 
-        <NftCollection
-          name="Off the Rack"
-          description=""
-          nftImage={tier4NftImage}
-          perks={tier4CollectorPerks}
-          mintPrice={"TBD"}
-          maxSupply={"2500"}
-          availableText={"Available to mint early Summer"}
-        />
+          <NftCollection
+            name="Off the Rack"
+            description=""
+            nftImage={tier4NftImage}
+            perks={tier4CollectorPerks}
+            mintPrice={"TBD"}
+            maxSupply={"2500"}
+            availableText={"Available to mint early Summer"}
+          />
+        </div>
       </div>
 
       {/* Join the Community */}
-      <div className="col-span-12 bg-center py-24 border-t border-[#130E04]">
+      <div className="col-span-12 bg-center py-24 border-t border-[#1E1708]">
         <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Keep up-to-date &amp; Join Fellow Fans</h2>
         </div>
