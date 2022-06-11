@@ -54,6 +54,11 @@ function Home() {
   let bodyText = 'font-gilroy text-white text-md sm:text-xl';
   let bodyTextSmall = 'font-gilroy text-white text-md sm:text-lg';
 
+  let playVideo = (event, obj) => {
+    console.log('play video', event, obj);
+    event.target.play();
+  }
+
   return (
     <>
       {/* logo Section */}
@@ -111,7 +116,7 @@ function Home() {
           </div>
 
           <div className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
-            <video autoPlay muted playsInline loop>
+            <video muted playsInline onMouseOver={playVideo}>
               <source src={tier2PreviewVideo} type="video/mp4"/>
               {/* <img src={tier2Preview} className='w-full' /> */}
             </video>
@@ -234,7 +239,7 @@ function Home() {
       <div className="col-span-12 bg-center bg-pattern bg-center py-16 sm:py-24 border-t border-[#1E1708]">
       <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:flex-col md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Keep up-to-date &amp; Join Fellow Fans</h2>
-          <p className={`${bodyTextSmall} pt-1`}>Follow &amp;Join the community so you don't miss out on mint information, allow-list spots and giveaways.</p>
+          <p className={`${bodyTextSmall} pt-1`}>Follow &amp; Join the community so you don't miss out on mint information, allow list spots and giveaways.</p>
         </div>
 
         <div className="max-w-7xl mx-auto flex flex-row flex-initial mt-10 justify-center mt-4 sm:mt-8 space-x-4">
