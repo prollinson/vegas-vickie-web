@@ -86,7 +86,7 @@ function Home() {
       </div>
 
       {/* The collections */}
-      <div className="col-span-12 bg-pattern bg-center py-24 border-t border-[#1E1708]">
+      <div className="col-span-12 py-24 border-t border-[#1E1708]">
         <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>The Collections</h2>
         </div>
@@ -140,7 +140,7 @@ function Home() {
       </div>
 
       {/* Utility */}
-      <div className="col-span-12 bg-black bg-center py-24 border-t border-[#1E1708]">
+      <div className="col-span-12 bg-pattern bg-center bg-center py-24 border-t border-[#1E1708]">
         <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Utility</h2>
         </div>
@@ -177,7 +177,7 @@ function Home() {
       </div>
 
       {/* Our Story */}
-      <div className="col-span-12 bg-pattern bg-center py-24 border-t border-[#1E1708]">
+      <div className="col-span-12 bg-black py-24 border-t border-[#1E1708]">
         <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Our Story</h2>
         </div>
@@ -194,7 +194,7 @@ function Home() {
       </div>
 
       {/* Join the Community */}
-      <div className="col-span-12 bg-center py-24 border-t border-[#1E1708]">
+      <div className="col-span-12 bg-center bg-pattern bg-center py-24 border-t border-[#1E1708]">
         <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Keep up-to-date &amp; Join Fellow Fans</h2>
         </div>
@@ -214,7 +214,7 @@ function Home() {
       </div>
 
       {/* FAQs */}
-      <div className="col-span-12 bg-pattern bg-center py-24 border-t border-[#1E1708]">
+      <div className="col-span-12 bg-black py-24 border-t border-[#1E1708]">
         <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Common Questions</h2>
         </div>
