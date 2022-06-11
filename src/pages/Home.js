@@ -196,10 +196,10 @@ function Home() {
               }}
             className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
 
-            <video muted playsInline onMouseOver={playVideo}>
+            <video muted playsInline onMouseOver={playVideo} className="hidden sm:block">
               <source src={tier2PreviewVideo} type="video/mp4"/>
-              {/* <img src={tier2Preview} className='w-full' /> */}
             </video>
+            <img src={tier2Preview} className='w-full sm:hidden' />
             
             <div ref={refCard2Description}
               style={{
