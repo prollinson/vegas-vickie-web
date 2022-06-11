@@ -48,31 +48,31 @@ function Home() {
   let discordLink = 'https://discord.com/invite/vegasvickienft';
   let twitterLink = 'https://twitter.com/VegasVickie';
 
-  let heroHeading = 'font-gilroy font-bold text-5xl uppercase';
-  let sectionHeading = "text-3xl text-white font-bold tracking-widest uppercase";
+  let heroHeading = 'font-gilroy font-bold text-3xl sm:text-5xl uppercase';
+  let sectionHeading = "text-2xl sm:text-3xl text-white font-bold tracking-widest uppercase sm:text-center";
   let sectionHeading2 = "text-xl text-white font-bold tracking-wide uppercase";
-  let bodyText = 'font-gilroy text-white text-xl';
-  let bodyTextSmall = 'font-gilroy text-white text-lg';
+  let bodyText = 'font-gilroy text-white text-md sm:text-xl';
+  let bodyTextSmall = 'font-gilroy text-white text-md sm:text-lg';
 
   return (
     <>
       {/* logo Section */}
       <div className="col-span-12 bg-header-dark bg-cover">
-        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex min-h-screen md:items-center md:justify-center">
-            <img src={neonLogo} alt="Neon Logo" className="max-h-72 md:max-h-full m-auto"/>
+        <div className="max-w-7xl mx-auto sm:py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex sm:min-h-screen md:items-center md:justify-center">
+            <img src={neonLogo} alt="Neon Logo" className="max-h-72 md:max-h-full m-0 md:m-auto"/>
         </div>
       </div>
 
       {/* Hero Section */}
-      <div className="col-span-12 bg-legacy-lounge bg-cover border-t border-[#1E1708]">
-        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex min-h-screen md:items-center md:justify-center">
-          <div className='w-full h-fit'>
+      <div className="col-span-12 bg-legacy-lounge bg-fit sm:bg-cover border-t border-[#1E1708]">
+        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex sm:min-h-screen md:items-center md:justify-center">
+          <div className='md:w-full md:h-fit'>
             <h1 className={`${heroHeading} text-white mb-4`}>Own iconic artwork. Access legendary perks and VIP experiences at Circa Resort &amp; Casino</h1>
-            <p className={`${bodyText} py-4 w-2/3`}>Vegas Vickie NFT, a first for Las Vegas casino, is an opportunity to own iconic art, get access to VIP experiences at Circa: exclusive entry to the Vegas Vickie NFT Summer Bash, hotel rooms and VIP experiences.  We will have four collections based on BORBAY’s Vegas Vickie.</p>
-            <p className={`${bodyText} w-2/3`}>We plan exclusive in-person events for NFT holders this summer and will be building out future games and utility.</p>
+            <p className={`${bodyText} py-4 sm:w-2/3`}>Vegas Vickie NFT, a first for Las Vegas casino, is an opportunity to own iconic art, get access to VIP experiences at Circa: exclusive entry to the Vegas Vickie NFT Summer Bash, hotel rooms and VIP experiences.  We will have four collections based on BORBAY’s Vegas Vickie.</p>
+            <p className={`${bodyText} sm:w-2/3`}>We plan exclusive in-person events for NFT holders this summer and will be building out future games and utility.</p>
             
             <div className="flex flex-row flex-initial pt-2 items-center mt-8 space-x-4">
-              <a href={discordLink} target="_window" className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-black uppercase bg-vickie-yellow hover:bg-vickie-yellow">Join the Community</a>
+              <a href={discordLink} target="_window" className="w-full md:w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-black uppercase bg-vickie-yellow hover:bg-vickie-yellow">Join the Community</a>
               <a href={discordLink} target="_window" className="block w-fit p-3 rounded-full bg-[#5865F2] aspect-square flex justify-center items-center">
                 <img src={discordLogo} className="w-8"/>
               </a>
@@ -85,14 +85,14 @@ function Home() {
       </div>
 
       {/* The collections */}
-      <div className="col-span-12 py-24 border-t border-[#1E1708]">
+      <div className="col-span-12 py-16 sm:py-24 border-t border-[#1E1708]">
         <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:flex-col md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>The Collections</h2>
-          <p className={`${bodyTextSmall} pt-1`}>Four collections. 2,805 unique NFTs.</p>
+          <p className={`${bodyTextSmall} pt-1 sm:text-center`}>Four collections. 2,805 unique NFTs.</p>
         </div>
 
-        <div className="max-w-8xl mx-auto py-16 px-20 sm:px-6 lg:px-20 md:flex md:flex-row md:align-center md:items-start md:space-x-16">
-          <div className='w-full flex flex-col'>            
+        <div className="max-w-7xl mx-auto py-16 px-10 sm:px-6 md:px-0 md:flex md:flex-row md:align-center md:items-start space-y-16 md:space-y-0 md:space-x-16">
+          <div className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
             <img src={tier1Preview} className='w-full' />
             <div className=''>
               <div className='flex flex-row justify-between pt-8 pb-2'>
@@ -110,7 +110,7 @@ function Home() {
             </div>
           </div>
 
-          <div className='w-full flex flex-col'>
+          <div className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
             <video autoPlay muted playsInline loop>
               {/* <source src="/media/cc0-videos/flower.webm"
                       type="video/webm"> */}
@@ -137,7 +137,7 @@ function Home() {
             </div>
           </div>
 
-          <div className='w-full flex flex-col'>
+          <div className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
             <img src={tier3Preview} className='w-full' />
             <div className=''>
               <div className='flex flex-row justify-between pt-8 pb-2'>
@@ -155,7 +155,7 @@ function Home() {
             </div>
           </div>
 
-          <div className='w-full flex flex-col'>
+          <div className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
             <img src={tier4Preview} className='w-full' />
             <div className=''>
               <div className='flex flex-row justify-between pt-8 pb-2'>
@@ -180,33 +180,33 @@ function Home() {
       </div>
 
       {/* Utility */}
-      <div className="col-span-12 bg-pattern bg-center bg-center py-24 border-t border-[#1E1708]">
+      <div className="col-span-12 bg-pattern bg-center bg-center py-16 sm:py-24 border-t border-[#1E1708]">
       <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:flex-col md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>What you get</h2>
           <p className={`${bodyTextSmall} pt-1`}>Unmatched real-world utility in Las Vegas</p>
         </div>
 
-        <div className="max-w-7xl mx-auto pt-16 px-4 sm:px-6 lg:px-8 md:flex md:flex md:align-center md:items-top md:space-x-12">
-          <div className='w-1/3 flex flex-col'>
+        <div className="max-w-7xl mx-auto pt-10 sm:pt-16 px-4 sm:px-6 lg:px-8 md:flex md:flex md:align-center md:items-top space-y-20 md:space-y-0 md:space-x-12">
+          <div className='sm:w-1/3 flex flex-col'>
             <img src={utilitySummerBash} className='w-full' />
             <div className=''>
-              <h1 className={`${sectionHeading2} text-white pt-8 pb-2`}>Summer Bash</h1>
+              <h1 className={`${sectionHeading2} text-white pt-4 sm:pt-8 pb-2`}>Summer Bash</h1>
               <p className={`${bodyTextSmall}`}>An exclusive VIP party for all Vegas Vickie NFT holders held at Circa Resort &amp; Casino. This three day event will incorporate some of Circa's top venues such as Stadium Swim, Legacy Club Rooftop Cocktails, and more. </p>
             </div>
           </div>
 
-          <div className='w-1/3 flex flex-col'>
+          <div className='sm:w-1/3 flex flex-col'>
             <img src={utilitySuiteStays} className='w-full' />
             <div className=''>
-              <h1 className={`${sectionHeading2} text-white pt-8 pb-2`}>Suite Stays</h1>
+              <h1 className={`${sectionHeading2} text-white pt-4 sm:pt-8 pb-2`}>Suite Stays</h1>
               <p className={`${bodyTextSmall}`}>Enjoy up to 3 nights stay at Circa.</p>
             </div>
           </div>
 
-          <div className='w-1/3 flex flex-col'>
+          <div className='sm:w-1/3 flex flex-col'>
             <img src={utilityVIPExperiences} className='w-full' />
             <div className=''>
-              <h1 className={`${sectionHeading2} text-white pt-8 pb-2`}>VIP Experiences</h1>
+              <h1 className={`${sectionHeading2} text-white pt-4 sm:pt-8 pb-2`}>VIP Experiences</h1>
               <p className={`${bodyTextSmall}`}>Unique experiences crafted just for you. Feel like a vip with exclusive events, perks, and venue content.</p>
             </div>
           </div>
@@ -218,14 +218,14 @@ function Home() {
       </div>
 
       {/* Our Story */}
-      <div className="col-span-12 bg-black py-24 border-t border-[#1E1708]">
+      <div className="col-span-12 bg-black py-16 sm:py-24 border-t border-[#1E1708]">
       <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:flex-col md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Our Story</h2>
-          <p className={`${bodyTextSmall} pt-1`}>Meet BORBAY who spent 8 days live-painting Vegas Vickie for this NFT collection.</p>
+          <p className={`${bodyTextSmall} pt-1 sm:text-center`}>Meet BORBAY who spent 8 days live-painting Vegas Vickie for this NFT collection.</p>
         </div>
 
-        <div className="max-w-7xl mx-auto pt-16 px-4 sm:px-6 lg:px-8 md:flex md:flex md:justify-center md:align-center md:items-top md:space-x-4">
-          <div className='w-2/3 flex flex-col'>
+        <div className="max-w-7xl mx-auto pt-10 sm:pt-16 px-4 sm:px-6 lg:px-8 md:flex md:flex md:justify-center md:align-center md:items-top md:space-x-4">
+          <div className='sm:w-2/3 flex flex-col'>
             <iframe className="w-full aspect-video" src="https://www.youtube.com/embed/GrmE60q4f6M?controls=0&rel=0&enablejsapi=1&modestbranding" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </div>
         </div>
@@ -236,15 +236,15 @@ function Home() {
       </div>
 
       {/* Join the Community */}
-      <div className="col-span-12 bg-center bg-pattern bg-center py-24 border-t border-[#1E1708]">
+      <div className="col-span-12 bg-center bg-pattern bg-center py-16 sm:py-24 border-t border-[#1E1708]">
       <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:flex-col md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Keep up-to-date &amp; Join Fellow Fans</h2>
           <p className={`${bodyTextSmall} pt-1`}>Follow &amp;Join the community so you don't miss out on mint information, allow-list spots and giveaways.</p>
         </div>
 
-        <div className="max-w-7xl mx-auto flex flex-row flex-initial pt-2 justify-center mt-8 space-x-4">
+        <div className="max-w-7xl mx-auto flex flex-row flex-initial mt-10 justify-center mt-4 sm:mt-8 space-x-4">
           <p></p>
-          <div className="flex flex-row flex-initial pt-2 items-center mt-8 space-x-4">
+          <div className="flex flex-row flex-initial items-center space-x-4">
             <a href={discordLink} className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-black uppercase bg-vickie-yellow hover:bg-vickie-yellow">Join the Community</a>
             <a href={discordLink} className="block w-fit p-3 rounded-full bg-[#5865F2] aspect-square flex justify-center items-center">
               <img src={discordLogo} className="w-8"/>
@@ -257,12 +257,12 @@ function Home() {
       </div>
 
       {/* FAQs */}
-      <div className="col-span-12 bg-black py-24 border-t border-[#1E1708]">
+      <div className="col-span-12 bg-black py-16 sm:py-24 border-t border-[#1E1708]">
         <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Common Questions</h2>
         </div>
 
-        <div className="max-w-3xl mx-auto flex flex-row flex-initial pt-2 justify-start mt-8 space-x-4">
+        <div className="sm:max-w-3xl mx-auto flex flex-row flex-initial pt-4 sm:pt-10 px-4 justify-start">
           <ul>
             {faqs.map((item, index) => (
             <li key={index} className='pt-8'>
