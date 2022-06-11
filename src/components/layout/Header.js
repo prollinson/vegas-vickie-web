@@ -14,7 +14,7 @@ function Header() {
   ];
 
   return (
-    <header className="col-span-12 flex flex-col bg-black border-b-2 border-[#130E04] bg-header-dark">
+    <header className="col-span-12 flex flex-col bg-black border-b-2 border-[#130E04] sm:bg-header-dark overflow-hidden">
       <Disclosure as="nav" >
         {({ open }) => (
           <>
@@ -32,7 +32,7 @@ function Header() {
               </div>
               <div className="flex-1 flex-cols">
                 <div className="flex place-content-center content-center justify-center align-center">
-                  <img src={vvLogo} className="sm:h-28" />
+                  <img src={vvLogo} className="h-16 sm:h-28" />
                 </div>
                 <div className="hidden sm:relative sm:flex sm:space-x-8 font-display justify-center font-gilroy uppercase">
                   <ul className="flex flex-inital text-white border-t border-gray-600 w-1/3 justify-center">
