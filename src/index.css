@@ -3,35 +3,37 @@
 @tailwind utilities;
 
 @layer base {
-  @font-face {
-    font-family: 'Gilroy';
-    src: local('Gilroy Bold'), local('Gilroy-Bold'),
-        url('../public/fonts/gilroy/Gilroy-Bold.woff2') format('woff2'),
-        url('../public/fonts/gilroy/Gilroy-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
+    @font-face {
+        font-family: 'Gilroy';
+        src: local('Gilroy Bold'), local('Gilroy-Bold'),
+            url('../public/fonts/gilroy/Gilroy-Bold.woff2') format('woff2'),
+            url('../public/fonts/gilroy/Gilroy-Bold.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Gilroy';
+        src: local('Gilroy Black'), local('Gilroy-Black'),
+            url('../public/fonts/gilroy/Gilroy-Black.woff2') format('woff2'),
+            url('../public/fonts/gilroy/Gilroy-Black.woff') format('woff');
+        font-weight: 900;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Gilroy';
+        src: local('Gilroy Regular'), local('Gilroy-Regular'),
+            url('../public/fonts/gilroy/Gilroy-Regular.woff2') format('woff2'),
+            url('../public/fonts/gilroy/Gilroy-Regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
 }
 
-@font-face {
-    font-family: 'Gilroy';
-    src: local('Gilroy Black'), local('Gilroy-Black'),
-        url('../public/fonts/gilroy/Gilroy-Black.woff2') format('woff2'),
-        url('../public/fonts/gilroy/Gilroy-Black.woff') format('woff');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Gilroy';
-    src: local('Gilroy Regular'), local('Gilroy-Regular'),
-        url('../public/fonts/gilroy/Gilroy-Regular.woff2') format('woff2'),
-        url('../public/fonts/gilroy/Gilroy-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-
+html, body {
+    background-color: #000000;
 }
