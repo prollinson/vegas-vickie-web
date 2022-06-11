@@ -111,7 +111,7 @@ function Home() {
           </div>
 
           <div className='w-full flex flex-col'>
-            <video autoPlay muted playsinline loop>
+            <video autoPlay muted playsInline loop>
               {/* <source src="/media/cc0-videos/flower.webm"
                       type="video/webm"> */}
 
@@ -226,7 +226,7 @@ function Home() {
 
         <div className="max-w-7xl mx-auto pt-16 px-4 sm:px-6 lg:px-8 md:flex md:flex md:justify-center md:align-center md:items-top md:space-x-4">
           <div className='w-2/3 flex flex-col'>
-            <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/GrmE60q4f6M?controls=0&rel=0&enablejsapi=1&modestbranding" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe className="w-full aspect-video" src="https://www.youtube.com/embed/GrmE60q4f6M?controls=0&rel=0&enablejsapi=1&modestbranding" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </div>
         </div>
 
@@ -265,7 +265,7 @@ function Home() {
         <div className="max-w-3xl mx-auto flex flex-row flex-initial pt-2 justify-start mt-8 space-x-4">
           <ul>
             {faqs.map((item, index) => (
-            <li className='pt-8'>
+            <li key={index} className='pt-8'>
               <h3 className={sectionHeading2}>{item.question}</h3>
               <p className={`${bodyTextSmall}`}>{item.answer}</p>
             </li>
