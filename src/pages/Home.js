@@ -87,16 +87,27 @@ function Home() {
 
       {/* The collections */}
       <div className="col-span-12 py-24 border-t border-[#1E1708]">
-        <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
+        <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:flex-col md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>The Collections</h2>
+          <p className={`${bodyTextSmall} pt-1`}>Four collections. 2,805 unique NFTs.</p>
         </div>
 
         <div className="max-w-8xl mx-auto py-16 px-20 sm:px-6 lg:px-20 md:flex md:flex-row md:align-center md:items-start md:space-x-16">
           <div className='w-full flex flex-col'>            
             <img src={tier1Preview} className='w-full' />
             <div className=''>
-              <h1 className={`${sectionHeading2} text-white pt-8 pb-2`}>The one and only</h1>
-              <p className={`${bodyTextSmall}`}>A digital version of the 40”x40” painting by BORBAY. Currently hanging at the Legacy Lounge. Includes a Founder's suite, entry to the Summer Bash and VIP experiences.</p>
+              <div className='flex flex-row justify-between pt-8 pb-2'>
+                <div>
+                  <h1 className={`text-[12px] tracking-wide uppercase text-zinc-500`}>Collection One</h1>
+                  <h1 className={`${sectionHeading2} text-white`}>The one and only</h1>
+                </div>
+                <div className='bg-zinc-600 w-fit flex flex-col justify-center align-center px-2'>
+                  <span className='font-gilroy uppercase font-bold text-2xl text-center leading-none text-zinc-200'>1</span>
+                  <span className='font-gilroy uppercase font-bold text-[10px] leading-none text-zinc-200'>NFT</span>
+                </div>
+              </div>
+              <p className={`${bodyTextSmall}`}>A digital version of the 30”x40” painting by BORBAY hanging in the Legacy Lounge.</p>
+              <p className={`${bodyTextSmall}`}><a href="/collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</a></p>
             </div>
           </div>
 
@@ -112,37 +123,68 @@ function Home() {
             </video>
             
             <div className=''>
-              <h1 className={`${sectionHeading2} text-white pt-8 pb-2`}>Dealer's Choice</h1>
-              <p className={`${bodyTextSmall}`}>A deck of 54 cards. Includes suite stays, entry to Summer Bash, Food &amp; Beverage credit.</p>
+              <div className='flex flex-row justify-between pt-8 pb-2'>
+                <div>
+                  <h1 className={`text-[12px] tracking-wide uppercase text-zinc-500`}>Collection Two</h1>
+                  <h1 className={`${sectionHeading2} text-white`}>Dealer's Choice</h1>
+                </div>
+                <div className='bg-zinc-600 w-fit flex flex-col justify-center align-center px-2'>
+                  <span className='font-gilroy uppercase font-bold text-2xl text-center leading-none text-zinc-200'>54</span>
+                  <span className='font-gilroy uppercase font-bold text-[10px] leading-none text-center text-zinc-200'>NFTs</span>
+                </div>
+              </div>
+              <p className={`${bodyTextSmall}`}>A deck of cards plus two surprises. Yet to be revealed.</p>
+              <p className={`${bodyTextSmall}`}><a href="/collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</a></p>
             </div>
           </div>
 
           <div className='w-full flex flex-col'>
             <img src={tier3Preview} className='w-full' />
             <div className=''>
-              <h1 className={`${sectionHeading2} text-white pt-8 pb-2`}>Neon Idol</h1>
-              <p className={`${bodyTextSmall}`}>In this collection 250 unique monochromatic versions of the neon icon herself, Vegas Vickie. Owning one of these cards will give you a room, entry into the Summer Bash and food &amp; drinks</p>
+              <div className='flex flex-row justify-between pt-8 pb-2'>
+                <div>
+                  <h1 className={`text-[12px] tracking-wide uppercase text-zinc-500`}>Collection Three</h1>
+                  <h1 className={`${sectionHeading2} text-white`}>Neon Idol</h1>
+                </div>
+                <div className='bg-zinc-600 w-fit flex flex-col justify-center align-center px-2'>
+                  <span className='font-gilroy uppercase font-bold text-2xl text-center leading-none text-zinc-200'>250</span>
+                  <span className='font-gilroy uppercase font-bold text-[10px] leading-none text-center text-zinc-200'>NFTs</span>
+                </div>
+              </div>
+              <p className={`${bodyTextSmall}`}>In this collection 250 unique, slot-themed cards of neon icon herself.</p>
+              <p className={`${bodyTextSmall}`}><a href="/collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</a></p>
             </div>
           </div>
 
           <div className='w-full flex flex-col'>
             <img src={tier4Preview} className='w-full' />
             <div className=''>
-              <h1 className={`${sectionHeading2} text-white pt-8 pb-2`}>Off the rack</h1>
-              <p className={`${bodyTextSmall}`}>We’ve created 2500 unique chips. Owning one of these chips will get you access to the Summer Bash..</p>
+              <div className='flex flex-row justify-between pt-8 pb-2'>
+                <div>
+                  <h1 className={`text-[12px] tracking-wide uppercase text-zinc-500`}>Collection Four</h1>
+                  <h1 className={`${sectionHeading2} text-white`}>Off The Rack</h1>
+                </div>
+                <div className='bg-zinc-600 w-fit flex flex-col justify-center align-center px-2'>
+                  <span className='font-gilroy uppercase font-bold text-2xl text-center leading-none text-zinc-200'>2,500</span>
+                  <span className='font-gilroy uppercase font-bold text-[10px] leading-none text-center text-zinc-200'>NFTs</span>
+                </div>
+              </div>
+              <p className={`${bodyTextSmall}`}>2,500 unique chips.</p>
+              <p className={`${bodyTextSmall}`}><a href="/collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</a></p>
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto pt-8 pb-0 sm:px-6 lg:px-8 flex flex-row align-center justify-center">
-          <a href="/collections" className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700">See the Collections</a>
+        <div className="max-w-7xl mx-auto pb-0 sm:px-6 lg:px-8 flex flex-row align-center justify-center">
+          <a href="/collections" className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">See the Collections</a>
         </div>
       </div>
 
       {/* Utility */}
       <div className="col-span-12 bg-pattern bg-center bg-center py-24 border-t border-[#1E1708]">
-        <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
-          <h2 className={sectionHeading}>Utility</h2>
+      <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:flex-col md:items-center md:justify-center md:align-start">
+          <h2 className={sectionHeading}>What you get</h2>
+          <p className={`${bodyTextSmall} pt-1`}>Unmatched real-world utility in Las Vegas</p>
         </div>
 
         <div className="max-w-7xl mx-auto pt-16 px-4 sm:px-6 lg:px-8 md:flex md:flex md:align-center md:items-top md:space-x-12">
@@ -172,31 +214,33 @@ function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto pt-16 pb-0 sm:px-6 lg:px-8 flex flex-row align-center justify-center">
-          <button className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700">See the utility</button>
+          <button className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">See the utility</button>
         </div>
       </div>
 
       {/* Our Story */}
       <div className="col-span-12 bg-black py-24 border-t border-[#1E1708]">
-        <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
+      <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:flex-col md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Our Story</h2>
+          <p className={`${bodyTextSmall} pt-1`}>Meet BORBAY who spent 8 days live-painting Vegas Vickie for this NFT collection.</p>
         </div>
 
         <div className="max-w-7xl mx-auto pt-16 px-4 sm:px-6 lg:px-8 md:flex md:flex md:justify-center md:align-center md:items-top md:space-x-4">
           <div className='w-2/3 flex flex-col'>
-            <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/GrmE60q4f6M?controls=0&rel=0&modestbranding" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/GrmE60q4f6M?controls=0&rel=0&enablejsapi=1&modestbranding" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto pt-16 pb-0 sm:px-6 lg:px-8 flex flex-row align-center justify-center">
-          <button className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700">Read our story</button>
+          <button className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">Read our story</button>
         </div>
       </div>
 
       {/* Join the Community */}
       <div className="col-span-12 bg-center bg-pattern bg-center py-24 border-t border-[#1E1708]">
-        <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
+      <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:flex-col md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Keep up-to-date &amp; Join Fellow Fans</h2>
+          <p className={`${bodyTextSmall} pt-1`}>Follow &amp;Join the community so you don't miss out on mint information, allow-list spots and giveaways.</p>
         </div>
 
         <div className="max-w-7xl mx-auto flex flex-row flex-initial pt-2 justify-center mt-8 space-x-4">
