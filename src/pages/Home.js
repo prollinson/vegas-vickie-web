@@ -214,7 +214,7 @@ function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto pt-16 pb-0 sm:px-6 lg:px-8 flex flex-row align-center justify-center">
-          <button className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">See the utility</button>
+          <a href="/collections" className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">See the utility</a>
         </div>
       </div>
 
@@ -232,7 +232,7 @@ function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto pt-16 pb-0 sm:px-6 lg:px-8 flex flex-row align-center justify-center">
-          <button className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">Read our story</button>
+          <a href='/story' className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">Read our story</a>
         </div>
       </div>
 
@@ -246,7 +246,7 @@ function Home() {
         <div className="max-w-7xl mx-auto flex flex-row flex-initial pt-2 justify-center mt-8 space-x-4">
           <p></p>
           <div className="flex flex-row flex-initial pt-2 items-center mt-8 space-x-4">
-            <button className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-black uppercase bg-vickie-yellow hover:bg-vickie-yellow">Join the Community</button>
+            <a href={discordLink} className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-black uppercase bg-vickie-yellow hover:bg-vickie-yellow">Join the Community</a>
             <a href={discordLink} className="block w-fit p-3 rounded-full bg-[#5865F2] aspect-square flex justify-center items-center">
               <img src={discordLogo} className="w-8"/>
             </a>
