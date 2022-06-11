@@ -218,7 +218,7 @@ function Home() {
                 </div>
               </div>
               <p className={`${bodyTextSmall}`}>A deck of cards plus two surprises. Yet to be revealed.</p>
-              <p className={`${bodyTextSmall}`}><Link to="/collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</Link></p>
+              <p className={`${bodyTextSmall}`}><Link to="collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</Link></p>
             </div>
           </div>
 
@@ -248,7 +248,7 @@ function Home() {
                 </div>
               </div>
               <p className={`${bodyTextSmall}`}>In this collection 250 unique, slot-themed cards of neon icon herself.</p>
-              <p className={`${bodyTextSmall}`}><Link to="/collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</Link></p>
+              <p className={`${bodyTextSmall}`}><Link to="collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</Link></p>
             </div>
           </div>
 
@@ -284,7 +284,7 @@ function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto pb-0 sm:px-6 lg:px-8 flex flex-row align-center justify-center">
-          <Link to="/collections" className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">See the Collections</Link>
+          <Link to="collections" className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">See the Collections</Link>
         </div>
       </div>
 
@@ -346,7 +346,7 @@ function Home() {
 
       {/* Join the Community */}
       <div className="col-span-12 bg-center bg-pattern bg-center py-16 sm:py-24 border-t border-[#1E1708]">
-      <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:flex-col md:items-center md:justify-center md:align-start">
+        <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:flex-col md:items-center md:justify-center md:align-start">
           <h2 className={sectionHeading}>Keep up-to-date &amp; Join Fellow Fans</h2>
           <p className={`${bodyTextSmall} pt-1`}>Follow &amp; Join the community so you don't miss out on mint information, allow list spots and giveaways.</p>
         </div>

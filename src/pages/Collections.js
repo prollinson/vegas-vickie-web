@@ -12,13 +12,14 @@ import tier4NftImage from '../assets/off-the-rack.png';
 
 import discordLogo from '../assets/discord-logo.svg';
 import twitterLogo from '../assets/twitter-logo.svg';
+import JoinCommunitySection from '../components/elements/JoinCommunitySection';
 
 function Collections() {
 
   let discordLink = 'https://discord.com/invite/vegasvickienft';
   let twitterLink = 'https://twitter.com/VegasVickie';
 
-  let sectionHeading = "text-3xl text-white font-bold tracking-widest uppercase";
+  let sectionHeading = "text-2xl sm:text-3xl text-white font-bold tracking-widest uppercase sm:text-center";
   
   let tier1CollectorPerks = [
     {
@@ -141,7 +142,7 @@ function Collections() {
       <Header />
       <PageHeader pageTitle="The Collections" />
 
-      <div className="col-span-12 w-full mx-auto py-24 border-t border-[#1E1708] bg-pattern">
+      <div className="col-span-12 w-full mx-auto pt-16 sm:py-24 border-t border-[#1E1708] bg-pattern">
         <div className='max-w-7xl mx-auto'>
           <NftCollection
             name="The One and Only"
@@ -187,24 +188,7 @@ function Collections() {
       </div>
 
       {/* Join the Community */}
-      <div className="col-span-12 bg-center py-24 border-t border-[#1E1708]">
-        <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:items-center md:justify-center md:align-start">
-          <h2 className={sectionHeading}>Keep up-to-date &amp; Join Fellow Fans</h2>
-        </div>
-
-        <div className="max-w-7xl mx-auto flex flex-row flex-initial pt-2 justify-center mt-8 space-x-4">
-          <p></p>
-          <div className="flex flex-row flex-initial pt-2 items-center mt-8 space-x-4">
-            <button className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-black uppercase bg-vickie-yellow hover:bg-vickie-yellow">Join the Community</button>
-            <a href={discordLink} className="block w-fit p-3 rounded-full bg-[#5865F2] aspect-square flex justify-center items-center">
-              <img src={discordLogo} className="w-8"/>
-            </a>
-            <a href={twitterLink} className="block w-fit p-3 rounded-full bg-[#1DA1F2] aspect-square flex justify-center items-center">
-              <img src={twitterLogo} className="w-8"/>
-            </a>
-          </div>
-        </div>
-      </div>
+      <JoinCommunitySection />
 
       <Footer />
     </>
