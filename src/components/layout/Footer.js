@@ -15,7 +15,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="col-span-12 flex flex-col bg-black border-b-2 border-white">
+    <footer className="col-span-12 flex flex-col bg-black border-t border-[#1E1708]">
       <div className="max-w-7xl mx-auto w-full flex sm:h-auto justify-between pt-8">
         <div className="hidden sm:flex sm:space-x-8 w-2/3 justify-start align-center font-gilroy uppercase mb-6">
           <ul className="flex flex-inital text-white space-x-4">
