@@ -55,9 +55,68 @@ function Home() {
   let bodyTextSmall = 'font-gilroy text-white text-md sm:text-lg';
 
   let playVideo = (event, obj) => {
-    console.log('play video', event, obj);
     event.target.play();
   }
+
+  const [percentShown, setPercentShown] = React.useState({
+    card1Percent: 0,
+  });
+  const refCard = React.useRef(null);
+  const refCardDescription = React.useRef(null);
+  const refCard2 = React.useRef(null);
+  const refCard2Description = React.useRef(null);
+  const refCard3 = React.useRef(null);
+  const refCard3Description = React.useRef(null);
+  const refCard4 = React.useRef(null);
+  const refCard4Description = React.useRef(null);
+
+  React.useLayoutEffect(() => {
+    const topPosition = (element) => element.getBoundingClientRect().top;
+    const getHeight = (element) => element.offsetHeight;
+
+    const onScroll = () => {
+      const divCardPosition = topPosition(refCard.current);
+      const divCardHeight = getHeight(refCard.current);
+      const scrollPosition = window.scrollY + window.innerHeight;
+
+      if(divCardHeight > (window.innerHeight * 0.8)){
+        setPercentShown((prevState) => ({
+          ...prevState,
+          cardPercent: 100
+        }));
+        return;
+      }
+
+      if(divCardPosition < window.innerHeight) {
+        let cardPercent = ((window.innerHeight - divCardPosition) * 100) / divCardHeight;
+
+        if(cardPercent > 100) cardPercent = 100;
+        if(cardPercent < 0) cardPercent = 0;
+
+        setPercentShown((prevState) => ({
+          ...prevState,
+          cardPercent: cardPercent
+        }));
+      }
+    }
+
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  let calculateTransition = (cardNum) => {
+    let startPosition = 1199 - (cardNum * 290);
+    let endPosition = 0;
+
+    let swipePosition = startPosition * (1 - (percentShown.cardPercent / 100));
+    console.log('swipePosition', swipePosition);
+
+    if(swipePosition > startPosition) swipePosition = startPosition;
+    if(swipePosition < endPosition) swipePosition = endPosition;
+
+    return swipePosition;
+  };
+
 
   return (
     <>
@@ -97,9 +156,22 @@ function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto py-16 px-10 sm:px-6 md:px-0 md:flex md:flex-row md:align-center md:items-start space-y-16 md:space-y-0 md:space-x-16">
-          <div className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
+          <div ref={refCard}
+            style={{
+              opacity: 1,
+              transform: `translateX(${calculateTransition(1) + "px"}) rotate(${(1 - (percentShown.cardPercent / 100)) * 2}deg)`,
+              transition: "transform 0.1s linear 0s",
+              zIndex: 400
+              }}
+            className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
+
             <img src={tier1Preview} className='w-full' />
-            <div className=''>
+            <div ref={refCardDescription}
+              style={{
+                opacity: percentShown.cardPercent >= 90 ? 1 : 0,
+                transition: "opacity 1s ease-in 0.2s",
+                }}
+              className=''>
               <div className='flex flex-row justify-start pt-8 pb-2 space-x-3'>
                 <div className='bg-zinc-600 w-fit flex flex-col justify-center align-center px-2'>
                   <span className='font-gilroy uppercase font-bold text-2xl text-center leading-none text-zinc-200'>1</span>
@@ -115,13 +187,26 @@ function Home() {
             </div>
           </div>
 
-          <div className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
+          <div ref={refCard2}
+            style={{
+              opacity: 1,
+              transform: `translateX(${calculateTransition(2) + "px"})`,
+              transition: "transform 0.1s linear 0s",
+              zIndex: 300
+              }}
+            className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
+
             <video muted playsInline onMouseOver={playVideo}>
               <source src={tier2PreviewVideo} type="video/mp4"/>
               {/* <img src={tier2Preview} className='w-full' /> */}
             </video>
             
-            <div className=''>
+            <div ref={refCard2Description}
+              style={{
+                opacity: percentShown.cardPercent >= 90 ? 1 : 0,
+                transition: "opacity 1s ease-in 0.2s",
+                }}
+              className=''>
               <div className='flex flex-row justify-start pt-8 pb-2 space-x-3'>
                 <div className='bg-zinc-600 w-fit flex flex-col justify-center align-center px-2'>
                   <span className='font-gilroy uppercase font-bold text-2xl text-center leading-none text-zinc-200'>54</span>
@@ -137,9 +222,21 @@ function Home() {
             </div>
           </div>
 
-          <div className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
+          <div ref={refCard3}
+            style={{
+              opacity: 1,
+              transform: `translateX(${calculateTransition(3) + "px"}) rotate(${(1 - (percentShown.cardPercent / 100)) * -2}deg)`,
+              transition: "transform 0.1s linear 0s",
+              zIndex: 200
+              }}
+            className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
             <img src={tier3Preview} className='w-full' />
-            <div className=''>
+            <div ref={refCard3Description}
+              style={{
+                opacity: percentShown.cardPercent >= 90 ? 1 : 0,
+                transition: "opacity 1s ease-in 0.2s",
+                }}
+              className=''>
               <div className='flex flex-row justify-start pt-8 pb-2 space-x-3'>
                 <div className='bg-zinc-600 w-fit flex flex-col justify-center align-center px-2'>
                   <span className='font-gilroy uppercase font-bold text-2xl text-center leading-none text-zinc-200'>250</span>
@@ -155,9 +252,21 @@ function Home() {
             </div>
           </div>
 
-          <div className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
+          <div ref={refCard4}
+            style={{
+              opacity: 1,
+              transform: `translateX(${calculateTransition(4) + "px"})`,
+              transition: "transform 0.1s linear 0s",
+              zIndex: 100
+              }}
+            className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
             <img src={tier4Preview} className='w-full' />
-            <div className=''>
+            <div ref={refCard4Description}
+              style={{
+                opacity: percentShown.cardPercent >= 90 ? 1 : 0,
+                transition: "opacity 1s ease-in 0.2s",
+                }}
+              className=''>
               <div className='flex flex-row justify-start pt-8 pb-2 space-x-3'>
                 <div className='bg-zinc-600 w-fit flex flex-col justify-center align-center px-2'>
                   <span className='font-gilroy uppercase font-bold text-2xl text-center leading-none text-zinc-200'>2,500</span>
