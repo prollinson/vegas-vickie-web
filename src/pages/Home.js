@@ -18,7 +18,6 @@ import tier4Preview from '../assets/off-the-rack.png';
 import utilitySummerBash from '../assets/summer-bash.jpg';
 import utilitySuiteStays from '../assets/suite-stays.jpg';
 import utilityVIPExperiences from '../assets/vip-experiences.jpg';
-import { isContentEditable } from '@testing-library/user-event/dist/utils';
 
 let faqs = [
   {
@@ -107,7 +106,7 @@ function Home() {
                 </div>
               </div>
               <p className={`${bodyTextSmall}`}>A digital version of the 30”x40” painting by BORBAY hanging in the Legacy Lounge.</p>
-              <p className={`${bodyTextSmall}`}><a href="/collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</a></p>
+              <p className={`${bodyTextSmall}`}><Link to="/collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</Link></p>
             </div>
           </div>
 
@@ -134,7 +133,7 @@ function Home() {
                 </div>
               </div>
               <p className={`${bodyTextSmall}`}>A deck of cards plus two surprises. Yet to be revealed.</p>
-              <p className={`${bodyTextSmall}`}><a href="/collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</a></p>
+              <p className={`${bodyTextSmall}`}><Link to="/collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</Link></p>
             </div>
           </div>
 
@@ -152,7 +151,7 @@ function Home() {
                 </div>
               </div>
               <p className={`${bodyTextSmall}`}>In this collection 250 unique, slot-themed cards of neon icon herself.</p>
-              <p className={`${bodyTextSmall}`}><a href="/collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</a></p>
+              <p className={`${bodyTextSmall}`}><Link to="/collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</Link></p>
             </div>
           </div>
 
@@ -170,13 +169,13 @@ function Home() {
                 </div>
               </div>
               <p className={`${bodyTextSmall}`}>2,500 unique chips.</p>
-              <p className={`${bodyTextSmall}`}><a href="/collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</a></p>
+              <p className={`${bodyTextSmall}`}><Link to="/collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</Link></p>
             </div>
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto pb-0 sm:px-6 lg:px-8 flex flex-row align-center justify-center">
-          <a href="/collections" className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">See the Collections</a>
+          <Link to="/collections" className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">See the Collections</Link>
         </div>
       </div>
 
@@ -214,7 +213,7 @@ function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto pt-16 pb-0 sm:px-6 lg:px-8 flex flex-row align-center justify-center">
-          <a href="/collections" className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">See the utility</a>
+          <Link to="/collections" className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">See the utility</Link>
         </div>
       </div>
 
@@ -232,7 +231,7 @@ function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto pt-16 pb-0 sm:px-6 lg:px-8 flex flex-row align-center justify-center">
-          <a href='/story' className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">Read our story</a>
+          <Link to='/story' className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">Read our story</Link>
         </div>
       </div>
 

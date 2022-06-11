@@ -5,8 +5,6 @@ import Home from './pages/Home';
 import Collections from './pages/Collections';
 import Story from './pages/Story';
 
-import Header from './components/layout/Header';
-
 import './App.css';
 
 function App() {
