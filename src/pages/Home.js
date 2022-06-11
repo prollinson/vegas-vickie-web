@@ -95,14 +95,14 @@ function Home() {
           <div className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
             <img src={tier1Preview} className='w-full' />
             <div className=''>
-              <div className='flex flex-row justify-between pt-8 pb-2'>
-                <div>
-                  <h1 className={`text-[12px] tracking-wide uppercase text-zinc-500`}>Collection One</h1>
-                  <h1 className={`${sectionHeading2} text-white`}>The one and only</h1>
-                </div>
+              <div className='flex flex-row justify-start pt-8 pb-2 space-x-3'>
                 <div className='bg-zinc-600 w-fit flex flex-col justify-center align-center px-2'>
                   <span className='font-gilroy uppercase font-bold text-2xl text-center leading-none text-zinc-200'>1</span>
                   <span className='font-gilroy uppercase font-bold text-[10px] leading-none text-zinc-200'>NFT</span>
+                </div>
+                <div>
+                  <h1 className={`text-[12px] tracking-wide uppercase text-zinc-500`}>Collection One</h1>
+                  <h1 className={`${sectionHeading2} text-white`}>The one and only</h1>
                 </div>
               </div>
               <p className={`${bodyTextSmall}`}>A digital version of the 30”x40” painting by BORBAY hanging in the Legacy Lounge.</p>
@@ -112,24 +112,19 @@ function Home() {
 
           <div className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
             <video autoPlay muted playsInline loop>
-              {/* <source src="/media/cc0-videos/flower.webm"
-                      type="video/webm"> */}
-
-              <source src={tier2PreviewVideo}
-                      type="video/mp4"/>
-
+              <source src={tier2PreviewVideo} type="video/mp4"/>
               {/* <img src={tier2Preview} className='w-full' /> */}
             </video>
             
             <div className=''>
-              <div className='flex flex-row justify-between pt-8 pb-2'>
-                <div>
-                  <h1 className={`text-[12px] tracking-wide uppercase text-zinc-500`}>Collection Two</h1>
-                  <h1 className={`${sectionHeading2} text-white`}>Dealer's Choice</h1>
-                </div>
+              <div className='flex flex-row justify-start pt-8 pb-2 space-x-3'>
                 <div className='bg-zinc-600 w-fit flex flex-col justify-center align-center px-2'>
                   <span className='font-gilroy uppercase font-bold text-2xl text-center leading-none text-zinc-200'>54</span>
                   <span className='font-gilroy uppercase font-bold text-[10px] leading-none text-center text-zinc-200'>NFTs</span>
+                </div>
+                <div>
+                  <h1 className={`text-[12px] tracking-wide uppercase text-zinc-500`}>Collection Two</h1>
+                  <h1 className={`${sectionHeading2} text-white`}>Dealer's Choice</h1>
                 </div>
               </div>
               <p className={`${bodyTextSmall}`}>A deck of cards plus two surprises. Yet to be revealed.</p>
@@ -140,14 +135,14 @@ function Home() {
           <div className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
             <img src={tier3Preview} className='w-full' />
             <div className=''>
-              <div className='flex flex-row justify-between pt-8 pb-2'>
-                <div>
-                  <h1 className={`text-[12px] tracking-wide uppercase text-zinc-500`}>Collection Three</h1>
-                  <h1 className={`${sectionHeading2} text-white`}>Neon Idol</h1>
-                </div>
+              <div className='flex flex-row justify-start pt-8 pb-2 space-x-3'>
                 <div className='bg-zinc-600 w-fit flex flex-col justify-center align-center px-2'>
                   <span className='font-gilroy uppercase font-bold text-2xl text-center leading-none text-zinc-200'>250</span>
                   <span className='font-gilroy uppercase font-bold text-[10px] leading-none text-center text-zinc-200'>NFTs</span>
+                </div>
+                <div>
+                  <h1 className={`text-[12px] tracking-wide uppercase text-zinc-500`}>Collection Three</h1>
+                  <h1 className={`${sectionHeading2} text-white`}>Neon Idol</h1>
                 </div>
               </div>
               <p className={`${bodyTextSmall}`}>In this collection 250 unique, slot-themed cards of neon icon herself.</p>
@@ -158,14 +153,14 @@ function Home() {
           <div className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
             <img src={tier4Preview} className='w-full' />
             <div className=''>
-              <div className='flex flex-row justify-between pt-8 pb-2'>
-                <div>
-                  <h1 className={`text-[12px] tracking-wide uppercase text-zinc-500`}>Collection Four</h1>
-                  <h1 className={`${sectionHeading2} text-white`}>Off The Rack</h1>
-                </div>
+              <div className='flex flex-row justify-start pt-8 pb-2 space-x-3'>
                 <div className='bg-zinc-600 w-fit flex flex-col justify-center align-center px-2'>
                   <span className='font-gilroy uppercase font-bold text-2xl text-center leading-none text-zinc-200'>2,500</span>
                   <span className='font-gilroy uppercase font-bold text-[10px] leading-none text-center text-zinc-200'>NFTs</span>
+                </div>
+                <div>
+                  <h1 className={`text-[12px] tracking-wide uppercase text-zinc-500`}>Collection Four</h1>
+                  <h1 className={`${sectionHeading2} text-white`}>Off The Rack</h1>
                 </div>
               </div>
               <p className={`${bodyTextSmall}`}>2,500 unique chips.</p>
