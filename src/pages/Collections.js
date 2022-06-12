@@ -1,8 +1,13 @@
+import { useEffect, useState } from 'react';
+import { useMoralis } from "react-moralis";
+import { chain, address as contractAddress, ABI} from "../models/contracts/Legend";
 
+import TransactionDialog from '../components/dialogs/TransactionDialog';
 import NftCollection from '../components/elements/NftCollection';
 import PageHeader from '../components/layout/PageHeader';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import JoinCommunitySection from '../components/elements/JoinCommunitySection';
 
 // Assets
 import tier1NftImage from '../assets/the-one-and-only.png';
@@ -10,17 +15,73 @@ import tier2NftImage from '../assets/dealers-choice.png';
 import tier3NftImage from '../assets/neon-idol.png';
 import tier4NftImage from '../assets/off-the-rack.png';
 
-import discordLogo from '../assets/discord-logo.svg';
-import twitterLogo from '../assets/twitter-logo.svg';
-import JoinCommunitySection from '../components/elements/JoinCommunitySection';
+import MintBox from '../components/elements/MintBox';
+import AuctionBox from '../components/elements/AuctionBox';
 
 function Collections() {
+  const { Moralis, authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
 
-  let discordLink = 'https://discord.com/invite/vegasvickienft';
-  let twitterLink = 'https://twitter.com/VegasVickie';
+  // Fetching Data
+  const [allNfts, setAllNfts] = useState([]);
 
-  let sectionHeading = "text-2xl sm:text-3xl text-white font-bold tracking-widest uppercase sm:text-center";
-  
+  // Transactions
+  const [mintTransaction, setMintTransaction] = useState(null);
+  const [showTx, setShowTx] = useState(false);
+
+  // NFT Functions
+
+  const getNFTs = async () => {
+    const options = {
+      chain: chain,
+      address: account,
+      token_address: contractAddress
+    };
+    let fetchedNFTS = await Moralis.Web3API.account.getNFTsForContract(options);
+    console.log('fetchedNFTS: ', fetchedNFTS);
+    console.log('fetchedNFTS.result: ', fetchedNFTS.result);
+    let fetchedNFTSArray = fetchedNFTS.result;
+
+    let nftsWithImageURL = await Promise.all(fetchedNFTSArray.map(async (token) => {
+      let metadataJSON = await fetch("https://storageapi.fleek.co/fc8a955b-9611-4fc1-90e8-ae69ac23af76-bucket/vegas-vickie-staging/legends/metadata/1")
+                                 .then(response => response.json())
+      token.metadata = metadataJSON;
+      token.image_url = 'https://ipfs.io/ipfs/' + metadataJSON.image.match(/ipfs:\/\/(.*)/)[1];
+      console.log(token);
+      return token;
+    }));
+
+    setAllNfts(nftsWithImageURL);
+  };
+
+  // Contract Functions
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      if (user) {      
+        await getNFTs();
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [user]);
+
+  useEffect(() => {
+    async function fetchData() {
+      await Moralis.enableWeb3();
+      await getNFTs();
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    console.log(allNfts);
+  }, [allNfts]);
+
+  // Actions
+
+
+
+  // Data
+
   let tier1CollectorPerks = [
     {
       name: 'Founder\'s Suite',

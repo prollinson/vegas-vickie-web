@@ -27,12 +27,12 @@ function Footer() {
         <div className="">
           <ul className="flex flex-inital space-x-2 justify-end">
             <li className="w-fit">
-              <a href={discordLink} target="_window" className="block w-fit p-2 rounded-full hover:bg-[#5865F2] aspect-square flex justify-center items-center">
+              <a href={discordLink} target="_window" className="block w-fit p-2 rounded-full bg-[#5865F2] aspect-square flex justify-center items-center">
                 <img src={discordLogo} className="w-4"/>
               </a>
             </li>
             <li className="w-fit">
-              <a href={twitterLink} target="_window" className="block w-fit p-2 rounded-full hover:bg-[#1DA1F2] aspect-square flex justify-center items-center">
+              <a href={twitterLink} target="_window" className="block w-fit p-2 rounded-full bg-[#1DA1F2] aspect-square flex justify-center items-center">
                 <img src={twitterLogo} className="w-4"/>
               </a>
             </li>
