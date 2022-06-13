@@ -9,10 +9,9 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        "vegas-scene-dark": "url('/src/assets/background_vickie.jpg')",
-        "header-dark": "url('/src/assets/header-bg.png')",
-        "legacy-lounge": "url('/src/assets/legacy-lounge-bg.png')",
-        "pattern": "url('/src/assets/pattern-bg.png')",
+        "header-dark": "url('/src/assets/header-bg_lossyalpha.webp')",
+        "legacy-lounge": "url('/src/assets/legacy-lounge-bg_lossyalpha.webp')",
+        "pattern": "url('/src/assets/pattern-bg_lossyalpha.webp')",
       },
       fontFamily: {
         'gilroy': ['Gilroy', 'sans-serif'],
