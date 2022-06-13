@@ -6,22 +6,27 @@ import Footer from '../components/layout/Footer';
 // Assets
 import neonLogo from '../assets/neon-logo.png';
 import neonLogoWebP from '../assets/neon-logo_lossyalpha.webp';
+import neonLogoMobileWebP from '../assets/neon-logo_656x_lossyalpha.webp';
 
 import discordLogo from '../assets/discord-logo.svg';
 import twitterLogo from '../assets/twitter-logo.svg';
 
 import tier1Preview from '../assets/the-one-and-only.png';
 import tier1PreviewWebP from '../assets/the-one-and-only_lossyalpha.webp';
+import tier1PreviewMobileWebP from '../assets/the-one-and-only_560x_lossyalpha.webp';
 
 import tier2Preview from '../assets/dealers-choice.png';
 import tier2PreviewWebP from '../assets/dealers-choice_lossyalpha.webp';
+import tier2PreviewMobileWebP from '../assets/dealers-choice_560x_lossyalpha.webp';
 import tier2PreviewVideo from '../assets/dealers-choice.mp4'
 
 import tier3Preview from '../assets/neon-idol.png';
 import tier3PreviewWebP from '../assets/neon-idol_lossyalpha.webp';
+import tier3PreviewMobileWebP from '../assets/neon-idol_560x_lossyalpha.webp';
 
 import tier4Preview from '../assets/off-the-rack.png';
 import tier4PreviewWebP from '../assets/off-the-rack_lossyalpha.webp';
+import tier4PreviewMobileWebP from '../assets/off-the-rack_560x_lossyalpha.webp';
 
 import utilitySummerBash from '../assets/summer-bash.jpg';
 import utilitySummerBashWebP from '../assets/summer-bash.webp';
@@ -134,10 +139,10 @@ function Home() {
   return (
     <>
       {/* logo Section */}
-      <div className="col-span-12 bg-header-dark bg-cover">
+      <div className="col-span-12 bg-header-dark-small sm:bg-header-dark bg-cover">
         <div className="max-w-7xl mx-auto sm:py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex sm:h-[80vh] md:items-center md:justify-center">
             <picture>
-              <source srcSet={neonLogoWebP} alt="Neon Logo" className="max-h-72 md:max-h-full m-0 md:m-auto aspect-auto"/>
+              <source srcSet={`${neonLogoMobileWebP} 656w, ${neonLogoWebP} 1537w`} alt="Neon Logo" className="max-h-72 md:max-h-full m-0 md:m-auto aspect-auto"/>
               <img src={neonLogo} alt="Neon Logo" className="max-h-72 md:max-h-full m-0 md:m-auto aspect-auto"/>
             </picture>
         </div>
@@ -181,8 +186,8 @@ function Home() {
               }}
             className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
               <picture>
-                <source srcSet={tier1PreviewWebP} className="w-full"/>
-                <img src={tier1Preview} className='w-full' />
+                <source srcSet={`${tier1PreviewMobileWebP} 560w, ${tier1PreviewWebP}`} className="w-full"/>
+                <img src={tier1Preview} alt="Preview of The One and Inly NFT" className='w-full' />
               </picture>
             <div ref={refCardDescription}
               style={{
@@ -218,7 +223,7 @@ function Home() {
               <source src={tier2PreviewVideo} type="video/mp4"/>
             </video>
             <picture>
-              <source srcSet={tier2PreviewWebP} className="w-full sm:hidden"/>
+              <source srcSet={`${tier2PreviewMobileWebP} 560w, ${tier2PreviewWebP}`} className="w-full sm:hidden"/>
               <img src={tier2Preview} alt="Preview of Dealer's Choice NFT" className='w-full sm:hidden' />
             </picture>
             
@@ -252,7 +257,7 @@ function Home() {
               }}
             className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
             <picture>
-              <source srcSet={tier3PreviewWebP} className="w-full"/>
+              <source srcSet={`${tier3PreviewMobileWebP} 560w, ${tier3PreviewWebP}`} className="w-full"/>
               <img src={tier3Preview} alt="Preview of the Neon Idol NFT" className='w-full' />
             </picture>
             <div ref={refCard3Description}
@@ -285,7 +290,7 @@ function Home() {
               }}
             className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
               <picture>
-                <source srcSet={tier4PreviewWebP} className="w-full"/>
+                <source srcSet={`${tier4PreviewMobileWebP} 560w, ${tier4PreviewWebP}`} className="w-full"/>
                 <img src={tier4Preview} alt="Preview of the Off the rack NFT" className='w-full' />
               </picture>
             <div ref={refCard4Description}
