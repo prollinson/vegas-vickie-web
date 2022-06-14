@@ -42,12 +42,12 @@ import videoPreview from '../assets/video-preview_lossyalpha.webp';
 
 let faqs = [
   {
-    question: 'What is Vegas Vickie NFT?',
-    answer: '[TODO]'   
+    question: 'What is an NFT?',
+    answer: 'An NFT represents ownership of a digital asset. This is tracked publicly on a blockchain. Think of it as a digital certificate of ownership.'
   },
   {
     question: 'Who is behind it?',
-    answer: 'Vegas Vickie is a collaboration between Circa Casino, BORBAY and NFT of The Art.'
+    answer: 'Vegas Vickie NFT is a collaboration between Circa Casino, BORBAY and NFT of The Art.'
   },
   {
     question: 'What is the minting price?',
@@ -159,7 +159,7 @@ function Home() {
             <p className={`${bodyText} sm:w-2/3`}>We plan exclusive in-person events for NFT holders this summer and will be building out future games and utility.</p>
             
             <div className="flex flex-row flex-initial pt-2 items-center mt-8 space-x-4">
-              <a href={discordLink} target="_window" className="w-full md:w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-black uppercase bg-vickie-yellow hover:bg-vickie-yellow">Join the Community</a>
+              <a href={discordLink} target="_window" className="w-full md:w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-black uppercase bg-vickie-yellow hover:bg-white">Join the Community</a>
               <a href={discordLink} target="_window" className="block w-fit p-3 rounded-full bg-[#5865F2] aspect-square flex justify-center items-center">
                 <img src={discordLogo} alt="Discord Logo" className="w-8"/>
               </a>
