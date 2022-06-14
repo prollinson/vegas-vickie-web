@@ -21,10 +21,10 @@ function JoinCommunitySection ({name, description, nftImage, availableText, perk
         <div className="flex flex-row flex-initial items-center space-x-4">
           <a href={discordLink} className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-black uppercase bg-vickie-yellow hover:bg-vickie-yellow">Join the Community</a>
           <a href={discordLink} className="block w-fit p-3 rounded-full bg-[#5865F2] aspect-square flex justify-center items-center">
-            <img src={discordLogo} alt="Discord Logo" className="w-8"/>
+            <img src={discordLogo} alt="Discord Logo" className="w-8 aspect-[32/25]"/>
           </a>
           <a href={twitterLink} className="block w-fit p-3 rounded-full bg-[#1DA1F2] aspect-square flex justify-center items-center">
-            <img src={twitterLogo} alt="Twitter logo" className="w-8"/>
+            <img src={twitterLogo} alt="Twitter logo" className="w-8 aspect-square"/>
           </a>
         </div>
       </div>

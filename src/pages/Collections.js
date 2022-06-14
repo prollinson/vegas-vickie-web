@@ -1,4 +1,3 @@
-
 import NftCollection from '../components/elements/NftCollection';
 import PageHeader from '../components/layout/PageHeader';
 import Header from '../components/layout/Header';
@@ -6,20 +5,20 @@ import Footer from '../components/layout/Footer';
 
 // Assets
 import tier1NftImage from '../assets/the-one-and-only.png';
-import tier2NftImage from '../assets/dealers-choice.png';
-import tier3NftImage from '../assets/neon-idol.png';
-import tier4NftImage from '../assets/off-the-rack.png';
+import tier1NftWebPImage from '../assets/the-one-and-only_lossyalpha.webp';
 
-import discordLogo from '../assets/discord-logo.svg';
-import twitterLogo from '../assets/twitter-logo.svg';
+import tier2NftImage from '../assets/dealers-choice.png';
+import tier2NftWebPImage from '../assets/dealers-choice_lossyalpha.webp';
+
+import tier3NftImage from '../assets/neon-idol.png';
+import tier3NftWebPImage from '../assets/neon-idol_lossyalpha.webp';
+
+import tier4NftImage from '../assets/off-the-rack.png';
+import tier4NftWebPImage from '../assets/off-the-rack_lossyalpha.webp';
+
 import JoinCommunitySection from '../components/elements/JoinCommunitySection';
 
 function Collections() {
-
-  let discordLink = 'https://discord.com/invite/vegasvickienft';
-  let twitterLink = 'https://twitter.com/VegasVickie';
-
-  let sectionHeading = "text-2xl sm:text-3xl text-white font-bold tracking-widest uppercase sm:text-center";
   
   let tier1CollectorPerks = [
     {
@@ -148,6 +147,7 @@ function Collections() {
             name="The One and Only"
             description=""
             nftImage={tier1NftImage}
+            nftWebPImage={tier1NftWebPImage}
             perks={tier1CollectorPerks}
             totalSupply={1}
             maxSupply={"1/1"}
@@ -159,6 +159,7 @@ function Collections() {
             name="Dealer's Choice"
             description=""
             nftImage={tier2NftImage}
+            nftWebPImage={tier2NftWebPImage}
             perks={tier2CollectorPerks}
             mintPrice={"TBD"}
             maxSupply={"54"}
@@ -169,6 +170,7 @@ function Collections() {
             name="Neon Idol"
             description=""
             nftImage={tier3NftImage}
+            nftWebPImage={tier3NftWebPImage}
             perks={tier3CollectorPerks}
             mintPrice={"TBD"}
             maxSupply={"250"}
@@ -179,6 +181,7 @@ function Collections() {
             name="Off the Rack"
             description=""
             nftImage={tier4NftImage}
+            nftWebPImage={tier4NftWebPImage}
             perks={tier4CollectorPerks}
             mintPrice={"TBD"}
             maxSupply={"2500"}
