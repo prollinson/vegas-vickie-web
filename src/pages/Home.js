@@ -5,7 +5,8 @@ import Footer from '../components/layout/Footer';
 
 // Assets
 import neonLogo from '../assets/neon-logo.png';
-import neonLogoWebP from '../assets/neon-logo_lossyalpha.webp';
+import neonLogoWebP from '../assets/neon-logo_1794x_lossyalpha.webp';
+import neonLogoLargeWebP from '../assets/neon-logo_2432x_lossyalpha.webp';
 import neonLogoMobileWebP from '../assets/neon-logo_656x_lossyalpha.webp';
 
 import discordLogo from '../assets/discord-logo.svg';
@@ -36,6 +37,8 @@ import utilitySuiteStaysWebP from '../assets/suite-stays.webp';
 
 import utilityVIPExperiences from '../assets/vip-experiences.jpg';
 import utilityVIPExperiencesWebP from '../assets/vip-experiences.webp';
+
+import videoPreview from '../assets/video-preview_lossyalpha.webp';
 
 let faqs = [
   {
@@ -142,7 +145,7 @@ function Home() {
       <div className="col-span-12 bg-header-dark-small sm:bg-header-dark bg-cover">
         <div className="max-w-7xl mx-auto sm:py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex sm:h-[80vh] md:items-center md:justify-center">
             <picture>
-              <source srcSet={`${neonLogoMobileWebP} 656w, ${neonLogoWebP} 1537w`} alt="Neon Logo" className="max-h-72 md:max-h-full m-0 md:m-auto aspect-auto"/>
+              <source type="image/webp" srcSet={`${neonLogoMobileWebP} 656w, ${neonLogoWebP} 1794w, ${neonLogoLargeWebP} 2432w`} sizes="(min-width: 320px) 100vw,100vw" className="max-h-72 md:max-h-full m-0 md:m-auto aspect-auto"/>
               <img src={neonLogo} alt="Neon Logo" className="max-h-72 md:max-h-full m-0 md:m-auto aspect-auto"/>
             </picture>
         </div>
@@ -186,8 +189,8 @@ function Home() {
               }}
             className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
               <picture>
-                <source srcSet={`${tier1PreviewMobileWebP} 560w, ${tier1PreviewWebP}`} className="w-full"/>
-                <img src={tier1Preview} alt="Preview of The One and Inly NFT" className='w-full' />
+                <source type="image/webp" srcSet={`${tier1PreviewMobileWebP} 560w, ${tier1PreviewWebP}`} />
+                <img src={tier1Preview} alt="Preview of The One and Inly NFT" className='w-full aspect-auto' />
               </picture>
             <div ref={refCardDescription}
               style={{
@@ -223,8 +226,8 @@ function Home() {
               <source src={tier2PreviewVideo} type="video/mp4"/>
             </video>
             <picture>
-              <source srcSet={`${tier2PreviewMobileWebP} 560w, ${tier2PreviewWebP}`} className="w-full sm:hidden"/>
-              <img src={tier2Preview} alt="Preview of Dealer's Choice NFT" className='w-full sm:hidden' />
+              <source type="image/webp" srcSet={`${tier2PreviewMobileWebP} 560w, ${tier2PreviewWebP}`} />
+              <img src={tier2Preview} alt="Preview of Dealer's Choice NFT" className='w-full sm:hidden aspect-auto' />
             </picture>
             
             <div ref={refCard2Description}
@@ -257,8 +260,8 @@ function Home() {
               }}
             className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
             <picture>
-              <source srcSet={`${tier3PreviewMobileWebP} 560w, ${tier3PreviewWebP}`} className="w-full"/>
-              <img src={tier3Preview} alt="Preview of the Neon Idol NFT" className='w-full' />
+              <source type="image/webp" srcSet={`${tier3PreviewMobileWebP} 560w, ${tier3PreviewWebP}`} />
+              <img src={tier3Preview} alt="Preview of the Neon Idol NFT" className='w-full aspect-auto' />
             </picture>
             <div ref={refCard3Description}
               style={{
@@ -290,8 +293,8 @@ function Home() {
               }}
             className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
               <picture>
-                <source srcSet={`${tier4PreviewMobileWebP} 560w, ${tier4PreviewWebP}`} className="w-full"/>
-                <img src={tier4Preview} alt="Preview of the Off the rack NFT" className='w-full' />
+                <source type="image/webp" srcSet={`${tier4PreviewMobileWebP} 560w, ${tier4PreviewWebP}`} />
+                <img src={tier4Preview} alt="Preview of the Off the rack NFT" className='w-full aspect-auto' />
               </picture>
             <div ref={refCard4Description}
               style={{
@@ -330,7 +333,7 @@ function Home() {
         <div className="max-w-7xl mx-auto pt-10 sm:pt-16 px-4 sm:px-6 lg:px-8 md:flex md:flex md:align-center md:items-top space-y-20 md:space-y-0 md:space-x-12">
           <div className='sm:w-1/3 flex flex-col'>
             <picture className='aspect-square'>
-              <source srcSet={utilitySummerBashWebP} className="w-full"/>
+              <source type="image/webp" srcSet={utilitySummerBashWebP} className="w-full"/>
               <img src={utilitySummerBash} alt="People at Stadium Swim" className='w-full' />
             </picture>
             <div className=''>
@@ -341,7 +344,7 @@ function Home() {
 
           <div className='sm:w-1/3 flex flex-col'>
             <picture className='aspect-square'>
-            <source srcSet={utilitySuiteStaysWebP} className="w-full"/>
+            <source type="image/webp" srcSet={utilitySuiteStaysWebP} className="w-full"/>
               <img src={utilitySuiteStays} alt="Founders Suite at Circa" className='w-full' />
             </picture>
             <div className=''>
@@ -352,7 +355,7 @@ function Home() {
 
           <div className='sm:w-1/3 flex flex-col'>
             <picture className='aspect-square'>
-              <source srcSet={utilityVIPExperiencesWebP} className="w-full"/>
+              <source type="image/webp" srcSet={utilityVIPExperiencesWebP} className="w-full"/>
               <img src={utilityVIPExperiences} alt="Glass of Champagne" className='w-full' />
             </picture>
             <div className=''>
@@ -376,7 +379,7 @@ function Home() {
 
         <div className="max-w-7xl mx-auto pt-10 sm:pt-16 px-4 sm:px-6 lg:px-8 md:flex md:flex md:justify-center md:align-center md:items-top md:space-x-4">
           <div className='sm:w-2/3 flex flex-col'>
-            <iframe className="w-full aspect-video" src="https://www.youtube.com/embed/GrmE60q4f6M?controls=0&rel=0&enablejsapi=1&modestbranding" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <iframe className="w-full aspect-video" src="https://www.youtube.com/embed/GrmE60q4f6M?controls=0&rel=0&enablejsapi=1&modestbranding" srcdoc={`<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href="https://www.youtube.com/embed/GrmE60q4f6M?controls=0&rel=0&enablejsapi=1&modestbranding"><img src=${videoPreview} alt='Your ALT Text'><span>▶</span></a>`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </div>
         </div>
 

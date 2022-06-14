@@ -9,7 +9,11 @@ module.exports = {
     // Logo
     {
       src: './src/assets/neon-logo.png',
-      sizes: { width: "656", height: "" }
+      sizes: [
+        { width: "656", height: "" },
+        { width: "1794", height: "" },
+        { width: "2432", height: "" }
+      ]
     },
     // NFT Previews
     {
