@@ -130,7 +130,6 @@ function Home() {
     let endPosition = 0;
 
     let swipePosition = startPosition * (1 - (percentShown.cardPercent / 100));
-    console.log('swipePosition', swipePosition);
 
     if(swipePosition > startPosition) swipePosition = startPosition;
     if(swipePosition < endPosition) swipePosition = endPosition;
@@ -319,7 +318,7 @@ function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto pb-0 sm:px-6 lg:px-8 flex flex-row align-center justify-center">
-          <Link to="collections" className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">See the Collections</Link>
+          <Link to="collections" className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full uppercase bg-vickie-yellow text-black hover:bg-white hover:text-black">See the Collections</Link>
         </div>
       </div>
 
@@ -366,25 +365,25 @@ function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto pt-16 pb-0 sm:px-6 lg:px-8 flex flex-row align-center justify-center">
-          <Link to="/collections" className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">See the utility</Link>
+          <Link to="/collections" className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full uppercase bg-vickie-yellow text-black hover:bg-white hover:text-black">See the utility</Link>
         </div>
       </div>
 
       {/* Our Story */}
       <div className="col-span-12 bg-black py-16 sm:py-24 border-t border-[#1E1708]">
       <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:flex-col md:items-center md:justify-center md:align-start">
-          <h2 className={sectionHeading}>Our Story</h2>
+          <h2 className={sectionHeading}>About Us</h2>
           <p className={`${bodyTextSmall} pt-1 sm:text-center`}>Meet BORBAY who spent 8 days live-painting Vegas Vickie for this NFT collection.</p>
         </div>
 
         <div className="max-w-7xl mx-auto pt-10 sm:pt-16 px-4 sm:px-6 lg:px-8 md:flex md:flex md:justify-center md:align-center md:items-top md:space-x-4">
           <div className='sm:w-2/3 flex flex-col'>
-            <iframe className="w-full aspect-video" src="https://www.youtube.com/embed/GrmE60q4f6M?controls=0&rel=0&enablejsapi=1&modestbranding" srcdoc={`<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href="https://www.youtube.com/embed/GrmE60q4f6M?controls=0&rel=0&enablejsapi=1&modestbranding"><img src=${videoPreview} alt='Your ALT Text'><span>▶</span></a>`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <iframe className="w-full aspect-video" src="https://www.youtube.com/embed/GrmE60q4f6M?controls=0&rel=0&enablejsapi=1&modestbranding" srcDoc={`<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href="https://www.youtube.com/embed/GrmE60q4f6M?controls=0&rel=0&enablejsapi=1&modestbranding"><img src=${videoPreview} alt='Your ALT Text'><span>▶</span></a>`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto pt-16 pb-0 sm:px-6 lg:px-8 flex flex-row align-center justify-center">
-          <Link to='/story' className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-zinc-700 hover:bg-vickie-yellow hover:text-black">Read our story</Link>
+          <Link to='/story' className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-white uppercase bg-vickie-yellow text-black hover:bg-white hover:text-black">Read more about us</Link>
         </div>
       </div>
 
@@ -398,7 +397,7 @@ function Home() {
         <div className="max-w-7xl mx-auto flex flex-row flex-initial mt-10 justify-center mt-4 sm:mt-8 space-x-4">
           <p></p>
           <div className="flex flex-row flex-initial items-center space-x-4">
-            <a href={discordLink} className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-black uppercase bg-vickie-yellow hover:bg-vickie-yellow">Join the Community</a>
+            <a href={discordLink} className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black hover:border-vickie-yellow">Join the Community</a>
             <a href={discordLink} className="block w-fit p-3 rounded-full bg-[#5865F2] aspect-square flex justify-center items-center">
               <img src={discordLogo} alt="Discord" className="w-8 aspect-square"/>
             </a>

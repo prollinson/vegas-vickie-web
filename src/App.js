@@ -25,7 +25,6 @@ function Layout() {
     <div className="relative min-h-screen bg-black">
       {/* Meta tags */}
       <Helmet>
-
         <title>Vegas Vickie NFT</title>
         <meta name="title" content="Vegas Vickie NFT" />
         <meta name="description" content="Own iconic artwork. Access legendary perks at Circa Casino &amp; Resort, Las Vegas." />
