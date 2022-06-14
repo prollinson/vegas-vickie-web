@@ -82,6 +82,7 @@ function Home() {
   const [percentShown, setPercentShown] = React.useState({
     card1Percent: 0,
   });
+  const [cardsInitialized, setCardsInitialized] = React.useState(false);
   const refCard = React.useRef(null);
   const refCardDescription = React.useRef(null);
   const refCard2 = React.useRef(null);
@@ -98,7 +99,6 @@ function Home() {
     const onScroll = () => {
       const divCardPosition = topPosition(refCard.current);
       const divCardHeight = getHeight(refCard.current);
-      const scrollPosition = window.scrollY + window.innerHeight;
 
       if(divCardHeight > (window.innerHeight * 0.8)){
         setPercentShown((prevState) => ({
@@ -106,6 +106,14 @@ function Home() {
           cardPercent: 100
         }));
         return;
+      }
+
+      if(!cardsInitialized) {
+        setCardsInitialized(true);
+        setPercentShown((prevState) => ({
+          ...prevState,
+          cardPercent: 0
+        }));
       }
 
       if(divCardPosition < window.innerHeight) {
