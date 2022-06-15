@@ -39,6 +39,7 @@ import utilityVIPExperiences from '../assets/vip-experiences.jpg';
 import utilityVIPExperiencesWebP from '../assets/vip-experiences.webp';
 
 import videoPreview from '../assets/video-preview_lossyalpha.webp';
+import JoinCommunitySection from '../components/elements/JoinCommunitySection';
 
 let faqs = [
   {
@@ -339,8 +340,8 @@ function Home() {
 
         <div className="max-w-7xl mx-auto pt-10 sm:pt-16 px-4 sm:px-6 lg:px-8 md:flex md:flex md:align-center md:items-top space-y-20 md:space-y-0 md:space-x-12">
           <div className='sm:w-1/3 flex flex-col'>
-            <picture className='aspect-square'>
-              <source type="image/webp" srcSet={utilitySummerBashWebP} className="w-full"/>
+            <picture className='aspect-[446/389]'>
+              <source type="image/webp" srcSet={utilitySummerBashWebP} />
               <img src={utilitySummerBash} alt="People at Stadium Swim" className='w-full' />
             </picture>
             <div className=''>
@@ -350,8 +351,8 @@ function Home() {
           </div>
 
           <div className='sm:w-1/3 flex flex-col'>
-            <picture className='aspect-square'>
-            <source type="image/webp" srcSet={utilitySuiteStaysWebP} className="w-full"/>
+            <picture className='aspect-[446/389]'>
+            <source type="image/webp" srcSet={utilitySuiteStaysWebP} />
               <img src={utilitySuiteStays} alt="Founders Suite at Circa" className='w-full' />
             </picture>
             <div className=''>
@@ -361,8 +362,8 @@ function Home() {
           </div>
 
           <div className='sm:w-1/3 flex flex-col'>
-            <picture className='aspect-square'>
-              <source type="image/webp" srcSet={utilityVIPExperiencesWebP} className="w-full"/>
+            <picture className='aspect-[446/389]'>
+              <source type="image/webp" srcSet={utilityVIPExperiencesWebP} />
               <img src={utilityVIPExperiences} alt="Glass of Champagne" className='w-full' />
             </picture>
             <div className=''>
@@ -396,25 +397,7 @@ function Home() {
       </div>
 
       {/* Join the Community */}
-      <div className="col-span-12 bg-center bg-pattern bg-center py-16 sm:py-24 border-t border-[#1E1708]">
-        <div className="max-w-7xl mx-auto pt-0 px-4 sm:px-6 lg:px-10 md:flex md:flex-col md:items-center md:justify-center md:align-start">
-          <h2 className={sectionHeading}>Keep up-to-date &amp; Join Fellow Fans</h2>
-          <p className={`${bodyTextSmall} pt-1`}>Follow &amp; Join the community so you don't miss out on mint information, allow list spots and giveaways.</p>
-        </div>
-
-        <div className="max-w-7xl mx-auto flex flex-row flex-initial mt-10 justify-center mt-4 sm:mt-8 space-x-4">
-          <p></p>
-          <div className="flex flex-row flex-initial items-center space-x-4">
-            <a href={discordLink} className="w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black hover:border-vickie-yellow">Join the Community</a>
-            <a href={discordLink} className="block w-fit p-3 rounded-full bg-[#5865F2] aspect-square flex justify-center items-center">
-              <img src={discordLogo} alt="Discord" className="w-8 aspect-square"/>
-            </a>
-            <a href={twitterLink} className="block w-fit p-3 rounded-full bg-[#1DA1F2] aspect-square flex justify-center items-center">
-              <img src={twitterLogo} alt="Twitter" className="w-8 aspect-square"/>
-            </a>
-          </div>
-        </div>
-      </div>
+      <JoinCommunitySection bgPattern={true}/>
 
       {/* FAQs */}
       <div className="col-span-12 bg-black py-16 sm:py-24 border-t border-[#1E1708]">

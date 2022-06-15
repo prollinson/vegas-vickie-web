@@ -16,8 +16,8 @@ function Footer() {
 
   return (
     <footer className="col-span-12 flex flex-col bg-black border-t border-[#1E1708]">
-      <div className="max-w-7xl mx-auto w-full flex sm:h-auto justify-between pt-2 sm:pt-8">
-        <div className="sm:flex sm:space-x-8 w-2/3 justify-start align-center font-gilroy uppercase mb-6 pl-4 sm:pl-0">
+      <div className="max-w-7xl mx-auto w-full flex sm:h-auto justify-between pt-2 sm:pt-8 px-4">
+        <div className="sm:flex sm:space-x-8 w-2/3 justify-start align-center font-gilroy uppercase mb-6">
           <ul className="flex flex-col sm:flex-row flex-inital text-white space-y-1 sm:space-y-0 sm:space-x-4">
             {navItems.map((item, index) => (
               <li key={index} className="hover:text-vickie-yellow"><Link to={item.link}>{item.name}</Link></li>
@@ -40,8 +40,8 @@ function Footer() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto w-full flex sm:h-auto justify-between">
-        <p className='font-gilroy text-sm uppercase text-zinc-600 pb-8 pl-4 sm:pl-0'>&copy; {new Date().getFullYear()} Vegas Vickie</p>
+      <div className="max-w-7xl mx-auto w-full flex sm:h-auto justify-between px-4">
+        <p className='font-gilroy text-sm uppercase text-zinc-600 pb-8'>&copy; {new Date().getFullYear()} Vegas Vickie</p>
       </div>
     </footer>
   )

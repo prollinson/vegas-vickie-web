@@ -7,7 +7,7 @@ function NftCollection ({name, description, nftImage, nftWebPImage, availableTex
       <div className="w-full md:w-1/2 flex-none basis-1/4 justify-items-center">
         <picture>
           <source srcset={`${nftWebPImage} 620w`} type="image/webp" />
-          <img src={nftImage} alt="Preview of NFT" className="w-full max-h-72 md:max-h-full m-auto aspect-[620/838]"/>
+          <img src={nftImage} alt="Preview of NFT" className="md:w-full max-h-96 md:max-h-full m-auto aspect-[620/838]"/>
         </picture>
         <div className="w-full pt-8 pb-8 sm:pb-0">
           <p className="font-gilroy text-white text-md text-center">{availableText}</p>
