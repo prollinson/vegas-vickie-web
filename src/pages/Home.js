@@ -357,7 +357,7 @@ function Home() {
             </picture>
             <div className=''>
               <h1 className={`${sectionHeading2} text-white pt-4 sm:pt-8 pb-2`}>Suite Stays</h1>
-              <p className={`${bodyTextSmall}`}>Enjoy up to 3 nights stay at Circa.</p>
+              <p className={`${bodyTextSmall}`}>Enjoy up to a 3-night stay at Circa.</p>
             </div>
           </div>
 
