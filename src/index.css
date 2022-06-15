@@ -1,13 +1,39 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'Gilroy';
+        src: local('Gilroy Bold'), local('Gilroy-Bold'),
+            url('../public/fonts/gilroy/Gilroy-Bold.woff2') format('woff2'),
+            url('../public/fonts/gilroy/Gilroy-Bold.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Gilroy';
+        src: local('Gilroy Black'), local('Gilroy-Black'),
+            url('../public/fonts/gilroy/Gilroy-Black.woff2') format('woff2'),
+            url('../public/fonts/gilroy/Gilroy-Black.woff') format('woff');
+        font-weight: 900;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Gilroy';
+        src: local('Gilroy Regular'), local('Gilroy-Regular'),
+            url('../public/fonts/gilroy/Gilroy-Regular.woff2') format('woff2'),
+            url('../public/fonts/gilroy/Gilroy-Regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html, body {
+    background-color: #000000;
 }
