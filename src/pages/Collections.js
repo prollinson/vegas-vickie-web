@@ -23,7 +23,7 @@ function Collections() {
   let tier1CollectorPerks = [
     {
       name: 'Founder\'s Suite',
-      description: '(3) Night stay in a founder\'s suite to be used at the summer bash or within one year of purchase.'
+      description: '3 Night stay in a founder\'s suite to be used at the summer bash or within one year of purchase.'
     },
     {
       name: 'Limo Transport',
