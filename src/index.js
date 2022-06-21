@@ -8,44 +8,14 @@ import { MoralisProvider } from 'react-moralis';
 import { BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 
-// TODO: Extract into config file
-const moralisConfig = {
-  hardhat: {
-    serverUrl: 'https://xsty5vsxh3wr.usemoralis.com:2053/server',
-    appId: 'FMa48srGU8WBnvEDSdPVq19EzJilpf3zetM4Gpi1',
-  },
-  rinkeby: {
-    serverUrl: 'https://hejknhfi7e6d.usemoralis.com:2053/server',
-    appId: 'FuDzzNJqepkfhrBdsfYLYdy9RvsCYVBfgpriWdVs',
-  },
-  mainnet: {
-    serverUrl: '://hejknhfi7e6d.usemoralis.com:2053/server',
-    appId: '',
-  }
-}
-
-let currentMoralisConfig = null
-switch(process.env.REACT_APP_NODE_ENV) {
-  case 'development':
-    currentMoralisConfig = moralisConfig.hardhat;
-  break;
-  case 'production':
-    currentMoralisConfig = moralisConfig.mainnet;
-  break;
-  case 'staging':
-    currentMoralisConfig = moralisConfig.rinkeby;
-  break;
-  default:
-    currentMoralisConfig = moralisConfig.hardhat;
-  break;
-}
+import { serverUrl, appId } from './moralis.config.js';
     
 let rootElement = document.getElementById('root');
 
 if (rootElement.hasChildNodes()) {
   hydrate(
     <React.StrictMode>
-      <MoralisProvider serverUrl={currentMoralisConfig.serverUrl} appId={currentMoralisConfig.appId}>
+      <MoralisProvider serverUrl={serverUrl} appId={appId}>
         <BrowserRouter>
           <ScrollToTop />
           <App />
@@ -57,7 +27,7 @@ if (rootElement.hasChildNodes()) {
 } else {
   render(
     <React.StrictMode>
-      <MoralisProvider serverUrl={currentMoralisConfig.serverUrl} appId={currentMoralisConfig.appId}>
+      <MoralisProvider serverUrl={serverUrl} appId={appId}>
         <BrowserRouter>
           <ScrollToTop />
           <App />
