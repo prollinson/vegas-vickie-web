@@ -8,22 +8,6 @@ const networkConfigs = {
   mainnet: mainnetJSON['contracts']
 };
 
-let network = null;
-switch(process.env.REACT_APP_NODE_ENV) {
-  case 'development':
-    network = 'hardhat';
-  break;
-  case 'production':
-    network = 'mainnet';
-  break;
-  case 'staging':
-    network = 'rinkeby';
-  break;
-  default:
-    network = 'hardhat';
-  break;
-}
-
-let contractConfig = networkConfigs[network];
+let contractConfig = networkConfigs[process.env.REACT_APP_CHAIN];
 
 export { network, contractConfig};
