@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {hydrate, render} from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -39,18 +39,34 @@ switch(process.env.REACT_APP_NODE_ENV) {
     currentMoralisConfig = moralisConfig.hardhat;
   break;
 }
+    
+let rootElement = document.getElementById('root');
 
-ReactDOM.render(
-  <React.StrictMode>
-    <MoralisProvider serverUrl={currentMoralisConfig.serverUrl} appId={currentMoralisConfig.appId}>
-      <BrowserRouter>
-        <ScrollToTop />
-        <App />
-      </BrowserRouter>
-    </MoralisProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+if (rootElement.hasChildNodes()) {
+  hydrate(
+    <React.StrictMode>
+      <MoralisProvider serverUrl={currentMoralisConfig.serverUrl} appId={currentMoralisConfig.appId}>
+        <BrowserRouter>
+          <ScrollToTop />
+          <App />
+        </BrowserRouter>
+      </MoralisProvider>
+    </React.StrictMode>,
+    rootElement
+  );
+} else {
+  render(
+    <React.StrictMode>
+      <MoralisProvider serverUrl={currentMoralisConfig.serverUrl} appId={currentMoralisConfig.appId}>
+        <BrowserRouter>
+          <ScrollToTop />
+          <App />
+        </BrowserRouter>
+      </MoralisProvider>
+    </React.StrictMode>,
+    rootElement
+  );
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

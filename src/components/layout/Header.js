@@ -5,6 +5,7 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom';
 
 import vvLogo from '../../assets/vv-logo-small.png';
+import vvLogoWebP from '../../assets/vv-logo-small_lossyalpha.webp';
 
 function Header() {
   const navItems = [
@@ -32,7 +33,10 @@ function Header() {
               </div>
               <div className="flex-1 flex-cols">
                 <div className="flex place-content-center content-center justify-center align-center">
-                  <img src={vvLogo} className="h-16 sm:h-28" />
+                  <picture>
+                    <source srcSet={`${vvLogoWebP} 744w`} type="image/webp" />
+                    <img src={vvLogo} alt="Vegas Vickie Logo" className="h-16 sm:h-28 aspect-[417/112]" />
+                  </picture>
                 </div>
                 <div className="hidden sm:relative sm:flex sm:space-x-8 font-display justify-center font-gilroy uppercase">
                   <ul className="flex flex-inital text-white border-t border-gray-600 w-1/3 justify-center">

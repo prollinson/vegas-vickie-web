@@ -11,9 +11,16 @@ import JoinCommunitySection from '../components/elements/JoinCommunitySection';
 
 // Assets
 import tier1NftImage from '../assets/the-one-and-only.png';
+import tier1NftWebPImage from '../assets/the-one-and-only_lossyalpha.webp';
+
 import tier2NftImage from '../assets/dealers-choice.png';
+import tier2NftWebPImage from '../assets/dealers-choice_lossyalpha.webp';
+
 import tier3NftImage from '../assets/neon-idol.png';
+import tier3NftWebPImage from '../assets/neon-idol_lossyalpha.webp';
+
 import tier4NftImage from '../assets/off-the-rack.png';
+import tier4NftWebPImage from '../assets/off-the-rack_lossyalpha.webp';
 
 import MintBox from '../components/elements/MintBox';
 import AuctionBox from '../components/elements/AuctionBox';
@@ -209,6 +216,7 @@ function Collections() {
             name="The One and Only"
             description=""
             nftImage={tier1NftImage}
+            nftWebPImage={tier1NftWebPImage}
             perks={tier1CollectorPerks}
             totalSupply={1}
             maxSupply={"1/1"}
@@ -220,6 +228,7 @@ function Collections() {
             name="Dealer's Choice"
             description=""
             nftImage={tier2NftImage}
+            nftWebPImage={tier2NftWebPImage}
             perks={tier2CollectorPerks}
             mintPrice={"TBD"}
             maxSupply={"54"}
@@ -230,6 +239,7 @@ function Collections() {
             name="Neon Idol"
             description=""
             nftImage={tier3NftImage}
+            nftWebPImage={tier3NftWebPImage}
             perks={tier3CollectorPerks}
             mintPrice={"TBD"}
             maxSupply={"250"}
@@ -240,6 +250,7 @@ function Collections() {
             name="Off the Rack"
             description=""
             nftImage={tier4NftImage}
+            nftWebPImage={tier4NftWebPImage}
             perks={tier4CollectorPerks}
             mintPrice={"TBD"}
             maxSupply={"2500"}
