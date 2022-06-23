@@ -12,31 +12,31 @@ import { serverUrl, appId } from './moralis.config.js';
     
 let rootElement = document.getElementById('root');
 
-if (rootElement.hasChildNodes()) {
-  hydrate(
-    <React.StrictMode>
-      <MoralisProvider serverUrl={serverUrl} appId={appId}>
-        <BrowserRouter>
-          <ScrollToTop />
-          <App />
-        </BrowserRouter>
-      </MoralisProvider>
-    </React.StrictMode>,
-    rootElement
-  );
-} else {
+// if (rootElement.hasChildNodes()) {
+//   hydrate(
+//     <React.StrictMode>
+//       <MoralisProvider serverUrl={serverUrl} appId={appId}>
+//         <BrowserRouter>
+//           <ScrollToTop />
+//           <App />
+//         </BrowserRouter>
+//       </MoralisProvider>
+//     </React.StrictMode>,
+//     rootElement
+//   );
+// } else {
   render(
     <React.StrictMode>
-      <MoralisProvider serverUrl={serverUrl} appId={appId}>
         <BrowserRouter>
           <ScrollToTop />
-          <App />
+            <MoralisProvider serverUrl={serverUrl} appId={appId}>
+              <App />
+            </MoralisProvider>
         </BrowserRouter>
-      </MoralisProvider>
     </React.StrictMode>,
     rootElement
   );
-}
+// }
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

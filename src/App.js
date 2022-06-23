@@ -4,6 +4,7 @@ import { Routes, Route, Outlet } from 'react-router-dom';
 import Home from './pages/Home';
 import Collections from './pages/Collections';
 import Story from './pages/Story';
+import Mint from './pages/Mint';
 
 import './App.css';
 import Helmet from 'react-helmet';
@@ -15,6 +16,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="collections" element={<Collections />} />
         <Route path="story" element={<Story />} />
+        <Route path="mint" element={<Mint />} />
       </Route>
     </Routes>
   );
