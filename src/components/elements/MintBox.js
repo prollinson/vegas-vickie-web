@@ -26,12 +26,14 @@ function MintBox({performMint, mintPrice, totalSupply, maxSupply, canMint, canMi
   const connectWallet = async () => {
     const isWeb3Active = Moralis.ensureWeb3IsInstalled();
     console.log("isWeb3Active", isWeb3Active);
+    
+    await Moralis.enableWeb3();
 
     if (isAuthenticated) {
       console.log("Authenticated", user);
     } else {
       // console.log("enableWeb3");
-      // await Moralis.enableWeb3();
+      
       await authenticate({signingMessage: "Sign into Vegas Vickie NFT"});
     }
   };
