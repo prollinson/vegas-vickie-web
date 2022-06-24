@@ -45,6 +45,10 @@ function Mint() {
       return;
     }
 
+    if(!isAuthenticated && !account) {
+      return;
+    }
+
     const options = {
       chain: chain,
       address: account,
