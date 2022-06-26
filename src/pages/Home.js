@@ -164,7 +164,7 @@ function Home() {
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex sm:min-h-screen md:items-center md:justify-center">
           <div className='md:w-full md:h-fit'>
             <h1 className={`${heroHeading} text-white mb-4`}>Own iconic artwork. Access legendary perks and VIP experiences at Circa Resort &amp; Casino</h1>
-            <p className={`${bodyText} py-4 sm:w-2/3`}>Vegas Vickie NFT, a first for Las Vegas casino, is an opportunity to own iconic art, get access to VIP experiences at Circa: exclusive entry to the Vegas Vickie NFT Summer Bash, hotel rooms and VIP experiences.  We will have four collections based on BORBAY’s Vegas Vickie.</p>
+            <p className={`${bodyText} py-4 sm:w-2/3`}>Vegas Vickie NFT, a first for a Las Vegas casino, is an opportunity to own iconic art and get access to VIP experiences at Circa: exclusive entry to the Vegas Vickie NFT Summer Bash, hotel rooms and VIP experiences.  We will have four collections based on BORBAY’s Vegas Vickie.</p>
             <p className={`${bodyText} sm:w-2/3`}>We plan exclusive in-person events for NFT holders this summer and will be building out future games and utility.</p>
             
             <div className="flex flex-row flex-initial pt-2 items-center mt-8 space-x-4">
@@ -287,7 +287,7 @@ function Home() {
                   <h1 className={`${sectionHeading2} text-white`}>Neon Idol</h1>
                 </div>
               </div>
-              <p className={`${bodyTextSmall}`}>In this collection 250 unique, slot-themed cards of neon icon herself.</p>
+              <p className={`${bodyTextSmall}`}>In this collection 250 unique, slot-themed cards of the neon icon herself.</p>
               <p className={`${bodyTextSmall}`}><Link to="collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</Link></p>
             </div>
           </div>
