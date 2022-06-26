@@ -1,10 +1,11 @@
-import { useMoralis, useMoralisSubscription } from "react-moralis";
+import { useMoralis, useMoralisSubscription, useEnsAddress } from "react-moralis";
 import { useEffect, useState } from "react";
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
 function MintBox({performMint, mintPrice, totalSupply, maxSupply, canMint, canMintReason, isMintingOpen, contractAddress}) {
   const { Moralis, authenticate, isAuthenticated, account, user } = useMoralis();
+  const { name, isLoading, error } = useEnsAddress(account);
 
   const [isPendingTransaction, setIsPendingTransaction] = useState(false);
   const [mintTransactions, setMintTransactions] = useState([]);
@@ -18,6 +19,10 @@ function MintBox({performMint, mintPrice, totalSupply, maxSupply, canMint, canMi
   // Subscribe to onWeb3Enabled events
   const unsubscribe = Moralis.onWeb3Enabled((result) => {
     console.log("onWeb3Enabled", result);
+  });
+
+  const unsubscribeAccountChanged = Moralis.onAccountChanged( async (account) => {
+    console.log("onAccountChanged", account);
   });
 
   // Unsubscribe to onWeb3Enabled events

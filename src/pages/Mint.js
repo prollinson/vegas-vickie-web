@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useMoralis } from "react-moralis";
+import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import { chain, address as contractAddress, ABI} from "../models/contracts/DealersChoice";
 
 import TransactionDialog from '../components/dialogs/TransactionDialog';
@@ -27,6 +27,7 @@ import AuctionBox from '../components/elements/AuctionBox';
 
 function Mint() {
   const { Moralis, authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
+  const Web3Api = useMoralisWeb3Api();
 
   // Fetching Data
   const [allNfts, setAllNfts] = useState([]);
@@ -44,7 +45,7 @@ function Mint() {
       console.log("Web3 is disabled")
       return;
     }
-
+    console.log(account);
     if(!isAuthenticated && !account) {
       return;
     }
@@ -55,17 +56,38 @@ function Mint() {
       token_address: contractAddress
     };
 
-    let fetchedNFTS = await Moralis.Web3API.account.getNFTsForContract(options);
+    let fetchedNFTS = await Web3Api.account.getNFTsForContract(options);
     console.log('fetchedNFTS: ', fetchedNFTS);
     console.log('fetchedNFTS.result: ', fetchedNFTS.result);
     let fetchedNFTSArray = fetchedNFTS.result;
 
     let nftsWithImageURL = await Promise.all(fetchedNFTSArray.map(async (token) => {
-      let metadataJSON = await fetch("https://storageapi.fleek.co/fc8a955b-9611-4fc1-90e8-ae69ac23af76-bucket/vegas-vickie-staging/legends/metadata/1")
-                                 .then(response => response.json())
-      token.metadata = metadataJSON;
-      token.image_url = 'https://ipfs.io/ipfs/' + metadataJSON.image.match(/ipfs:\/\/(.*)/)[1];
-      console.log(token);
+
+      if(token.metadata) {
+        token.image_url = 'https://ipfs.vegasvickienft.com/ipfs/' + JSON.parse(token.metadata).image.match(/ipfs:\/\/(.*)/)[1];
+      }else{
+        Web3Api.token.reSyncMetadata({
+            chain: chain,
+            address: contractAddress,
+            token_id: token.token_id,
+            flag: 'uri',
+            mode: 'sync',
+        })
+      }
+
+      // const options = {
+      //   address: contractAddress,
+      //   token_id: token.token_id,
+      //   chain: chain,
+      // };
+      // const tokenIdMetadata = await Web3Api.token.getTokenIdMetadata(options);
+      // console.log('metadata', tokenIdMetadata);
+      // return token;
+    //   let metadataJSON = await fetch("https://storageapi.fleek.co/fc8a955b-9611-4fc1-90e8-ae69ac23af76-bucket/vegas-vickie-staging/legends/metadata/1")
+    //                              .then(response => response.json())
+    //   token.metadata = metadataJSON;
+    //   token.image_url = 'https://ipfs.io/ipfs/' + metadataJSON.image.match(/ipfs:\/\/(.*)/)[1];
+    //   console.log(token);
       return token;
     }));
 
