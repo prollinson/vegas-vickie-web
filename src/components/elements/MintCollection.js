@@ -74,13 +74,16 @@ function MintCollection ({name, description, nftImage, nftWebPImage, allNfts, ac
       // is on allowlist
       const matchingEntry = merkleEntries.find(wallet => account.toLowerCase() === wallet[0].toLowerCase());
       
-      let allowlistTier = matchingEntry[1];
       // can mint this tier
-      if(matchingEntry && allowlistTier <= requiredTier) {
+      if(matchingEntry && matchingEntry[1] <= requiredTier) {
         return true;
       }
 
-      setCanMintReason(`You must be on the tier ${requiredTier} allowlist to mint. You are on tier ${allowlistTier}`);
+      if(matchingEntry) {
+        setCanMintReason(`You must be on the tier ${requiredTier} allowlist to mint. You are on tier ${matchingEntry[1]}`);
+      } else {
+        setCanMintReason(`You're not on the allowlist. You must be on the tier ${requiredTier} allowlist to mint.`);
+      }
 
       return false;
     } else if(stage && stage.stage === 1) {

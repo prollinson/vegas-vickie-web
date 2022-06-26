@@ -66,13 +66,7 @@ function Mint() {
       if(token.metadata) {
         token.image_url = 'https://ipfs.vegasvickienft.com/ipfs/' + JSON.parse(token.metadata).image.match(/ipfs:\/\/(.*)/)[1];
       }else{
-        Web3Api.token.reSyncMetadata({
-            chain: chain,
-            address: contractAddress,
-            token_id: token.token_id,
-            flag: 'uri',
-            mode: 'sync',
-        })
+        // TODO: Attempt to get metadata and latest image by using token_uri
       }
 
       // const options = {
