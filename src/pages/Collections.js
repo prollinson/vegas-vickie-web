@@ -161,7 +161,7 @@ function Collections() {
             nftImage={tier2NftImage}
             nftWebPImage={tier2NftWebPImage}
             perks={tier2CollectorPerks}
-            mintPrice={"TBD"}
+            mintPrice={"2 ETH"}
             maxSupply={"54"}
             availableText={"Available to mint early Summer"}
           />
@@ -172,7 +172,7 @@ function Collections() {
             nftImage={tier3NftImage}
             nftWebPImage={tier3NftWebPImage}
             perks={tier3CollectorPerks}
-            mintPrice={"TBD"}
+            mintPrice={"1.25 ETH"}
             maxSupply={"250"}
             availableText={"Available to mint early Summer"}
           />
@@ -183,7 +183,7 @@ function Collections() {
             nftImage={tier4NftImage}
             nftWebPImage={tier4NftWebPImage}
             perks={tier4CollectorPerks}
-            mintPrice={"TBD"}
+            mintPrice={"0.25 ETH"}
             maxSupply={"2500"}
             availableText={"Available to mint early Summer"}
           />

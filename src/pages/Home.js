@@ -52,7 +52,7 @@ let faqs = [
   },
   {
     question: 'What is the minting price?',
-    answer: 'Prices will be released closer to minting.'
+    answer: 'Please see the collections page for minting prices.'
   },
   {
     question: 'Which blockchain is Vegas Vickie NFT on?',
