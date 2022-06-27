@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useMoralis, useMoralisWeb3Api } from "react-moralis";
+import { useChain, useMoralis, useMoralisWeb3Api, useMoralisSubscription, useMoralisQuery} from "react-moralis";
 import { chain, address as contractAddress, ABI} from "../models/contracts/DealersChoice";
 
 import TransactionDialog from '../components/dialogs/TransactionDialog';
@@ -28,15 +28,26 @@ import AuctionBox from '../components/elements/AuctionBox';
 function Mint() {
   const { Moralis, authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
   const Web3Api = useMoralisWeb3Api();
+  const { switchNetwork, chainId, chain } = useChain();
 
   // Fetching Data
-  const [allNfts, setAllNfts] = useState([]);
+  // const [allNfts, setAllNfts] = useState([]);
 
   // Transactions
   const [mintTransaction, setMintTransaction] = useState(null);
   const [showTx, setShowTx] = useState(false);
 
   // NFT Functions
+
+  // useMoralisSubscription("Tier2MintEvents", q => q, [account], {
+  //   onUpdate: data => newMintTransaction(data),
+  // });
+
+  const { allNfts, error, isLoading } = useMoralisQuery("Tier2MintEvents", q => q, [account], {live: true });
+
+  // const newMintTransaction = async (data) => {
+  //   console.log("New Mint Transaction:", data);
+  // }
 
   const getNFTs = async () => {
     // Moralis Web3API doesn't work with hardhat
@@ -85,26 +96,28 @@ function Mint() {
       return token;
     }));
 
-    setAllNfts(nftsWithImageURL);
+    // setAllNfts(nftsWithImageURL);
   };
 
   // Contract Functions
 
   useEffect(() => {
-    const interval = setInterval(async () => {
-      if (user) {      
-        await getNFTs();
-      }
-    }, 5000);
-    return () => clearInterval(interval);
+    // const interval = setInterval(async () => {
+    //   if (user) {      
+    //     await getNFTs();
+    //   }
+    // }, 5000);
+    // return () => clearInterval(interval);
   }, [user]);
 
   useEffect(() => {
-    async function fetchData() {
-      await getNFTs();
-    }
-    fetchData();
-  }, []);
+    // async function fetchData() {
+    //   await getNFTs();
+    // }
+    // fetchData();
+    console.log(chain);
+    console.log(account);
+  }, [account]);
 
   useEffect(() => {
     console.log(allNfts);
@@ -112,6 +125,11 @@ function Mint() {
 
   return (
     <>
+      { chain && (
+        <div className="col-span-12 w-full mx-auto p-1 border-t border-[#1E1708] flex flex-1 justify-center align-center bg-red-900">
+          <p className='font-display text-white'>Connected to <b>{`${chain.name} (${chain.nativeCurrency.name})`}</b></p>
+        </div>
+      )}
       <div className="col-span-12 w-full mx-auto pt-16 sm:py-24 border-t border-[#1E1708] bg-pattern h-screen flex flex-1 justify-center align-center">
         <div className='w-full max-w-5xl mx-auto'>
           <MintCollection

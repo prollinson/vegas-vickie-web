@@ -2,6 +2,7 @@
 function MintedBox({allNfts}) {
   return (
     <>
+      <pre>{JSON.stringify(allNfts)}</pre>
       {allNfts && allNfts.length > 0 && (
         <div className="p-10 bg-stone-700">
           <h2 className="font-display uppercase text-white text-lg font-bold">Your Mints</h2>
