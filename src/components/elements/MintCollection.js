@@ -5,7 +5,8 @@ import useDealersChoiceContract from "../../hooks/useDealersChoiceContract";
 
 import merkleEntries from "../../models/merkle-trees/CollectionsMerkle.js";
 import { MerkleTree } from 'merkletreejs';
-import { keccak256 as solidityKeccak256 } from "@ethersproject/solidity";
+import { ethers } from 'ethers';
+import keccak256 from 'keccak256';
 
 import MintBox from "./MintBox";
 import StageBox from "./StageBox";
@@ -50,7 +51,7 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
 
   // Allowlist Checks
   const hashToken = (account, tier) => {
-    return Buffer.from(solidityKeccak256(['address','uint256'], [account, tier]).slice(2), 'hex');
+    return Buffer.from(ethers.utils.solidityKeccak256(['address', 'uint'], [account, tier]).slice(2), 'hex')
   }
 
   const priorityTier = () => {
@@ -68,11 +69,10 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
     if(user) {
       let address = user.get("ethAddress");
       if (address && requiredTier) {
-        const merkleTree = new MerkleTree(merkleEntries.map(token => hashToken(...token)), solidityKeccak256, { sortPairs: true })
+        const merkleTree = new MerkleTree(merkleEntries.map(token => hashToken(token[0], token[1])), keccak256, { sortPairs: true })
         let mp = merkleTree.getHexProof(hashToken(address, requiredTier))
         console.log('Root:', merkleTree.getHexRoot());
         setMerkleProof(mp)
-        console.log('Merkle Proof:', mp);
       } else {
         setMerkleProof(null)
       }
