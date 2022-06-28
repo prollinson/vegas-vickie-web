@@ -4,10 +4,11 @@ import { useChain, useMoralis } from 'react-moralis';
 import useUserInitialize from '../../hooks/useUserInitialize';
 
 import vvLogo from '../../assets/vv-logo.png';
-import metamaskLogo from '../../assets/metamask.svg';
+import metamaskLogo from '../../assets/metamask.png';
+import walletConnectLogo from '../../assets/walletconnect-logo.svg';
 
 export default function ConnectWallet({open, onClose}) {
-  const {enableWeb3, Moralis, user, authenticate} = useMoralis();
+  const {user, authenticate} = useMoralis();
   const { chainId } = useChain();
   const { initUser } = useUserInitialize();
 
@@ -18,8 +19,7 @@ export default function ConnectWallet({open, onClose}) {
       onComplete: async (user) => {
         console.log("Authenticated User through Metamask", user);
         
-        initUser()
-
+        initUser();
         onClose();
       },
 
@@ -51,10 +51,6 @@ export default function ConnectWallet({open, onClose}) {
 
       onError: (error) => {
         console.log('ERROR IN AUTH:', error);
-      },
-
-      onSuccess: (obj) => {
-        console.log('SUCCESS IN AUTH:', obj);
       }
     })
   };
@@ -62,35 +58,25 @@ export default function ConnectWallet({open, onClose}) {
   const connectWeb3Auth = async () => {
     onClose();
 
-    // TODO: Remove hardcoded chainId
     authenticate({
       provider: "web3Auth",
       clientId: process.env.REACT_APP_WEB3_AUTH_CLIENT_ID,
-      chainId: '0x4',
+      chainId: chainId,
       theme: 'light',
       appLogo: vvLogo,
 
-      onComplete: async (obj) => {
-        console.log("Authenticated User through Web3Auth", user);
-        
+      onComplete: async (obj) => {        
         if(user) {
-          // save the email and provider to User object, optionally check if already set
-          // user.set('email', email)
           user.set('provider', 'magicLink')
           user.save()
         }
         initUser()
-
 
         onClose();
       },
 
       onError: (error) => {
         console.log('ERROR IN AUTH:', error);
-      },
-
-      onSuccess: (obj) => {
-        console.log('SUCCESS IN AUTH:', obj);
       }
     });
   };
@@ -131,16 +117,17 @@ export default function ConnectWallet({open, onClose}) {
                   >
                     Connect Wallet
                   </Dialog.Title>
+                  <p></p>
                   <div className="mt-2">
-                    <button onClick={connectWallet} className="flex items-center justify-start px-4 py-2 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full">MetaMask<img src={metamaskLogo}/></button>
-                    <button onClick={connectWalletConnect} className="flex items-center justify-start px-4 py-2 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full">WalletConnect</button>
-                    <button onClick={connectWeb3Auth} className="flex items-center justify-start px-4 py-2 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full">Web3 Auth</button>
+                    <button onClick={connectWallet} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full"><span>MetaMask</span><img src={metamaskLogo} className="w-6"/></button>
+                    <button onClick={connectWalletConnect} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full"><span>WalletConnect</span><img src={walletConnectLogo} className="w-6"/></button>
+                    <button onClick={connectWeb3Auth} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full">Web3Auth</button>
                   </div>
 
                   <div className="mt-4 flex justify-center">
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-stone-300 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-stone-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={onClose}
                     >
                       Close

@@ -14,8 +14,8 @@ import MintedBox from "./MintedBox";
 function MintCollection ({contract, name, description, nftImage, nftWebPImage, actionBox}) {
   const { Moralis, isInitialized, account, user } = useMoralis();
 
-  const { getTotalSupply, getMaxSupply, getMintPrice, getMinimumRequiredTier, getAllowlistSaleStartTime, getPublicSaleStartTime, contractAddress} = useDealersChoiceContract(contract);
-
+  const { getTotalSupply, getMaxSupply, getMintPrice, getMinimumRequiredTier, getAllowlistSaleStartTime, getPublicSaleStartTime, contractAddress, data} = useDealersChoiceContract(contract);
+  
   const [merkleProof, setMerkleProof] = useState(null)
 
   const [collectionDetailsData, setCollectionDetailsData] = useState(null);
@@ -79,6 +79,18 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
   }, [user, merkleEntries, requiredTier])
 
   useEffect(() => {
+    if(data){
+      setTotalSupply(data.totalSupply);
+      setMaxSupply(data.maxSupply);
+      setMintPrice(data.mintPrice);
+      setAllStages(data.stages);
+      setMinimumRequiredTier(data.minimumRequiredTier);
+      setAllStagesDataLoaded(true);
+      setCollectionDetailsData(true);
+    }
+  }, [data])
+
+  useEffect(() => {
     if(currentStage()) {
       setRequiredTier(currentStage().minimumRequiredTier);
     }
@@ -126,90 +138,6 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
 
     return false;
   };
-
-  const fetchAllData = async () => {
-    if(isInitialized) {
-
-      const handleError = (error) => {
-        console.log(error);
-        setCollectionDetailsHasError(true)
-      };
-
-      // Get Collection Details
-      let allDetails = Promise.all([
-        // getTotalSupply.fetch({
-        //   onError: handleError,
-        //   onSuccess: (totalSupply) => { setTotalSupply(totalSupply) }
-        // }),
-      
-        getMaxSupply.fetch({
-          onError: handleError,
-          onSuccess: data => { setMaxSupply(data) }
-        }),
-  
-        getMintPrice.fetch({
-          onError: handleError,
-          onSuccess: data => { setMintPrice(data)}
-        }),
-
-        getMinimumRequiredTier.fetch({
-          onError: handleError,
-          onSuccess: data => { setMinimumRequiredTier(data)}
-        }),
-        
-        getAllowlistSaleStartTime.fetch({
-          onError: handleError,
-          onSuccess: data => { setAllowlistSaleStartTime(data)}
-        }),
-
-        getPublicSaleStartTime.fetch({
-          onError: handleError,
-          onSuccess: data => { setPublicSaleStartTime(data)}
-        })
-      ]).finally(() => {
-          setCollectionDetailsData(true);
-      })
-
-      // Get Stage Details
-      try {
-        const stages = [
-          {
-            stage: 0,
-            name: 'VIP & Allowlist Winners',
-            minimumRequiredTier: minimumRequiredTier,
-            startTime: allowlistSaleStartTime,
-            endTime: publicSaleStartTime
-          },
-          {
-            stage: 1,
-            name: 'Public Sale',
-            minimumRequiredTier: null,
-            startTime: publicSaleStartTime,
-            endTime: null
-          }
-        ]
-
-        setAllStages(stages);
-        setAllStagesDataLoaded(true);
-      } catch(err) {
-        setAllStagesDataHasError(true);
-      }
-
-      setIsWaiting(false);
-    }
-  };
-
-  useEffect(() => {
-    const firstLoad = async () => {
-      await fetchAllData();
-    };
-    firstLoad();
-
-    const interval = setInterval(async () => {
-      await fetchAllData();
-    }, 60000);
-    return () => clearInterval(interval);
-  }, [isInitialized]);
 
   let sectionHeading2 = "text-md sm:text-lg text-white font-bold tracking-widest uppercase";
   let bodyTextSmall = 'font-gilroy text-white text-lg';

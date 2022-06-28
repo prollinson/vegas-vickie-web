@@ -2,30 +2,30 @@ import {useNFTBalances, useMoralisWeb3Api} from 'react-moralis';
 import {useEffect, useState} from 'react';
 
 function MintedBox({contract}) {
-  const { getNFTBalances, data, error, isLoading, isFetching } = useNFTBalances();
-
   const [allNfts, setAllNfts] = useState([]);
 
   const Web3Api = useMoralisWeb3Api();
 
 
   async function getNFTs(){
+    console.log('contract', contract)
     const options = {
-      token_address: contract,
+      chain: contract.chainId,
+      token_address: contract.address,
     };
     const nfts = await Web3Api.account.getNFTsForContract(options);
     console.log(nfts);
 
-    let returnedNfts = nfts.map(async function(nft){
-      //  let url = fixURL(nft.token_uri);
-      // let response = await fetch(nft.token_uri)
-      // console.log(response);
-      // let data = await response.json()
+    // let returnedNfts = nfts.map(async function(nft){
+    //   //  let url = fixURL(nft.token_uri);
+    //   // let response = await fetch(nft.token_uri)
+    //   // console.log(response);
+    //   // let data = await response.json()
 
-      return nft
-    })
+    //   return nft
+    // })
 
-    setAllNfts(returnedNfts);
+    setAllNfts(nfts.result);
   };
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function MintedBox({contract}) {
   return (
     <>
       {allNfts && allNfts.length > 0 && (
-        <div className="p-10 bg-stone-700">
+        <div className="p-10">
           <h2 className="font-display uppercase text-white text-lg font-bold">Your Mints</h2>
           <p className="font-display text-white text-md pb-6">Nice one! Look out for the reveal. Here are the NFTs safely in your wallet:</p>
 
