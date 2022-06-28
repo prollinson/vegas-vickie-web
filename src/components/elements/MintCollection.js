@@ -2,6 +2,7 @@ import { useMoralis, useMoralisQuery, useNFTTransfers } from "react-moralis";
 import { useEffect, useState } from "react";
 
 import useDealersChoiceContract from "../../hooks/useDealersChoiceContract";
+import useFetchMintedNFTs from "../../hooks/useFetchMintedNFTs";
 
 import merkleEntries from "../../models/merkle-trees/CollectionsMerkle.js";
 import { MerkleTree } from 'merkletreejs';
@@ -23,9 +24,12 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
   const [totalSupply, setTotalSupply] = useState(0);
   const [maxSupply, setMaxSupply] = useState(0);
   const [mintPrice, setMintPrice] = useState(0);
+  const [walletLimit, setWalletLimit] = useState(null);
   const [minimumRequiredTier, setMinimumRequiredTier] = useState(0);
   const [allowlistSaleStartTime, setAllowlistSaleStartTime] = useState(0);
   const [publicSaleStartTime, setPublicSaleStartTime] = useState(0);
+
+  const allMintedNfts = useFetchMintedNFTs(contract);
 
   const [allStagesDataLoaded, setAllStagesDataLoaded] = useState(false);
   const [allStagesDataHasError, setAllStagesDataHasError] = useState(false);
@@ -85,6 +89,7 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
       setMintPrice(data.mintPrice);
       setAllStages(data.stages);
       setMinimumRequiredTier(data.minimumRequiredTier);
+      setWalletLimit(data.walletLimit);
       setAllStagesDataLoaded(true);
       setCollectionDetailsData(true);
     }
@@ -192,7 +197,7 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
 
         {/* TODO: Show error if no mintPrice */}
         {mintPrice && (
-          <MintBox contract={contract} mintPrice={mintPrice} totalSupply={totalSupply} isMintingOpen={currentStage() != null} canMint={canMint} currentStage={currentStage()} canMintReason={canMintReason} contractAddress={contractAddress} merkleProof={merkleProof} priorityTier={priorityTier()}/>
+          <MintBox contract={contract} mintPrice={mintPrice} totalSupply={totalSupply} walletLimit={walletLimit} isMintingOpen={currentStage() != null} canMint={canMint} currentStage={currentStage()} canMintReason={canMintReason} contractAddress={contractAddress} merkleProof={merkleProof} priorityTier={priorityTier()}/>
         )}
 
         <MintedBox contract={contract} />

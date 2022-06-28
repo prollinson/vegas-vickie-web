@@ -7,7 +7,7 @@ import { ExternalLinkIcon } from '@heroicons/react/solid'
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
-function MintBox({contract, mintPrice, totalSupply, maxSupply, canMint, canMintReason, isMintingOpen, currentStage, merkleProof, priorityTier}) {
+function MintBox({contract, mintPrice, totalSupply, maxSupply, walletLimit, canMint, canMintReason, isMintingOpen, currentStage, merkleProof, priorityTier}) {
   const { Moralis, isAuthenticated, isWeb3Enabled, account, user } = useMoralis();
   const { mint: performMint, mintOptions, mintAllowlist, mintAllowlistOptions, contractAddress} = useDealersChoiceContract(contract);
 
@@ -57,9 +57,11 @@ function MintBox({contract, mintPrice, totalSupply, maxSupply, canMint, canMintR
       if(currentStage.stage === 0) {
         tx = await mintAllowlist.fetch({
           params: mintAllowlistOptions(mintPrice, 1, priorityTier, merkleProof),
-          onSuccess: () => alert("success")
+          // onSuccess: () => alert("success")
         });
       } else {
+        console.log('mintOptions', mintOptions);
+        console.log(mintPrice, 1);
         tx = await performMint.fetch({params: mintOptions(mintPrice, 1)});
       }
             
@@ -141,7 +143,10 @@ function MintBox({contract, mintPrice, totalSupply, maxSupply, canMint, canMintR
                 <p className="font-display text-white text-md">You're ready to mint! Get one before they are gone.</p>
                 <div className="w-full pt-6">
                   <button onClick={callMint} className="w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow  hover:bg-white hover:text-black mx-auto">Mint 1 @ {Moralis.Units.FromWei(mintPrice.toString())} ETH</button>
-                  <p className="font-display text-white pt-6 text-center">View the contract <a href={`https://rinkeby.etherscan.io/address/${contractAddress}`} target="_blank" rel="noreferrer" className="hover:text-vickie-yellow">{contractAddress} <ExternalLinkIcon className="inline w-5" /></a></p>
+                  {walletLimit && (
+                    <p className="font-display text-white pt-6 text-center">Maximum {walletLimit} mints per wallet</p>
+                  )}
+                  <p className="font-display text-white pt-4 text-center">View the contract <a href={`https://etherscan.io/address/${contractAddress}`} target="_blank" rel="noreferrer" className="hover:text-vickie-yellow">{contractAddress} <ExternalLinkIcon className="inline w-5" /></a></p>
                 </div>
               </>
             )}

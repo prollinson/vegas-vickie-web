@@ -86,6 +86,13 @@ function useDealersChoiceContract(contract) {
     allowlistMinimumTierOptions
   );
 
+  const walletLimitOptions = {
+    chain: chain,
+    address: contractAddress,
+    function_name: "walletLimit",
+    abi: ABI
+  };
+
   // Minting
 
   const mint = useWeb3ExecuteFunction();
@@ -133,6 +140,7 @@ function useDealersChoiceContract(contract) {
         const minimumRequiredTier = await Web3Api.native.runContractFunction(allowlistMinimumTierOptions);
         const allowListSaleStartTime = await Web3Api.native.runContractFunction(allowlistReadOptions);
         const publicSaleStartTime = await Web3Api.native.runContractFunction(publicReadOptions);
+        const walletLimit = await Web3Api.native.runContractFunction(walletLimitOptions);
     
         // Get Stage Details
         let stages = [];
@@ -162,6 +170,7 @@ function useDealersChoiceContract(contract) {
           totalSupply: totalSupply,
           mintPrice: mintPrice,
           stages: stages,
+          walletLimit: walletLimit
         }
 
         cache.current[contract.address.toString()] = data;
