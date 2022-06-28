@@ -1,27 +1,32 @@
-import {useNFTBalances, useMoralisWeb3Api} from 'react-moralis';
+import {useMoralis, useMoralisWeb3Api} from 'react-moralis';
 import {useEffect, useState} from 'react';
 
 function MintedBox({contract}) {
+  const {user, isInitialized} = useMoralis();
   const [allNfts, setAllNfts] = useState([]);
 
   const Web3Api = useMoralisWeb3Api();
 
 
   async function getNFTs(){
-    console.log('contract', contract)
+    if(!user) return;
+    if(!isInitialized) return;
     const options = {
+      address: user.get("ethAddress"),
       chain: contract.chainId,
       token_address: contract.address,
     };
     const nfts = await Web3Api.account.getNFTsForContract(options);
-    console.log(nfts);
 
-    // let returnedNfts = nfts.map(async function(nft){
+    // TODO: Find Image for NFT if not cached
+    // let returnedNfts = nfts.result.map(async function(nft){
+
     //   //  let url = fixURL(nft.token_uri);
     //   // let response = await fetch(nft.token_uri)
     //   // console.log(response);
     //   // let data = await response.json()
 
+      
     //   return nft
     // })
 
