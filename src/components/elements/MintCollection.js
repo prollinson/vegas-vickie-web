@@ -2,7 +2,6 @@ import { useMoralis, useMoralisQuery, useNFTTransfers } from "react-moralis";
 import { useEffect, useState } from "react";
 
 import useDealersChoiceContract from "../../hooks/useDealersChoiceContract";
-import useFetchMintedNFTs from "../../hooks/useFetchMintedNFTs";
 
 import merkleEntries from "../../models/merkle-trees/CollectionsMerkle.js";
 import { MerkleTree } from 'merkletreejs';
@@ -28,8 +27,6 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
   const [minimumRequiredTier, setMinimumRequiredTier] = useState(0);
   const [allowlistSaleStartTime, setAllowlistSaleStartTime] = useState(0);
   const [publicSaleStartTime, setPublicSaleStartTime] = useState(0);
-
-  const allMintedNfts = useFetchMintedNFTs(contract);
 
   const [allStagesDataLoaded, setAllStagesDataLoaded] = useState(false);
   const [allStagesDataHasError, setAllStagesDataHasError] = useState(false);
