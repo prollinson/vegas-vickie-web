@@ -14,7 +14,7 @@ import MintedBox from "./MintedBox";
 function MintCollection ({contract, name, description, nftImage, nftWebPImage, actionBox}) {
   const { Moralis, isInitialized, account, user } = useMoralis();
 
-  const { getTotalSupply, getMaxSupply, getMintPrice, getStages, contractAddress} = useDealersChoiceContract(contract);
+  const { getTotalSupply, getMaxSupply, getMintPrice, getMinimumRequiredTier, getAllowlistSaleStartTime, getPublicSaleStartTime, contractAddress} = useDealersChoiceContract(contract);
 
   const [merkleProof, setMerkleProof] = useState(null)
 
@@ -23,6 +23,9 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
   const [totalSupply, setTotalSupply] = useState(0);
   const [maxSupply, setMaxSupply] = useState(0);
   const [mintPrice, setMintPrice] = useState(0);
+  const [minimumRequiredTier, setMinimumRequiredTier] = useState(0);
+  const [allowlistSaleStartTime, setAllowlistSaleStartTime] = useState(0);
+  const [publicSaleStartTime, setPublicSaleStartTime] = useState(0);
 
   const [allStagesDataLoaded, setAllStagesDataLoaded] = useState(false);
   const [allStagesDataHasError, setAllStagesDataHasError] = useState(false);
@@ -134,10 +137,10 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
 
       // Get Collection Details
       let allDetails = Promise.all([
-        getTotalSupply.fetch({
-          onError: handleError,
-          onSuccess: (totalSupply) => { setTotalSupply(totalSupply) }
-        }),
+        // getTotalSupply.fetch({
+        //   onError: handleError,
+        //   onSuccess: (totalSupply) => { setTotalSupply(totalSupply) }
+        // }),
       
         getMaxSupply.fetch({
           onError: handleError,
@@ -147,6 +150,21 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
         getMintPrice.fetch({
           onError: handleError,
           onSuccess: data => { setMintPrice(data)}
+        }),
+
+        getMinimumRequiredTier.fetch({
+          onError: handleError,
+          onSuccess: data => { setMinimumRequiredTier(data)}
+        }),
+        
+        getAllowlistSaleStartTime.fetch({
+          onError: handleError,
+          onSuccess: data => { setAllowlistSaleStartTime(data)}
+        }),
+
+        getPublicSaleStartTime.fetch({
+          onError: handleError,
+          onSuccess: data => { setPublicSaleStartTime(data)}
         })
       ]).finally(() => {
           setCollectionDetailsData(true);
@@ -154,7 +172,23 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
 
       // Get Stage Details
       try {
-        const stages = await getStages();
+        const stages = [
+          {
+            stage: 0,
+            name: 'VIP & Allowlist Winners',
+            minimumRequiredTier: minimumRequiredTier,
+            startTime: allowlistSaleStartTime,
+            endTime: publicSaleStartTime
+          },
+          {
+            stage: 1,
+            name: 'Public Sale',
+            minimumRequiredTier: null,
+            startTime: publicSaleStartTime,
+            endTime: null
+          }
+        ]
+
         setAllStages(stages);
         setAllStagesDataLoaded(true);
       } catch(err) {

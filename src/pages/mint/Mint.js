@@ -2,11 +2,14 @@ import { useEffect, useState } from 'react';
 import { useChain, useMoralis, useNativeBalance} from "react-moralis";
 import useUserInitialize from "../../hooks/useUserInitialize";
 
+import { Tab } from '@headlessui/react';
+
 // Contracts
 import tier2Contract from "../../models/contracts/DealersChoice";
 import tier3Contract from "../../models/contracts/Tier3";
+import tier4Contract from "../../models/contracts/Tier4";
 
-import TransactionDialog from '../../components/dialogs/TransactionDialog';
+import AuctionCollection from '../../components/elements/AuctionCollection';
 import MintCollection from '../../components/elements/MintCollection';
 import PageHeader from '../../components/layout/PageHeader';
 import Header from '../../components/layout/Header';
@@ -33,6 +36,8 @@ function Mint() {
   const { chain } = useChain();
   const { getBalances, data: balance, nativeToken, error, isLoading } = useNativeBalance();
   const {initUser} = useUserInitialize();
+
+  const tabStyle = "h-24 px-10 bg-stone-900 hover:bg-stone-700 mr-1 font-display font-bold uppercase text-white ";
 
   // Transactions
   const [mintTransaction, setMintTransaction] = useState(null);
@@ -91,21 +96,52 @@ function Mint() {
       )}
       <div className="col-span-12 w-full mx-auto pt-16 sm:py-24 border-t border-[#1E1708] bg-pattern h-screen flex flex-1 justify-center align-center">
         <div className='w-full max-w-5xl mx-auto'>
-          <MintCollection
-            contract={tier2Contract}
-            name="Dealer's Choice"
-            nftImage={tier2NftImage}
-            nftWebPImage={tier2NftWebPImage}
-            availableText={"Available to mint early Summer"}
-          />
 
-          <MintCollection
-            contract={tier3Contract}
-            name="Neon Idol"
-            nftImage={tier3NftImage}
-            nftWebPImage={tier3NftWebPImage}
-            availableText={"Available to mint early Summer"}
-          />
+        <Tab.Group>
+          <Tab.List>
+            <Tab className={({ selected }) => selected ? tabStyle + ' bg-vickie-yellow text-white' : tabStyle}>The One and Only</Tab>
+            <Tab className={({ selected }) => selected ? tabStyle + ' bg-vickie-yellow text-white' : tabStyle}>Dealers Choice</Tab>
+            <Tab className={({ selected }) => selected ? tabStyle + ' bg-vickie-yellow text-white' : tabStyle}>Neon Idol</Tab>
+            <Tab className={({ selected }) => selected ? tabStyle + ' bg-vickie-yellow text-white' : tabStyle}>Off the Rack</Tab>
+          </Tab.List>
+          <Tab.Panels>
+            <Tab.Panel>
+              <AuctionCollection
+                name="The One and Only"
+                nftImage={tier1NftImage}
+                nftWebPImage={tier1NftWebPImage}
+                availableText={"Available at auction 6/28"}
+              />
+            </Tab.Panel>
+            <Tab.Panel>
+              <MintCollection
+                contract={tier2Contract}
+                name="Dealer's Choice"
+                nftImage={tier2NftImage}
+                nftWebPImage={tier2NftWebPImage}
+                availableText={"Available to mint 6/28"}
+              />
+            </Tab.Panel>
+            <Tab.Panel>
+              <MintCollection
+                contract={tier3Contract}
+                name="Neon Idol"
+                nftImage={tier3NftImage}
+                nftWebPImage={tier3NftWebPImage}
+                availableText={"Available to mint 6/28"}
+              />
+            </Tab.Panel>
+              <Tab.Panel>
+                <MintCollection
+                  contract={tier4Contract}
+                  name="Off the Rack"
+                  nftImage={tier4NftImage}
+                  nftWebPImage={tier4NftWebPImage}
+                  availableText={"Available to mint 6/28"}
+                />
+              </Tab.Panel>
+            </Tab.Panels>
+          </Tab.Group>
         </div>
       </div>
     </>

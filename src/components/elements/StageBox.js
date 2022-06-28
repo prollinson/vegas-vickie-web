@@ -72,7 +72,6 @@ function StageBox({allStages, isLoading}) {
             </div>
             <div className="flex flex-col pb-6">
               <p className="font-display uppercase text-white text-lg font-bold">Sale Closed</p>
-              <p className="font-gilroy text-white text-md">Minting Closed</p>
             </div>
           </li>
         )}

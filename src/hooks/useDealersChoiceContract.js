@@ -1,8 +1,7 @@
-import { useMoralis, useMoralisWeb3Api, useMoralisWeb3ApiCall, useWeb3ExecuteFunction } from "react-moralis";
+import { useMoralisWeb3Api, useMoralisWeb3ApiCall, useWeb3ExecuteFunction } from "react-moralis";
 import { chainId } from "../contracts.config";
 
 function useDealersChoiceContract(contract) {
-  const { Moralis } = useMoralis();
   const Web3Api = useMoralisWeb3Api();
 
   let contractAddress = contract.address;
@@ -45,48 +44,40 @@ function useDealersChoiceContract(contract) {
     getMintPriceOptions
   );
 
-  const getStages = async () => {
-    const allowlistReadOptions = {
-      chain: chain,
-      address: contractAddress,
-      function_name: "allowlistSaleStartTime",
-      abi: ABI
-    };
-    const allowlistSaleStartTime = await Moralis.Web3API.native.runContractFunction(allowlistReadOptions);
-
-    const publicReadOptions = {
-      chain: chain,
-      address: contractAddress,
-      function_name: "publicSaleStartTime",
-      abi: ABI
-    };
-    const publicSaleStartTime = await Moralis.Web3API.native.runContractFunction(publicReadOptions);
-
-    const allowlistMinimumTierOptions = {
-      chain: chain,
-      address: contractAddress,
-      function_name: "allowlistMinimumTier",
-      abi: ABI
-    };
-    const minimumRequiredTier = await Moralis.Web3API.native.runContractFunction(allowlistMinimumTierOptions);
-
-    return [
-      {
-        stage: 0,
-        name: 'Allowlist Winners',
-        minimumRequiredTier: minimumRequiredTier,
-        startTime: allowlistSaleStartTime,
-        endTime: publicSaleStartTime
-      },
-      {
-        stage: 1,
-        name: 'Public Sale',
-        minimumRequiredTier: null,
-        startTime: publicSaleStartTime,
-        endTime: null
-      }
-    ]
+  
+  const allowlistReadOptions = {
+    chain: chain,
+    address: contractAddress,
+    function_name: "allowlistSaleStartTime",
+    abi: ABI
   };
+  const getAllowlistSaleStartTime = useMoralisWeb3ApiCall(
+    Web3Api.native.runContractFunction,
+    allowlistReadOptions
+  );
+
+
+  const publicReadOptions = {
+    chain: chain,
+    address: contractAddress,
+    function_name: "publicSaleStartTime",
+    abi: ABI
+  };
+  const getPublicSaleStartTime = useMoralisWeb3ApiCall(
+    Web3Api.native.runContractFunction,
+    publicReadOptions
+  );
+
+  const allowlistMinimumTierOptions = {
+    chain: chain,
+    address: contractAddress,
+    function_name: "allowlistMinimumTier",
+    abi: ABI
+  };
+  const getMinimumRequiredTier = useMoralisWeb3ApiCall(
+    Web3Api.native.runContractFunction,
+    allowlistMinimumTierOptions
+  );
 
   // Minting
 
@@ -124,7 +115,9 @@ function useDealersChoiceContract(contract) {
     getTotalSupply: getTotalSupply,
     getMaxSupply: getMaxSupply,
     getMintPrice: getMintPrice,
-    getStages: getStages,
+    getMinimumRequiredTier: getMinimumRequiredTier,
+    getAllowlistSaleStartTime: getAllowlistSaleStartTime,
+    getPublicSaleStartTime: getPublicSaleStartTime,
     mint: mint,
     mintOptions: mintOptions,
     mintAllowlist: mintAllowlist,

@@ -19,6 +19,8 @@ import tier4NftWebPImage from '../assets/off-the-rack_lossyalpha.webp';
 import JoinCommunitySection from '../components/elements/JoinCommunitySection';
 
 function Collections() {
+
+  const openSeaListing = "https://opensea.io/assets/ethereum/0x69c5ba025fcf3a3e740f4c150d47e0126ddd106a/1";
   
   let tier1CollectorPerks = [
     {
@@ -152,7 +154,12 @@ function Collections() {
             totalSupply={1}
             maxSupply={"1/1"}
             mintPrice={"TBD"}
-            availableText={"Available at auction early Summer"}
+            availableText={"Available at auction now"}
+            actionButton={(
+              <a href={openSeaListing} target="_blank" className="w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow  hover:bg-white hover:text-black mx-auto">
+                Bid on OpenSea
+              </a>
+            )}
           />
 
           <NftCollection
@@ -163,7 +170,12 @@ function Collections() {
             perks={tier2CollectorPerks}
             mintPrice={"TBD"}
             maxSupply={"54"}
-            availableText={"Available to mint early Summer"}
+            availableText={"Available to mint now"}
+            actionButton={(
+              <a href="/mint" className="w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow  hover:bg-white hover:text-black mx-auto">
+                Buy/Mint Now
+              </a>
+            )}
           />
 
           <NftCollection
@@ -174,7 +186,12 @@ function Collections() {
             perks={tier3CollectorPerks}
             mintPrice={"TBD"}
             maxSupply={"250"}
-            availableText={"Available to mint early Summer"}
+            availableText={"Available to mint now"}
+            actionButton={(
+              <a href="/mint" className="w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow  hover:bg-white hover:text-black mx-auto">
+                Buy/Mint Now
+              </a>
+            )}
           />
 
           <NftCollection
@@ -185,7 +202,12 @@ function Collections() {
             perks={tier4CollectorPerks}
             mintPrice={"TBD"}
             maxSupply={"2500"}
-            availableText={"Available to mint early Summer"}
+            availableText={"Available to mint now"}
+            actionButton={(
+              <a href="/mint" className="w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow  hover:bg-white hover:text-black mx-auto">
+                Buy/Mint Now
+              </a>
+            )}
           />
         </div>
       </div>

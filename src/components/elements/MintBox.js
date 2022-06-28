@@ -20,11 +20,8 @@ function MintBox({contract, mintPrice, totalSupply, maxSupply, canMint, canMintR
   const hasWalletInstalled = function () {
     const connectorType = Moralis.connectorType;
     if (connectorType === "injected") {
-      console.log("Metamask or an injected provider is used");
+      // console.log("Metamask or an injected provider is used");
     }
-
-    const connector = Moralis.connector;
-    console.log('connector', connector);
 
     let enabled = true;
     if (typeof window.web3 !== 'undefined') {
@@ -110,7 +107,7 @@ function MintBox({contract, mintPrice, totalSupply, maxSupply, canMint, canMintR
 
 
   return (
-    <div className="mx-10 rounded-md bg-stone-800 p-10"> 
+    <div className="mx-10 rounded-md bg-stone-900 p-10"> 
 
     <ConnectWallet open={isConnectWalletOpen} onClose={() => setIsConnectWalletOpen(false)} />
 
@@ -144,7 +141,7 @@ function MintBox({contract, mintPrice, totalSupply, maxSupply, canMint, canMintR
                 <p className="font-display text-white text-md">You're ready to mint! Get one before they are gone.</p>
                 <div className="w-full pt-6">
                   <button onClick={callMint} className="w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow  hover:bg-white hover:text-black mx-auto">Mint 1 @ {Moralis.Units.FromWei(mintPrice.toString())} ETH</button>
-                  <p className="font-display text-white pt-6 text-center">View the contract <a href={`https://goerli.etherscan.io/address/${contractAddress}`} target="_blank" rel="noreferrer" className="hover:text-vickie-yellow">{contractAddress} <ExternalLinkIcon className="inline w-5" /></a></p>
+                  <p className="font-display text-white pt-6 text-center">View the contract <a href={`https://rinkeby.etherscan.io/address/${contractAddress}`} target="_blank" rel="noreferrer" className="hover:text-vickie-yellow">{contractAddress} <ExternalLinkIcon className="inline w-5" /></a></p>
                 </div>
               </>
             )}
