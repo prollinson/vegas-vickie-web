@@ -1,4 +1,4 @@
-function NftCollection ({name, description, nftImage, nftWebPImage, availableText, perks, mintPrice, maxSupply, actionBox}) {
+function NftCollection ({name, description, nftImage, nftWebPImage, availableText, perks, mintPrice, maxSupply, actionBox, actionButton}) {
   let sectionHeading2 = "text-md sm:text-lg text-white font-bold tracking-widest uppercase";
   let bodyTextSmall = 'font-gilroy text-white text-lg';
 
@@ -6,11 +6,12 @@ function NftCollection ({name, description, nftImage, nftWebPImage, availableTex
     <div className="md:flex justify-center pb-24 sm:pb-52 space-x-0 sm:space-x-24 p-4 sm:p-0">
       <div className="w-full md:w-1/2 flex-none basis-1/4 justify-items-center">
         <picture>
-          <source srcset={`${nftWebPImage} 620w`} type="image/webp" />
+          <source srcSet={`${nftWebPImage} 620w`} type="image/webp" />
           <img src={nftImage} alt="Preview of NFT" className="md:w-full max-h-96 md:max-h-full m-auto aspect-[620/838]"/>
         </picture>
         <div className="w-full pt-8 pb-8 sm:pb-0">
-          <p className="font-gilroy text-white text-md text-center">{availableText}</p>
+          <p className="font-gilroy text-white text-md text-center pb-4">{availableText}</p>
+          {actionButton}
         </div>
       </div>
 

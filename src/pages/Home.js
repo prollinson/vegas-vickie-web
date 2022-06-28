@@ -151,11 +151,16 @@ function Home() {
     <>
       {/* logo Section */}
       <div className="col-span-12 bg-header-dark-small sm:bg-header-dark bg-cover">
-        <div className="max-w-7xl mx-auto sm:py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex sm:h-[80vh] md:items-center md:justify-center">
+        <div className="max-w-7xl mx-auto sm:py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex md:flex-col sm:h-[80vh] md:items-center md:justify-center">
             <picture>
               <source type="image/webp" srcSet={`${neonLogoMobileWebP} 656w, ${neonLogoWebP} 1794w, ${neonLogoLargeWebP} 2432w`} sizes="(min-width: 320px) 100vw,100vw" className="max-h-72 md:max-h-full m-0 md:m-auto aspect-auto"/>
               <img src={neonLogo} alt="Neon Logo" className="max-h-72 md:max-h-full m-0 md:m-auto aspect-auto"/>
             </picture>
+
+            {/* <div className="">
+              <h1 className={`${heroHeading} text-white mb-4`}>Now Minting</h1>
+              <a href={discordLink} target="_window" className="w-full md:w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-black uppercase bg-vickie-yellow hover:bg-white">Buy/Mint</a>
+            </div> */}
         </div>
       </div>
 

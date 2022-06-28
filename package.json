@@ -4,32 +4,45 @@
   "private": true,
   "homepage": "https://vegasvickienft.com",
   "dependencies": {
-    "@headlessui/react": "^1.5.0",
+    "@headlessui/react": "^1.6.5",
     "@heroicons/react": "^1.0.6",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "@walletconnect/web3-provider": "^1.7.8",
+    "@web3auth/web3auth": "^1.1.0",
+    "add": "^2.0.6",
+    "assert": "^2.0.0",
     "autoprefixer": "^10.4.4",
     "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "https-browserify": "^1.0.0",
+    "keccak256": "^1.0.6",
+    "magic-sdk": "^8.1.1",
     "merkletreejs": "^0.2.31",
-    "moralis": "^1.5.4",
+    "moralis": "^1.8.0",
+    "os": "^0.1.2",
+    "os-browserify": "^0.3.0",
     "postcss": "^8.4.12",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
-    "react-moralis": "^1.3.2",
+    "react-moralis": "^1.4.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "react-snap": "^1.23.0",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
     "tailwindcss": "^3.0.23",
-    "web-vitals": "^2.1.0"
+    "url": "^0.11.0",
+    "web-vitals": "^2.1.0",
+    "yarn": "^1.22.19"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postbuild": "react-snap"
+    "start": "GENERATE_SOURCEMAP=false react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
   },
   "eslintConfig": {
     "extends": [
@@ -50,7 +63,13 @@
     ]
   },
   "reactSnap": {
-    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
     "puppeteerExecutablePath": "/opt/google/chrome/google-chrome"
+  },
+  "devDependencies": {
+    "react-app-rewired": "^2.2.1"
   }
 }

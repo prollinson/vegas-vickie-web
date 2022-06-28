@@ -11,7 +11,8 @@ function Header() {
   const navItems = [
     { name: 'Home', link: "/" },
     { name: 'Collections', link: "/collections" },
-    { name: 'Our Story', link: "/story" }
+    { name: 'Our Story', link: "/story" },
+    { name: 'Mint', link: "/mint" }
   ];
 
   return (
