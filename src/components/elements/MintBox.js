@@ -167,8 +167,7 @@ function MintBox({contract, mintPrice, totalSupply, maxSupply, canMint, canMintR
                 <ul>
                   {mintTransactions.map(tx => (
                   <li key={tx.hash} className="font-display text-white">
-                    {/* TODO: Add produciton etherscan address */}
-                    <a href={`https://goerli.etherscan.io/tx/${tx.hash}`} target="_blank" rel="noreferrer"><ExternalLinkIcon className="w-5" /> Transaction: {tx.hash}</a> {tx.confirmations}/3
+                    <a href={`https://etherscan.io/tx/${tx.hash}`} target="_blank" rel="noreferrer"><ExternalLinkIcon className="w-5" /> Transaction: {tx.hash}</a> {tx.confirmations}/3
                   </li> 
                   ))}
                 </ul>
