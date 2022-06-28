@@ -5,7 +5,7 @@ import useDealersChoiceContract from "../../hooks/useDealersChoiceContract";
 
 import merkleEntries from "../../models/merkle-trees/CollectionsMerkle.js";
 import { MerkleTree } from 'merkletreejs';
-import { ethers } from 'ethers';
+import { ethers, utils } from 'ethers';
 import keccak256 from 'keccak256';
 
 import MintBox from "./MintBox";
@@ -36,6 +36,7 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
   const [isWaiting, setIsWaiting] = useState(true);
 
   const [canMintReason, setCanMintReason] = useState(null);
+  const [merkleTier, setMerkleTier] = useState(null);
 
   // const { fetch, allNfts, error, isLoading } = useMoralisQuery("EthNFTTransfers", q => q.equalTo("to_address", "0xf3e63d88fd8919b2ee715439c8b45bf47b69f538"), [user], {live: true, autoFetch: false});
 
@@ -54,30 +55,55 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
     return Buffer.from(ethers.utils.solidityKeccak256(['address', 'uint'], [account, tier]).slice(2), 'hex')
   }
 
-  const priorityTier = () => {
-    if(user) {
-      let address = user.get("ethAddress");
-      if(address == null) {
-        return;
-      }
-      const matchingEntry = merkleEntries.find(wallet => address.toLowerCase() === wallet[0].toLowerCase());
-      return matchingEntry ? matchingEntry[1] : null;
+  // const priorityTier = () => {
+  //   if(user) {
+  //     let address = user.get("ethAddress");
+  //     if(address == null) {
+  //       return;
+  //     }
+
+  //     const addresses = merkleEntries.filter(entry => utils.getAddress(entry[0]) === utils.getAddress(account))
+  //     if (addresses.length > 0) {
+  //       setMerkleTier(addresses[0][1])
+  //     } else {
+  //       setMerkleTier(null)
+  //     }
+  //     // const matchingEntry = merkleEntries.find(wallet => address.toLowerCase() === wallet[0].toLowerCase());
+  //     return matchingEntry ? matchingEntry[1] : null;
+  //   }
+  // }
+
+  useEffect(() => {
+    if(!user) return;
+
+    let address = user.get("ethAddress");
+    if(address == null) {
+      return;
     }
-  }
+    
+    const addresses = merkleEntries.filter(entry => utils.getAddress(entry[0]) === utils.getAddress(address))
+    if (addresses.length > 0) {
+      console.log("Setting merkle tier to", addresses[0][1]);
+      setMerkleTier(addresses[0][1])
+    } else {
+      setMerkleTier(null)
+    }
+  }, [user])
 
   useEffect(() => {
     if(user) {
       let address = user.get("ethAddress");
-      if (address && requiredTier) {
+      if (address && merkleTier) {
+        console.log("Checking if user is in the allowlist", address.toLowerCase(), merkleTier);
         const merkleTree = new MerkleTree(merkleEntries.map(token => hashToken(token[0], token[1])), keccak256, { sortPairs: true })
-        let mp = merkleTree.getHexProof(hashToken(address, requiredTier))
+        let mp = merkleTree.getHexProof(hashToken(address.toLowerCase(), merkleTier))
         console.log('Root:', merkleTree.getHexRoot());
         setMerkleProof(mp)
       } else {
         setMerkleProof(null)
       }
     }
-  }, [user, merkleEntries, requiredTier])
+  }, [user, merkleEntries, merkleTier])
 
   useEffect(() => {
     if(data){
@@ -116,17 +142,14 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
 
     const stage = currentStage();
 
-    if(stage && stage.stage === 0) {
-      // is on allowlist
-      const matchingEntry = merkleEntries.find(wallet => account.toLowerCase() === wallet[0].toLowerCase());
-      
+    if(stage && stage.stage === 0) {      
       // can mint this tier
-      if(matchingEntry && matchingEntry[1] <= requiredTier) {
+      if(merkleTier <= requiredTier) {
         return true;
       }
 
-      if(matchingEntry) {
-        setCanMintReason(`You must be on the tier ${requiredTier} allowlist to mint. You are on tier ${matchingEntry[1]}`);
+      if(merkleTier) {
+        setCanMintReason(`You must be on the tier ${requiredTier} allowlist to mint. You are on tier ${merkleTier}`);
       } else {
         setCanMintReason(`You're not on the allowlist. You must be on the tier ${requiredTier} allowlist to mint.`);
       }
@@ -194,7 +217,7 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
 
         {/* TODO: Show error if no mintPrice */}
         {mintPrice && (
-          <MintBox contract={contract} mintPrice={mintPrice} totalSupply={totalSupply} walletLimit={walletLimit} isMintingOpen={currentStage() != null} canMint={canMint} currentStage={currentStage()} canMintReason={canMintReason} contractAddress={contractAddress} merkleProof={merkleProof} priorityTier={priorityTier()}/>
+          <MintBox contract={contract} mintPrice={mintPrice} totalSupply={totalSupply} walletLimit={walletLimit} isMintingOpen={currentStage() != null} canMint={canMint} currentStage={currentStage()} canMintReason={canMintReason} contractAddress={contractAddress} merkleProof={merkleProof} priorityTier={merkleTier}/>
         )}
 
         <MintedBox contract={contract} />
