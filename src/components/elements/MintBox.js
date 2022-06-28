@@ -1,73 +1,90 @@
-import { useMoralis, useMoralisSubscription, useEnsAddress } from "react-moralis";
+import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
+import useDealersChoiceContract from "../../hooks/useDealersChoiceContract";
+import ConnectWallet from "../dialogs/ConnectWallet";
+
+import { ExternalLinkIcon } from '@heroicons/react/solid'
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
-function MintBox({performMint, mintPrice, totalSupply, maxSupply, canMint, canMintReason, isMintingOpen, contractAddress}) {
-  const { Moralis, authenticate, isAuthenticated, account, user } = useMoralis();
-  const { name, isLoading, error } = useEnsAddress(account);
+function MintBox({contract, mintPrice, totalSupply, maxSupply, canMint, canMintReason, isMintingOpen, currentStage, merkleProof, priorityTier}) {
+  const { Moralis, isAuthenticated, isWeb3Enabled, account, user } = useMoralis();
+  const { mint: performMint, mintOptions, mintAllowlist, mintAllowlistOptions, contractAddress} = useDealersChoiceContract(contract);
+
+  const [isConnectWalletOpen, setIsConnectWalletOpen] = useState(false);
 
   const [isPendingTransaction, setIsPendingTransaction] = useState(false);
   const [mintTransactions, setMintTransactions] = useState([]);
   const [mintError, setMintError] = useState(null);
 
-  // TODO: Use subscription to get latest mint transactions
-  useMoralisSubscription("EthTransactions", q => q, [], {
-    onCreate: data => console.log(`New Transaction:`, data)
-  });
-
-  // Subscribe to onWeb3Enabled events
-  const unsubscribe = Moralis.onWeb3Enabled((result) => {
-    console.log("onWeb3Enabled", result);
-  });
-
-  const unsubscribeAccountChanged = Moralis.onAccountChanged( async (account) => {
-    console.log("onAccountChanged", account);
-  });
-
-  // Unsubscribe to onWeb3Enabled events
-  // unsubscribe();
-
-  const connectWallet = async () => {
-    const isWeb3Active = Moralis.ensureWeb3IsInstalled();
-    console.log("isWeb3Active", isWeb3Active);
-    
-    await Moralis.enableWeb3();
-
-    if (isAuthenticated) {
-      console.log("Authenticated", user);
-    } else {
-      // console.log("enableWeb3");
-      
-      await authenticate({signingMessage: "Sign into Vegas Vickie NFT"});
+  const hasWalletInstalled = function () {
+    const connectorType = Moralis.connectorType;
+    if (connectorType === "injected") {
+      console.log("Metamask or an injected provider is used");
     }
+
+    const connector = Moralis.connector;
+    console.log('connector', connector);
+
+    let enabled = true;
+    if (typeof window.web3 !== 'undefined') {
+      // console.log('web3 is enabled')
+      if (window.web3.currentProvider.isMetaMask === true) {
+        // console.log('MetaMask is active')
+      } else {
+        // console.log('MetaMask is not available')
+      }
+    } else {
+      // console.log('web3 is not found')
+      return false;
+    }
+    return enabled;
+  }
+
+  const onMintTransactionCompleted = (transaction) => {
+    const event = transaction.events.find(event => event.event === 'Transfer');
+    const [address, _recipients, _shares] = event.args;
+  
+    console.log("Tranfers completed: %s", address);
   };
+
 
   // Minting
   const callMint = async () => {
-    if(!account) { console.log('No account'); return; };
-    
-    await Moralis.enableWeb3();
-
     try {
-      const tx = await performMint(mintPrice, 1);
+      console.log('currentStage', currentStage);
+      console.log('mintPrice', mintPrice);
+      console.log('priorityTier', priorityTier);
+
+      let tx;
+      if(currentStage.stage === 0) {
+        tx = await mintAllowlist.fetch({
+          params: mintAllowlistOptions(mintPrice, 1, priorityTier, merkleProof),
+          onSuccess: () => alert("success")
+        });
+      } else {
+        tx = await performMint.fetch({params: mintOptions(mintPrice, 1)});
+      }
             
       console.log("tx:", tx);
 
-      setMintTransactions([...mintTransactions, tx]);
-      console.log('mintTransactions:', mintTransactions);
+      if(tx == null) {
+        throw new Error("No transaction returned");
+      }
+
+      // setMintTransactions([...mintTransactions, tx]);
+      // console.log('mintTransactions:', mintTransactions);
 
       setIsPendingTransaction(true);
 
       const receipt = await tx.wait(3);
 
+      onMintTransactionCompleted(receipt);
       console.log('receipt', receipt);
     
     } catch (error) {
-
       // TODO: display human readable error message
-      setMintError(error);
-      console.log(error);
+      // setMintError(error);
     };
     
     // Read new value
@@ -79,17 +96,45 @@ function MintBox({performMint, mintPrice, totalSupply, maxSupply, canMint, canMi
     setIsPendingTransaction(false);
   }
 
-  return (
-    <div className="bg-stone-800 p-10"> 
+  {/* TODO: Handle insuffient funds */}
+  {/* TODO: Invalid Proof */}
+  useEffect(() => {
+    if(performMint.error) {
+      setMintError(performMint.error.error);
+    }
 
-      { (!account || !isAuthenticated) && (
+    if(mintAllowlist.error) {
+      setMintError(mintAllowlist.error.error);
+    }
+  }, [performMint.error, mintAllowlist.error]);
+
+
+  return (
+    <div className="mx-10 rounded-md bg-stone-800 p-10"> 
+
+    <ConnectWallet open={isConnectWalletOpen} onClose={() => setIsConnectWalletOpen(false)} />
+
+      { (!isAuthenticated || !isWeb3Enabled ) && (
         <>
-          <button onClick={ () => { connectWallet() }} className="w-auto flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black mx-auto">Connect Wallet</button>
-          <p className="font-display text-white w-full text-center pt-4">Connect your wallet to mint. Don't have a wallet? <a href="" className="font-bold">check our guide</a></p>
+          {hasWalletInstalled() && (
+            <>
+              <button onClick={ () => { setIsConnectWalletOpen(true) }} className="w-auto flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black mx-auto">Connect Wallet</button>
+              <p className="font-display text-white w-full text-center pt-4">Connect your wallet to mint. Don't have a wallet? <a href="" className="font-bold">check our guide</a></p>
+            </>
+          )}
+
+          {!hasWalletInstalled() && (
+            <>
+              <p className="font-display text-white w-full text-center pt-4">You'll need a wallet to be able to mint. Don't have a wallet? <a href="" className="font-bold">check our guide</a></p>
+              <button onClick={ () => { setIsConnectWalletOpen(true) }} className="w-auto flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black mx-auto">Create Wallet</button>
+
+            <p className="font-display text-white w-full text-center pt-4">Already have a wallet (MetaMask, Coinbase)? <a href="#" onClick={ () => { setIsConnectWalletOpen(true) }} className="font-bold">connect your wallet</a></p>
+            </>
+          )}
         </>
       )}
 
-      { account && isAuthenticated && isMintingOpen && (
+      { isAuthenticated && isWeb3Enabled && isMintingOpen && (
         <>
         { !isPendingTransaction && (
           <>
@@ -99,7 +144,7 @@ function MintBox({performMint, mintPrice, totalSupply, maxSupply, canMint, canMi
                 <p className="font-display text-white text-md">You're ready to mint! Get one before they are gone.</p>
                 <div className="w-full pt-6">
                   <button onClick={callMint} className="w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow  hover:bg-white hover:text-black mx-auto">Mint 1 @ {Moralis.Units.FromWei(mintPrice.toString())} ETH</button>
-                  <p className="font-display text-white pt-6 text-center">View the contract <a href={`https://goerli.etherscan.io/address/${contractAddress}`} target="_blank" rel="noreferrer" className="hover:text-vickie-yellow">{contractAddress}</a></p>
+                  <p className="font-display text-white pt-6 text-center">View the contract <a href={`https://goerli.etherscan.io/address/${contractAddress}`} target="_blank" rel="noreferrer" className="hover:text-vickie-yellow">{contractAddress} <ExternalLinkIcon className="inline w-5" /></a></p>
                 </div>
               </>
             )}
@@ -114,7 +159,9 @@ function MintBox({performMint, mintPrice, totalSupply, maxSupply, canMint, canMi
         )}
 
         { isPendingTransaction && (
-          <>
+          <>          
+          { !performMint.isFetching && (
+            <>
             <h2 className="font-display uppercase text-white text-xl font-bold">Your NFT is Minting...</h2>
             <p className="font-display text-white pb-6">Don't refresh the page while we wait for your transaction to be confirmed.</p>
 
@@ -124,30 +171,54 @@ function MintBox({performMint, mintPrice, totalSupply, maxSupply, canMint, canMi
                   {mintTransactions.map(tx => (
                   <li key={tx.hash} className="font-display text-white">
                     {/* TODO: Add produciton etherscan address */}
-                    <a href={`https://goerli.etherscan.io/tx/${tx.hash}`} target="_blank" rel="noreferrer">Transaction: {tx.hash}</a> {tx.confirmations}/3
+                    <a href={`https://goerli.etherscan.io/tx/${tx.hash}`} target="_blank" rel="noreferrer"><ExternalLinkIcon className="w-5" /> Transaction: {tx.hash}</a> {tx.confirmations}/3
                   </li> 
                   ))}
                 </ul>
               </> 
-              )}
+            )}
 
             <button onClick={ () => { doneMinting() }} className="w-auto flex items-center justify-center mt-6 px-4 py-2 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black mx-auto">Done</button>
+            </>
+          )}
           </>
         )}
         </>
       )}
 
-      { account && isAuthenticated && !isMintingOpen && (
+      { mintError && (
+        <div className='flex flex-col justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-md text-red-700 bg-red-100 border border-red-300'>
+          <p>There was a problem</p>
+          <p className="text-normal">Error: {mintError.message}</p>
+        </div>
+      )}
+
+      {/* Connected Pre-mint */}
+      { isWeb3Enabled && !isMintingOpen && (
         <>
-            <h2 className="font-display uppercase text-white text-xl font-bold">You are ready for when minting opens</h2>
-            <p className="font-display text-white pb-6">Your wallet {account} is connected.</p>
+            <h2 className="font-display uppercase text-white text-xl font-bold">You are ready for when sale opens</h2>
         </>
       )}
 
-      { mintError && (
-        <div className='flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-md text-red-700 bg-red-100 border border-red-300'>
-          <p>Error: {mintError.message}</p>
-        </div>
+
+      {/* { isWeb3Enabled && (
+        <>
+            <p className="font-display text-white pb-6">Your wallet {user.get("ethAddress")} is connected.</p>
+        </>
+      )} */}
+
+      {performMint.isFetching && (
+        <p className="font-gilroy text-white text-lg text-center text-red-600">Minting</p>
+      )}
+      {performMint.isLoading && (
+        <p className="font-gilroy text-white text-lg text-center text-red-600">loading</p>
+      )}
+
+      {mintAllowlist.isFetching && (
+        <p className="font-gilroy text-white text-lg text-center text-red-600">Minting</p>
+      )}
+      {mintAllowlist.isLoading && (
+        <p className="font-gilroy text-white text-lg text-center text-red-600">loading</p>
       )}
     </div>
   )

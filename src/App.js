@@ -4,7 +4,7 @@ import { Routes, Route, Outlet } from 'react-router-dom';
 import Home from './pages/Home';
 import Collections from './pages/Collections';
 import Story from './pages/Story';
-import Mint from './pages/Mint';
+import Mint from './pages/mint/Mint';
 
 import './App.css';
 import Helmet from 'react-helmet';

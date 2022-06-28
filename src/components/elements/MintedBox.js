@@ -1,8 +1,36 @@
+import {useNFTBalances} from 'react-moralis';
+import {useEffect, useState} from 'react';
 
-function MintedBox({allNfts}) {
+function MintedBox({contract}) {
+  const { getNFTBalances, data, error, isLoading, isFetching } = useNFTBalances();
+
+  const [allNfts, setAllNfts] = useState([]);
+
+  async function getNFTs(){
+    const nfts = getNFTBalances();
+    console.log(nfts);
+
+    let returnedNfts = data.results.map(async function(nft){
+      //  let url = fixURL(nft.token_uri);
+       let response = await fetch(nft.token_uri)
+       let data = await response.json()
+
+       return {
+        name: data.name,
+        description: data.description,
+        image: data.image,
+       }
+    })
+
+    setAllNfts(returnedNfts);
+  };
+
+  useEffect(() => {
+    getNFTs()
+  }, [])
+
   return (
     <>
-      <pre>{JSON.stringify(allNfts)}</pre>
       {allNfts && allNfts.length > 0 && (
         <div className="p-10 bg-stone-700">
           <h2 className="font-display uppercase text-white text-lg font-bold">Your Mints</h2>

@@ -1,5 +1,6 @@
-import { useMoralis } from "react-moralis";
+import { useMoralis, useMoralisQuery, useNFTTransfers } from "react-moralis";
 import { useEffect, useState } from "react";
+
 import useDealersChoiceContract from "../../hooks/useDealersChoiceContract";
 
 import merkleEntries from "../../models/merkle-trees/CollectionsMerkle.js";
@@ -10,9 +11,10 @@ import MintBox from "./MintBox";
 import StageBox from "./StageBox";
 import MintedBox from "./MintedBox";
 
-function MintCollection ({name, description, nftImage, nftWebPImage, allNfts, actionBox}) {
-  const { Moralis, enableWeb3, isInitialized, isWeb3Enabled, isAuthenticated, account } = useMoralis();
-  const { getTotalSupply, getMaxSupply, getMintPrice, mint, mintAllowlist, getStages, contractAddress} = useDealersChoiceContract();
+function MintCollection ({contract, name, description, nftImage, nftWebPImage, actionBox}) {
+  const { Moralis, isInitialized, account, user } = useMoralis();
+
+  const { getTotalSupply, getMaxSupply, getMintPrice, getStages, contractAddress} = useDealersChoiceContract(contract);
 
   const [merkleProof, setMerkleProof] = useState(null)
 
@@ -30,14 +32,11 @@ function MintCollection ({name, description, nftImage, nftWebPImage, allNfts, ac
 
   const [canMintReason, setCanMintReason] = useState(null);
 
-  const requiredTier = 2;
+  // const { fetch, allNfts, error, isLoading } = useMoralisQuery("EthNFTTransfers", q => q.equalTo("to_address", "0xf3e63d88fd8919b2ee715439c8b45bf47b69f538"), [user], {live: true, autoFetch: false});
+
+  const [requiredTier, setRequiredTier] = useState(null);
 
   // Stage helpers
-  const nextStageAfter = (stageNum) => {
-    const nextStage = allStages.find(stage => stage.stage == stageNum + 1);
-    return nextStage;
-  };
-
   const currentStage = () => {
     const now = new Date().getTime() / 1000;
     const stage = allStages.find(stage => (now >= stage.startTime && (now <= stage.endTime || stage.endTime == null)));
@@ -50,17 +49,47 @@ function MintCollection ({name, description, nftImage, nftWebPImage, allNfts, ac
     return Buffer.from(solidityKeccak256(['address','uint256'], [account, tier]).slice(2), 'hex');
   }
 
-  useEffect(() => {
-    if (account && requiredTier) {
-      const merkleTree = new MerkleTree(merkleEntries.map(token => hashToken(...token)), solidityKeccak256, { sortPairs: true })
-      let mp = merkleTree.getHexProof(hashToken(account, requiredTier))
-      console.log('Root:', merkleTree.getHexRoot());
-      setMerkleProof(mp)
-      console.log('Merkle Proof:', mp);
-    } else {
-      setMerkleProof(null)
+  const priorityTier = () => {
+    if(user) {
+      let address = user.get("ethAddress");
+      if(address == null) {
+        return;
+      }
+      const matchingEntry = merkleEntries.find(wallet => address.toLowerCase() === wallet[0].toLowerCase());
+      return matchingEntry ? matchingEntry[1] : null;
     }
-  }, [account, merkleEntries, requiredTier])
+  }
+
+  useEffect(() => {
+    if(user) {
+      let address = user.get("ethAddress");
+      if (address && requiredTier) {
+        const merkleTree = new MerkleTree(merkleEntries.map(token => hashToken(...token)), solidityKeccak256, { sortPairs: true })
+        let mp = merkleTree.getHexProof(hashToken(address, requiredTier))
+        console.log('Root:', merkleTree.getHexRoot());
+        setMerkleProof(mp)
+        console.log('Merkle Proof:', mp);
+      } else {
+        setMerkleProof(null)
+      }
+    }
+  }, [user, merkleEntries, requiredTier])
+
+  useEffect(() => {
+    if(currentStage()) {
+      setRequiredTier(currentStage().minimumRequiredTier);
+    }
+  }, [allStages]);
+
+  // useEffect(() => {
+  //   console.log(allNfts)
+  //   console.log(error)
+  //   console.log("live query isLoading:", isLoading);
+
+  //   if(user) {
+  //     fetch();
+  //   }
+  // }, [user]);
 
   const canMint = () => {
     if(account === null) {
@@ -95,25 +124,11 @@ function MintCollection ({name, description, nftImage, nftWebPImage, allNfts, ac
     return false;
   };
 
-  const performMint = async (price, quantity) => {
-    const mintCost = price * quantity;
-
-    // If allowlist stage, mint allowlist
-    if(currentStage() && currentStage().stage === 0) {
-      console.log("performing allowlist mint", requiredTier, merkleProof);
-      const tx = mintAllowlist(mintCost, quantity, requiredTier, merkleProof);
-      return tx;
-    }
-
-    console.log("performing regular mint");
-    const tx = mint(mintCost, quantity);
-    return tx;
-  };
-
-  const refreshLegends = async () => {
+  const fetchAllData = async () => {
     if(isInitialized) {
 
       const handleError = (error) => {
+        console.log(error);
         setCollectionDetailsHasError(true)
       };
 
@@ -152,12 +167,12 @@ function MintCollection ({name, description, nftImage, nftWebPImage, allNfts, ac
 
   useEffect(() => {
     const firstLoad = async () => {
-      await refreshLegends();
+      await fetchAllData();
     };
     firstLoad();
 
     const interval = setInterval(async () => {
-      await refreshLegends();
+      await fetchAllData();
     }, 60000);
     return () => clearInterval(interval);
   }, [isInitialized]);
@@ -166,7 +181,7 @@ function MintCollection ({name, description, nftImage, nftWebPImage, allNfts, ac
   let bodyTextSmall = 'font-gilroy text-white text-lg';
 
   return (
-    <div className="md:flex justify-center space-x-0 bg-black border-vickie-yellow border-3">
+    <div className="md:flex justify-center space-x-0 bg-black border-vickie-yellow border-3 mb-10">
       <div className="w-1/3 flex-none justify-items-center bg-stone-900 p-10">
         <picture>
           <source srcSet={`${nftWebPImage} 620w`} type="image/webp" />
@@ -215,10 +230,10 @@ function MintCollection ({name, description, nftImage, nftWebPImage, allNfts, ac
 
         {/* TODO: Show error if no mintPrice */}
         {mintPrice && (
-          <MintBox performMint={performMint} mintPrice={mintPrice} totalSupply={totalSupply} isMintingOpen={currentStage() != null} canMint={canMint} canMintReason={canMintReason} contractAddress={contractAddress}/>
+          <MintBox contract={contract} mintPrice={mintPrice} totalSupply={totalSupply} isMintingOpen={currentStage() != null} canMint={canMint} currentStage={currentStage()} canMintReason={canMintReason} contractAddress={contractAddress} merkleProof={merkleProof} priorityTier={priorityTier()}/>
         )}
 
-        <MintedBox allNfts={allNfts} />
+        <MintedBox contract={contract} />
       </div>
     </div>
   )

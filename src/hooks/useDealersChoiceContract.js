@@ -1,14 +1,18 @@
-import { chain, address as contractAddress, ABI, address} from "../models/contracts/DealersChoice";
 import { useMoralis, useMoralisWeb3Api, useMoralisWeb3ApiCall, useWeb3ExecuteFunction } from "react-moralis";
+import { chainId } from "../contracts.config";
 
-function useDealersChoiceContract() {
+function useDealersChoiceContract(contract) {
   const { Moralis } = useMoralis();
   const Web3Api = useMoralisWeb3Api();
+
+  let contractAddress = contract.address;
+  let chain = contract.chainId;
+  let ABI = contract.ABI;
 
   // Get Total Supply
   const totalSupplyOptions = {
     chain: chain,
-    address: contractAddress,
+    address: contract,
     function_name: "totalSupply",
     abi: ABI
   };
@@ -58,13 +62,13 @@ function useDealersChoiceContract() {
     };
     const publicSaleStartTime = await Moralis.Web3API.native.runContractFunction(publicReadOptions);
 
-    const minimumRequiredTierOptions = {
+    const allowlistMinimumTierOptions = {
       chain: chain,
       address: contractAddress,
       function_name: "allowlistMinimumTier",
       abi: ABI
     };
-    const minimumRequiredTier = await Moralis.Web3API.native.runContractFunction(minimumRequiredTierOptions);
+    const minimumRequiredTier = await Moralis.Web3API.native.runContractFunction(allowlistMinimumTierOptions);
 
     return [
       {
@@ -86,23 +90,24 @@ function useDealersChoiceContract() {
 
   // Minting
 
-  const mint = async (mintPrice, _quantity) => {  
-    const sendOptions = {
+  const mint = useWeb3ExecuteFunction();
+  const mintOptions = function(mintPrice, _quantity){
+    return {
+      chain: chainId,
       contractAddress: contractAddress,
       functionName: "mint",
       abi: ABI,
       msgValue: mintPrice,
       params: {
         _quantity: _quantity,
-      },
-    };
-  
-    const transaction = await Moralis.executeFunction(sendOptions);
-    return transaction;
-  }
+      }
+    }
+  };
 
-  const mintAllowlist = async (mintCost, quantity, priorityTier, proof) => {
-    const sendOptions = {
+  const mintAllowlist = useWeb3ExecuteFunction();
+  const mintAllowlistOptions = (mintCost, quantity, priorityTier, proof) => {
+    return {
+      chain: chainId,
       contractAddress: contractAddress,
       functionName: "mintAllowlist",
       abi: ABI,
@@ -113,9 +118,6 @@ function useDealersChoiceContract() {
         proof: proof,
       },
     };
-  
-    const transaction = Moralis.executeFunction(sendOptions);
-    return transaction;
   }
 
   return {
@@ -124,7 +126,9 @@ function useDealersChoiceContract() {
     getMintPrice: getMintPrice,
     getStages: getStages,
     mint: mint,
+    mintOptions: mintOptions,
     mintAllowlist: mintAllowlist,
+    mintAllowlistOptions: mintAllowlistOptions,
     contractAddress: contractAddress,
   }
 };

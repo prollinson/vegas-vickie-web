@@ -13,4 +13,12 @@ const networkConfigs = {
 let network = process.env.REACT_APP_CHAIN;
 let contractConfig = networkConfigs[process.env.REACT_APP_CHAIN];
 
-export { network, contractConfig};
+let chainId = '0x1';
+if(network==='rinkeby') {
+  chainId = '0x4';
+}
+if(network==='goerli') {
+  chainId = '0x5';
+}
+
+export { chainId, network, contractConfig};
