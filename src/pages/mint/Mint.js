@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useChain, useMoralis, useNativeBalance} from "react-moralis";
+import { useChain, useEnsAddress, useMoralis, useNativeBalance} from "react-moralis";
 import useUserInitialize from "../../hooks/useUserInitialize";
 
 import { Tab } from '@headlessui/react';
@@ -28,20 +28,14 @@ import tier3NftWebPImage from '../../assets/neon-idol_lossyalpha.webp';
 import tier4NftImage from '../../assets/off-the-rack.png';
 import tier4NftWebPImage from '../../assets/off-the-rack_lossyalpha.webp';
 
-import MintBox from '../../components/elements/MintBox';
-import AuctionBox from '../../components/elements/AuctionBox';
-
 function Mint() {
-  const {user, isAuthenticated, isWeb3Enabled, isWeb3EnableLoading, web3EnableError, account, logout} = useMoralis();
+  const {Moralis, user, isAuthenticated, isWeb3Enabled, isWeb3EnableLoading, web3EnableError, account, logout} = useMoralis();
   const { chain } = useChain();
-  const { getBalances, data: balance, nativeToken, error, isLoading } = useNativeBalance();
+  const { getBalances, data: balance } = useNativeBalance();
   const {initUser} = useUserInitialize();
+  const { name } = useEnsAddress(user && user.get("ethAddress"));
 
   const tabStyle = "h-24 px-10 bg-stone-900 hover:bg-stone-700 mr-1 font-display font-bold uppercase text-white ";
-
-  // Transactions
-  const [mintTransaction, setMintTransaction] = useState(null);
-  const [showTx, setShowTx] = useState(false);
 
   useEffect(() => {
     getBalances();
@@ -52,33 +46,29 @@ function Mint() {
     <>
       <Header />
       <PageHeader pageTitle="The Mint" />
-      <div className="col-span-12 w-full mx-auto p-1 border-t border-[#1E1708] flex flex-1 justify-center align-center bg-red-900">
-        { chain && (        
-            <p className='font-display text-white'>Connected to <b>{`${chain.name} (${chain.nativeCurrency.name})`}</b></p>
+
+      {isAuthenticated && isWeb3Enabled && (
+      <div className="col-span-12 w-full max-w-5xl mt-10 mx-auto mt-5 p-1 border-t border-[#1E1708] flex flex-1 justify-between align-center">
+        { chain && chain !== Moralis.Chains.ETH_MAINET && (        
+            <p className='font-display text-white'>Connected to <b>{`${chain.chainId} (${chain.nativeCurrency.name})`}</b></p>
         )}
-        { isAuthenticated && (
+        { isAuthenticated && false && (
           <>
-            <p className='font-display text-white'><b>{`Auth: ${isAuthenticated}`}</b></p>
-            <a onClick={logout}>Logout</a>
-          </>
-        )}
-        { user && (
-          <>
-            <p className='font-display text-white'><b>{`Logged in as ${user.get("ethAddress")}`}</b></p>
-            <p className='font-display text-white'>Balance: {balance.formatted}</p>
-          </>
-        )}
-         {isWeb3Enabled && (
-          <>
-            <p className='font-display text-white'><b>{`Web3 enabled: ${isWeb3Enabled}`}</b></p>
-          </>
-        )}
-        { account && (
-          <>
-            <p className='font-display text-white'><b>{`Account: ${account}`}</b></p>
+            { !isWeb3Enabled && (
+              <p className='font-display text-white py-2 px-3'><b>{`Logged in`}</b></p>
+            )}
+            { isWeb3Enabled && (
+              <>
+                <p className='font-display text-white py-2 px-3'><b>{`Logged in as ${name ? name : user.get("ethAddress")}`}</b></p>
+                <p className='font-display text-white py-2'>Balance: {balance.formatted}</p>
+              </>
+            )}
+
+            <button onClick={logout} className="w-auto flex items-center px-3 py-1 border border-transparent text-base font-medium rounded-md text-black uppercase bg-stone-200 hover:bg-white hover:text-black mx-auto text-sm">Logout</button>
           </>
         )}
       </div>
+      )}
 
       { isWeb3EnableLoading && (
         <>
@@ -94,7 +84,7 @@ function Mint() {
           </div>
         </> 
       )}
-      <div className="col-span-12 w-full mx-auto pt-16 sm:py-24 border-t border-[#1E1708] bg-pattern h-screen flex flex-1 justify-center align-center">
+      <div className="col-span-12 w-full mx-auto pt-16 sm:py-24 border-t border-[#1E1708] bg-pattern flex flex-1 justify-center align-center">
         <div className='w-full max-w-5xl mx-auto'>
 
         <Tab.Group>

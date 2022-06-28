@@ -14,6 +14,7 @@ export default function ConnectWallet({open, onClose}) {
 
   const connectWallet = async () => {
     await authenticate({
+      chainId: chainId,
       signingMessage: "Sign into Vegas Vickie NFT",
 
       onComplete: async (user) => {
@@ -36,6 +37,7 @@ export default function ConnectWallet({open, onClose}) {
   const connectWalletConnect = async () => {
     await authenticate({
       provider: "walletconnect",
+      chainId: chainId,
 
       onComplete: async (user) => {
         console.log("Authenticated User through walletconnect", user);
