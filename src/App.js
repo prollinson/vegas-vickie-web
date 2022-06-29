@@ -8,17 +8,25 @@ import Mint from './pages/mint/Mint';
 
 import './App.css';
 import Helmet from 'react-helmet';
+import flagsmith from 'flagsmith';
+import { FlagsmithProvider } from 'flagsmith/react';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="collections" element={<Collections />} />
-        <Route path="story" element={<Story />} />
-        <Route path="mint" element={<Mint />} />
-      </Route>
-    </Routes>
+    <FlagsmithProvider
+    options={{
+      environmentID: process.env.REACT_APP_FLAGSMITH_ENVIRONMENT_ID,
+    }}
+    flagsmith={flagsmith}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="collections" element={<Collections />} />
+          <Route path="story" element={<Story />} />
+          <Route path="mint" element={<Mint />} />
+        </Route>
+      </Routes>
+    </FlagsmithProvider>
   );
 }
 

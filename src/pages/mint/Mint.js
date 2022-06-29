@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useChain, useEnsAddress, useMoralis, useNativeBalance} from "react-moralis";
 import useUserInitialize from "../../hooks/useUserInitialize";
+import flagsmith from 'flagsmith';
 
 import { Tab } from '@headlessui/react';
 
@@ -38,8 +39,10 @@ function Mint() {
   const tabStyle = "h-12 md:h-24 w-full md:w-auto px-2 md:px-10 bg-stone-900 hover:bg-stone-700 md:mr-1 border-b border-black font-display font-bold uppercase text-white text-sm md:text-lg md:mb-1";
 
   useEffect(() => {
-    getBalances();
-    // initUser();
+    if(user) {
+      getBalances();
+      flagsmith.identify(user.get("id"));
+    }
   }, [user]);
 
   return (

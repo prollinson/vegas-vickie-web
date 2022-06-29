@@ -9,10 +9,16 @@ import metamaskLogo from '../../assets/metamask.png';
 import walletConnectLogo from '../../assets/walletconnect-logo.svg';
 import coinbaseLogo from '../../assets/coinbase-c-logo.png';
 
+import flagsmith from 'flagsmith';
+import { useFlags, useFlagsmith } from 'flagsmith/react';
+
 export default function ConnectWallet({open, onClose}) {
   const {user, authenticate} = useMoralis();
   const { chainId } = useChain();
   const { initUser } = useUserInitialize();
+
+  // feature flags
+  const flags = useFlags(['coinbase_wallet']);
 
   const connectWallet = async () => {
     await authenticate({
@@ -150,7 +156,9 @@ export default function ConnectWallet({open, onClose}) {
                   <div className="mt-2">
                     <button onClick={connectWallet} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full"><span>MetaMask</span><img src={metamaskLogo} className="w-6"/></button>
                     <button onClick={connectWalletConnect} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full"><span>WalletConnect</span><img src={walletConnectLogo} className="w-6"/></button>
-                    <button onClick={connectCoinbaseWallet} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full"><span>Coinbase</span><img src={coinbaseLogo} className="w-6"/></button>
+                    {flags.coinbase_wallet.enabled && (
+                      <button onClick={connectCoinbaseWallet} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full"><span>Coinbase</span><img src={coinbaseLogo} className="w-6"/></button>
+                    )}
                     <button onClick={connectWeb3Auth} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full"><span>Web3Auth</span></button>
                   </div>
 
