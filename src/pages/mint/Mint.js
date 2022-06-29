@@ -33,7 +33,6 @@ function Mint() {
   const {Moralis, user, isAuthenticated, isWeb3Enabled, isWeb3EnableLoading, web3EnableError, account, logout} = useMoralis();
   const { chain } = useChain();
   const { getBalances, data: balance } = useNativeBalance();
-  const {initUser} = useUserInitialize();
   const { name } = useEnsAddress(user && user.get("ethAddress"));
 
   const tabStyle = "h-12 md:h-24 w-full md:w-auto px-2 md:px-10 bg-stone-900 hover:bg-stone-700 md:mr-1 border-b border-black font-display font-bold uppercase text-white text-sm md:text-lg md:mb-1";

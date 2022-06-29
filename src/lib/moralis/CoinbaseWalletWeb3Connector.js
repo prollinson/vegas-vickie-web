@@ -37,7 +37,7 @@ class CoinbaseWalletWeb3Connector extends AbstractWeb3Connector {
       })
 
       try {
-        let rpc = getMoralisRpcs('CoinbaseWallet');
+        let rpc = getMoralisRpcs(providedChainId);
         coinbaseWalletProvider = coinbaseWallet.makeWeb3Provider(rpc, providedChainId)
       } catch (error) {
         // Do nothing. User might not need walletconnect
