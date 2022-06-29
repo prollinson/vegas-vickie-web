@@ -39,7 +39,7 @@ function Mint() {
 
   useEffect(() => {
     getBalances();
-    initUser();
+    // initUser();
   }, [user]);
 
   return (

@@ -3,7 +3,7 @@ import {chainId as supportedChainId} from '../contracts.config.js';
 import CoinbaseWalletWeb3Connector from '../lib/moralis/CoinbaseWalletWeb3Connector';
 
 function useUserInitialize() {
-  const {Moralis, user, enableWeb3, logout} = useMoralis();
+  const {Moralis, user, enableWeb3, disableWeb3, logout} = useMoralis();
   const {chainId} = useChain();
 
   const initUser = async function() {
