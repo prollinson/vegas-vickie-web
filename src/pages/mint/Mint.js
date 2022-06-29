@@ -80,7 +80,7 @@ function Mint() {
       { web3EnableError && (
         <>
           <div className="col-span-12 w-full mx-auto p-1 border-t border-[#1E1708] flex flex-1 justify-center align-center bg-red-900">
-          <p className='font-display text-white'>{web3EnableError}</p>
+          <p className='font-display text-white'>{web3EnableError.message}</p>
           </div>
         </> 
       )}

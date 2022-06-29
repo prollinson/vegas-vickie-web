@@ -2,6 +2,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { useChain, useMoralis } from 'react-moralis';
 import useUserInitialize from '../../hooks/useUserInitialize';
+import CoinbaseWalletWeb3Connector from '../../lib/moralis/CoinbaseWalletWeb3Connector';
 
 import vvLogo from '../../assets/vv-logo.png';
 import metamaskLogo from '../../assets/metamask.png';
@@ -31,7 +32,7 @@ export default function ConnectWallet({open, onClose}) {
       onSuccess: (obj) => {
         console.info('SUCCESS IN AUTH:', obj);
       }
-    })
+    });
   };
 
   const connectWalletConnect = async () => {
@@ -44,7 +45,7 @@ export default function ConnectWallet({open, onClose}) {
         
         // save the email and provider to User object, optionally check if already set
         // user.set('email', email)
-        user.set('provider', 'magicLink')
+        user.set('provider', 'walletconnect')
         user.save()
         initUser()
 
@@ -55,6 +56,31 @@ export default function ConnectWallet({open, onClose}) {
         console.log('ERROR IN AUTH:', error);
       }
     })
+  };
+
+  const connectCoinbaseWallet = async () => {
+    let user = await authenticate({
+      connector: CoinbaseWalletWeb3Connector,
+      chainId: chainId,
+      // Moralis
+      signingMessage: "Sign into Vegas Vickie NFT",
+      // CoinbaseWallet config
+      appName: 'Vegas Vickie NFT',
+      appLogoUrl: 'https://example.com/logo.png',
+      darkMode: true,
+
+      onError: (error) => {
+        console.log('ERROR IN AUTH:', error);
+      }
+    });
+
+    console.log("Authenticated User through CoinbaseWallet", user);
+
+    user.set('provider', 'Coinbasewallet');
+    user.save();
+
+    initUser();
+    onClose();
   };
 
   const connectWeb3Auth = async () => {
@@ -69,7 +95,7 @@ export default function ConnectWallet({open, onClose}) {
 
       onComplete: async (obj) => {        
         if(user) {
-          user.set('provider', 'magicLink')
+          user.set('provider', 'web3Auth')
           user.save()
         }
         initUser()
@@ -124,6 +150,7 @@ export default function ConnectWallet({open, onClose}) {
                     <button onClick={connectWallet} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full"><span>MetaMask</span><img src={metamaskLogo} className="w-6"/></button>
                     <button onClick={connectWalletConnect} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full"><span>WalletConnect</span><img src={walletConnectLogo} className="w-6"/></button>
                     <button onClick={connectWeb3Auth} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full">Web3Auth</button>
+                    <button onClick={connectCoinbaseWallet} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full">Coinbase</button>
                   </div>
 
                   <div className="mt-4 flex justify-center">

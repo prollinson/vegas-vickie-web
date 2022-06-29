@@ -1,5 +1,6 @@
 import {useChain, useMoralis} from 'react-moralis';
 import {chainId as supportedChainId} from '../contracts.config.js';
+import CoinbaseWalletWeb3Connector from '../lib/moralis/CoinbaseWalletWeb3Connector';
 
 function useUserInitialize() {
   const {Moralis, user, enableWeb3, logout} = useMoralis();
@@ -17,6 +18,13 @@ function useUserInitialize() {
             theme: 'light'
           }
           break
+        case 'coinbasewallet':
+          providerOptions = {
+            connector: CoinbaseWalletWeb3Connector,
+            provider: 'coinbasewallet',
+            chainId: chainId
+          }
+          break
         default:
           // metamask
           providerOptions = {
@@ -26,15 +34,14 @@ function useUserInitialize() {
       
       try {
         console.log(providerOptions);
-        // await enableWeb3(providerOptions)
+        await enableWeb3(providerOptions)
       } catch (err) {
         console.log(err);
       }
     }
 
     const unsubscribe = Moralis.onChainChanged((chain) => {
-      console.log(chain, supportedChainId)
-      if (chain.chainId !== supportedChainId) {
+      if (chain != supportedChainId) {
         console.log("Chain changed to unsupported chain, logging out");
         logout();
       }
