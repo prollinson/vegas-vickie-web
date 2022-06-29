@@ -36,7 +36,7 @@ function StageBox({allStages, isLoading}) {
   }
 
   return (
-    <div className="p-10">
+    <div className="p-5">
       <h1 className="font-display uppercase text-white text-xl font-bold pb-4">Sale Stages</h1>
 
       {isLoading && (
@@ -57,7 +57,7 @@ function StageBox({allStages, isLoading}) {
               </div>
             </div>
             <div className="flex flex-col pb-6">
-              <p className={`font-display uppercase text-white text-lg font-bold ${stageStatus(stage) === 'Done' ? 'line-through text-stone-500' : ''}`}>{stage.name} {stage.minimumRequiredTier && (<>(Tier {stage.minimumRequiredTier})</>)}</p>
+              <p className={`font-display uppercase text-white text-md md:text-lg font-bold ${stageStatus(stage) === 'Done' ? 'line-through text-stone-500' : ''}`}>{stage.name} {stage.minimumRequiredTier && (<>(Tier {stage.minimumRequiredTier})</>)}</p>
               <p className={`font-gilroy text-white text-md mt-0 ${stageStatus(stage) === 'Done' ? 'line-through text-stone-500' : ''}`}>{stageDescription(stage)}</p>
             </div>
           </li>
@@ -71,7 +71,7 @@ function StageBox({allStages, isLoading}) {
               </div>
             </div>
             <div className="flex flex-col pb-6">
-              <p className="font-display uppercase text-white text-lg font-bold">Sale Closed</p>
+              <p className="font-display uppercase text-white text-md md:text-lg font-bold">Sale Closed</p>
             </div>
           </li>
         )}

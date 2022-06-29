@@ -172,12 +172,12 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
 
   return (
     <div className="md:flex justify-center space-x-0 bg-black border-vickie-yellow border-3 mb-10">
-      <div className="w-1/3 flex-none justify-items-center bg-stone-900 p-10">
+      <div className="md:w-1/3 flex-none justify-items-center bg-stone-900 p-10">
         <picture>
           <source srcSet={`${nftWebPImage} 620w`} type="image/webp" />
           <img src={nftImage} alt="Preview of NFT" className="max-h-72 m-auto aspect-[620/838]"/>
         </picture>
-        <div className="w-full pt-4 pb-8 sm:pb-0">
+        <div className="w-full pt-4 pb-2 md:pb-8 sm:pb-0">
           <p className={`${sectionHeading2} text-center`}>{name}</p>
           <p className="font-gilroy text-white text-md text-center">{description}</p>
 
@@ -191,20 +191,23 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
           )}
 
           {collectionDetailsData && (
-            <>
+            <div className="w-full flex flex-1 md:flex-col">
               {mintPrice && (
-                <>
+                <div className="w-1/2 md:w-full pt-2 flex-col">
                   <p className="font-gilroy font-bold text-stone-400 text-sm text-center pt-4 uppercase">Mint Price</p>
                   <p className="font-gilroy text-white text-lg text-center">{Moralis.Units.FromWei(mintPrice.toString())} ETH</p>
-                </>
+                </div>
               )}
+              <div className="w-1/2 md:w-full pt-2 flex-col">
+                <p className="font-gilroy font-bold text-stone-400 text-sm text-center pt-4 uppercase">Total Supply</p>
+                <p className="font-gilroy text-white text-lg text-center">{maxSupply}</p>
+              </div>
 
-              <p className="font-gilroy font-bold text-stone-400 text-sm text-center pt-4 uppercase">Total Supply</p>
-              <p className="font-gilroy text-white text-lg text-center">{maxSupply}</p>
-
-              <p className="font-gilroy font-bold text-stone-400 text-sm text-center pt-4 uppercase">Remaining Supply</p>
-              <p className="font-gilroy text-white text-lg text-center">{maxSupply - totalSupply}</p>
-            </>
+              <div className="w-1/2 md:w-full pt-2 flex-col">
+                <p className="font-gilroy font-bold text-stone-400 text-sm text-center pt-4 uppercase">Remaining Supply</p>
+                <p className="font-gilroy text-white text-lg text-center">{maxSupply - totalSupply}</p>
+              </div>
+            </div>
           )}
 
           {collectionDetailsHasError && (
@@ -214,7 +217,7 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
         </div>
       </div>
 
-      <div className="w-2/3 flex-none">
+      <div className="w-full md:w-2/3 flex-none">
 
         <StageBox allStages={allStages} isLoading={!allStagesDataLoaded}/>
 

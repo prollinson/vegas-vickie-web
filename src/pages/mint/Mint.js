@@ -35,7 +35,7 @@ function Mint() {
   const {initUser} = useUserInitialize();
   const { name } = useEnsAddress(user && user.get("ethAddress"));
 
-  const tabStyle = "h-24 px-10 bg-stone-900 hover:bg-stone-700 mr-1 font-display font-bold uppercase text-white ";
+  const tabStyle = "h-12 md:h-24 w-full md:w-auto px-2 md:px-10 bg-stone-900 hover:bg-stone-700 md:mr-1 border-b border-black font-display font-bold uppercase text-white text-sm md:text-lg md:mb-1";
 
   useEffect(() => {
     getBalances();
@@ -49,7 +49,7 @@ function Mint() {
 
       {isAuthenticated && isWeb3Enabled && (
       <div className="col-span-12 w-full max-w-5xl mt-10 mx-auto mt-5 p-1 border-t border-[#1E1708] flex flex-1 justify-between align-center">
-        { chain && chain !== Moralis.Chains.ETH_MAINET && (        
+        { false && chain && chain !== Moralis.Chains.ETH_MAINET && (        
             <p className='font-display text-white'>Connected to <b>{`${chain.chainId} (${chain.nativeCurrency.name})`}</b></p>
         )}
         { isAuthenticated && false && (
@@ -84,11 +84,11 @@ function Mint() {
           </div>
         </> 
       )}
-      <div className="col-span-12 w-full mx-auto pt-16 sm:py-24 border-t border-[#1E1708] bg-pattern flex flex-1 justify-center align-center">
+      <div className="col-span-12 w-full mx-auto md:pt-16 sm:py-24 border-t border-[#1E1708] bg-pattern flex flex-1 justify-center align-center">
         <div className='w-full max-w-5xl mx-auto'>
 
         <Tab.Group>
-          <Tab.List>
+          <Tab.List className="w-full flex md:flex-grow flex-wrap">
             <Tab className={({ selected }) => selected ? tabStyle + ' bg-vickie-yellow text-white' : tabStyle}>The One and Only</Tab>
             <Tab className={({ selected }) => selected ? tabStyle + ' bg-vickie-yellow text-white' : tabStyle}>Dealers Choice</Tab>
             <Tab className={({ selected }) => selected ? tabStyle + ' bg-vickie-yellow text-white' : tabStyle}>Neon Idol</Tab>

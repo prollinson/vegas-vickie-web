@@ -43,20 +43,27 @@ function AuctionCollection ({contract, name, description, nftImage, nftWebPImage
 
   return (
     <div className="md:flex justify-center space-x-0 bg-black border-vickie-yellow border-3 mb-10">
-      <div className="w-1/3 flex-none justify-items-center bg-stone-900 p-10">
+      <div className="md:w-1/3 flex-none justify-items-center bg-stone-900 p-10">
         <picture>
           <source srcSet={`${nftWebPImage} 620w`} type="image/webp" />
           <img src={nftImage} alt="Preview of NFT" className="max-h-72 m-auto aspect-[620/838]"/>
         </picture>
-        <div className="w-full pt-4 pb-8 sm:pb-0">
+        <div className="w-full pt-4 md:pb-4 sm:pb-0 flex">
+          <div className="w-full">
           <p className={`${sectionHeading2} text-center`}>{name}</p>
-          <p className="font-gilroy text-white text-md text-center">{description}</p>
-
-          <p className="font-gilroy font-bold text-stone-400 text-sm text-center pt-4 uppercase">Reserve Price</p>
-          <p className="font-gilroy text-white text-lg text-center">5 ETH</p>
+          {description && (<p className="font-gilroy text-white text-md text-center">{description}</p>)}
+          </div>
+        </div>
+        <div className="w-full pt-4 md:pb-4 sm:pb-0 flex">
+          <div className="w-1/2 md:w-full">
+            <p className="font-gilroy font-bold text-stone-400 text-sm text-center pt-4 uppercase">Reserve Price</p>
+            <p className="font-gilroy text-white text-lg text-center">5 ETH</p>
+          </div>
           
-          <p className="font-gilroy font-bold text-stone-400 text-sm text-center pt-4 uppercase">Total Supply</p>
-          <p className="font-gilroy text-white text-lg text-center">1</p>
+          <div className="w-1/2 md:w-full">
+            <p className="font-gilroy font-bold text-stone-400 text-sm text-center pt-4 uppercase">Total Supply</p>
+            <p className="font-gilroy text-white text-lg text-center">1</p>
+          </div>
 
           {collectionDetailsHasError && (
             <p className="font-gilroy text-white text-lg text-center text-red-600">Error loading collection details</p> 
@@ -65,7 +72,7 @@ function AuctionCollection ({contract, name, description, nftImage, nftWebPImage
         </div>
       </div>
 
-      <div className="w-2/3 flex-none">
+      <div className="md:w-2/3 flex-none text-center md:text-left">
         <div className="p-10">
           <h1 className="font-display uppercase text-white text-xl font-bold pb-4">Available for auction on OpenSea</h1>
 

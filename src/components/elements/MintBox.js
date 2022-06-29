@@ -109,7 +109,7 @@ function MintBox({contract, mintPrice, totalSupply, maxSupply, walletLimit, canM
 
 
   return (
-    <div className="mx-10 rounded-md bg-stone-900 p-10"> 
+    <div className="md:mx-10 rounded-md bg-stone-900 p-8 md:p-10"> 
 
     <ConnectWallet open={isConnectWalletOpen} onClose={() => setIsConnectWalletOpen(false)} />
 
@@ -118,7 +118,7 @@ function MintBox({contract, mintPrice, totalSupply, maxSupply, walletLimit, canM
           {hasWalletInstalled() && (
             <>
               <button onClick={ () => { setIsConnectWalletOpen(true) }} className="w-auto flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black mx-auto">Connect Wallet</button>
-              <p className="font-display text-white w-full text-center pt-4">Connect your wallet to mint. Don't have a wallet? <a href="" className="font-bold">check our guide</a></p>
+              <p className="font-display text-white w-full text-center pt-4">Connect your wallet to mint. Don't have a wallet? Let us know in our discord.</p>
             </>
           )}
 
