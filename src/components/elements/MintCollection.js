@@ -83,6 +83,9 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
     
     const addresses = merkleEntries.filter(entry => utils.getAddress(entry[0]) === utils.getAddress(address))
     if (addresses.length > 0) {
+      addresses.sort((a, b) => {
+          return a[1] - b[1];
+      });
       console.log("Setting merkle tier to", addresses[0][1]);
       setMerkleTier(addresses[0][1])
     } else {
