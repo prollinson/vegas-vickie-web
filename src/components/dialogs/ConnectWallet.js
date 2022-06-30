@@ -1,20 +1,19 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import { useChain, useMoralis } from 'react-moralis';
+import { useMoralis } from 'react-moralis';
 import useUserInitialize from '../../hooks/useUserInitialize';
 import CoinbaseWalletWeb3Connector from '../../lib/moralis/CoinbaseWalletWeb3Connector';
+import contract from "../../models/contracts/DealersChoice";
 
 import vvLogo from '../../assets/vv-logo.png';
 import metamaskLogo from '../../assets/metamask.png';
 import walletConnectLogo from '../../assets/walletconnect-logo.svg';
 import coinbaseLogo from '../../assets/coinbase-c-logo.png';
 
-import flagsmith from 'flagsmith';
-import { useFlags, useFlagsmith } from 'flagsmith/react';
+import { useFlags } from 'flagsmith/react';
 
 export default function ConnectWallet({open, onClose}) {
   const {user, authenticate} = useMoralis();
-  const { chainId } = useChain();
   const { initUser } = useUserInitialize();
 
   // feature flags
@@ -22,7 +21,7 @@ export default function ConnectWallet({open, onClose}) {
 
   const connectWallet = async () => {
     await authenticate({
-      chainId: chainId,
+      chainId: contract.chainId,
       signingMessage: "Sign into Vegas Vickie NFT",
 
       onComplete: async (user) => {
@@ -45,7 +44,7 @@ export default function ConnectWallet({open, onClose}) {
   const connectWalletConnect = async () => {
     await authenticate({
       provider: "walletconnect",
-      chainId: chainId,
+      chainId: contract.chainId,
 
       onComplete: async (user) => {
         console.log("Authenticated User through walletconnect", user);
@@ -66,9 +65,11 @@ export default function ConnectWallet({open, onClose}) {
   };
 
   const connectCoinbaseWallet = async () => {
+    console.log(contract.chainId);
+    console.log("Network id:", contract.chainId);
     let user = await authenticate({
       connector: CoinbaseWalletWeb3Connector,
-      chainId: chainId,
+      chainId: contract.chainId,
       // Moralis
       signingMessage: "Sign into Vegas Vickie NFT",
       // CoinbaseWallet config
@@ -96,7 +97,7 @@ export default function ConnectWallet({open, onClose}) {
     authenticate({
       provider: "web3Auth",
       clientId: process.env.REACT_APP_WEB3_AUTH_CLIENT_ID,
-      chainId: chainId,
+      chainId: contract.chainId,
       theme: 'light',
       appLogo: vvLogo,
 

@@ -12,6 +12,7 @@ function useDealersChoiceContract(contract) {
 
   let contractAddress = contract.address;
   let chain = contract.chainId;
+  
   let ABI = contract.ABI;
 
   // Get Total Supply
@@ -183,6 +184,7 @@ function useDealersChoiceContract(contract) {
   }, [contract, isInitialized, isInitializing]);
 
   return {
+    contract,
     getTotalSupply: getTotalSupply,
     getMaxSupply: getMaxSupply,
     getMintPrice: getMintPrice,
