@@ -1,12 +1,12 @@
-import {useChain, useMoralis} from 'react-moralis';
-import {chainId as supportedChainId} from '../contracts.config.js';
+import {useMoralis} from 'react-moralis';
 import CoinbaseWalletWeb3Connector from '../lib/moralis/CoinbaseWalletWeb3Connector';
 import {useFlagsmith} from 'flagsmith/react';
+import useNetwork from "./useNetwork.js";
 
 function useUserInitialize() {
   const {Moralis, user, enableWeb3, logout} = useMoralis();
-  const {chainId} = useChain();
   const flagsmith = useFlagsmith();
+  const {chainId} = useNetwork();
 
   const initUser = async function() {
     if (user && !Moralis.ensureWeb3IsInstalled()) {
@@ -30,7 +30,7 @@ function useUserInitialize() {
         default:
           // metamask
           providerOptions = {
-            chainId: supportedChainId
+            chainId: chainId
           }
       }
       
@@ -46,7 +46,8 @@ function useUserInitialize() {
     }
 
     const unsubscribe = Moralis.onChainChanged((chain) => {
-      if (chain != supportedChainId) {
+      console.log('chain changed to', chain);
+      if (chain != chainId) {
         console.log("Chain changed to unsupported chain, logging out");
         logout();
       }

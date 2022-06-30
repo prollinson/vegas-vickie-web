@@ -15,7 +15,7 @@ import MintedBox from "./MintedBox";
 function MintCollection ({contract, name, description, nftImage, nftWebPImage, actionBox}) {
   const { Moralis, isInitialized, account, user } = useMoralis();
 
-  const { getTotalSupply, getMaxSupply, getMintPrice, getMinimumRequiredTier, getAllowlistSaleStartTime, getPublicSaleStartTime, contractAddress, data} = useDealersChoiceContract(contract);
+  const {contractAddress, data} = useDealersChoiceContract(contract);
   
   const [merkleProof, setMerkleProof] = useState(null)
 
@@ -86,7 +86,6 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
       addresses.sort((a, b) => {
           return a[1] - b[1];
       });
-      console.log("Setting merkle tier to", addresses[0][1]);
       setMerkleTier(addresses[0][1])
     } else {
       setMerkleTier(null)
@@ -97,7 +96,6 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
     if(user) {
       let address = user.get("ethAddress");
       if (address && merkleTier) {
-        console.log("Checking if user is in the allowlist", address.toLowerCase(), merkleTier);
         const merkleTree = new MerkleTree(merkleEntries.map(token => hashToken(token[0], token[1])), keccak256, { sortPairs: true })
         let mp = merkleTree.getHexProof(hashToken(address.toLowerCase(), merkleTier))
         console.log('Root:', merkleTree.getHexRoot());
@@ -167,7 +165,7 @@ function MintCollection ({contract, name, description, nftImage, nftWebPImage, a
     return false;
   };
 
-  let sectionHeading2 = "text-md sm:text-lg text-white font-bold tracking-widest uppercase";
+  let sectionHeading2 = "text-md sm:text-2xl text-white font-bold tracking-widest uppercase";
   let bodyTextSmall = 'font-gilroy text-white text-lg';
 
   return (

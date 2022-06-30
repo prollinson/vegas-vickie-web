@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useChain, useEnsAddress, useMoralis, useNativeBalance} from "react-moralis";
-import useUserInitialize from "../../hooks/useUserInitialize";
+import useContracts from '../../hooks/useContracts.js'
+
 import flagsmith from 'flagsmith';
 
 import { Tab } from '@headlessui/react';
-
-// Contracts
-import tier2Contract from "../../models/contracts/DealersChoice";
-import tier3Contract from "../../models/contracts/Tier3";
-import tier4Contract from "../../models/contracts/Tier4";
-
 import AuctionCollection from '../../components/elements/AuctionCollection';
 import MintCollection from '../../components/elements/MintCollection';
 import PageHeader from '../../components/layout/PageHeader';
@@ -32,6 +27,7 @@ import tier4NftWebPImage from '../../assets/off-the-rack_lossyalpha.webp';
 function Mint() {
   const {Moralis, user, isAuthenticated, isWeb3Enabled, isWeb3EnableLoading, web3EnableError, account, logout} = useMoralis();
   const { chain } = useChain();
+  const {initContracts, tier2Contract, tier3Contract, tier4Contract} = useContracts();
   const { getBalances, data: balance } = useNativeBalance();
   const { name } = useEnsAddress(user && user.get("ethAddress"));
 
@@ -44,15 +40,22 @@ function Mint() {
     }
   }, [user]);
 
+  useEffect(() => {
+    initContracts();
+  }, [])
+
   return (
     <>
       <Header />
       <PageHeader pageTitle="The Mint" />
 
-      {isAuthenticated && isWeb3Enabled && (
+      {false && isAuthenticated && isWeb3Enabled && (
       <div className="col-span-12 w-full max-w-5xl mt-10 mx-auto mt-5 p-1 border-t border-[#1E1708] flex flex-1 justify-between align-center">
-        { false && chain && chain !== Moralis.Chains.ETH_MAINET && (        
+        { false && chain && (
+          <>
+          <p className="text-sm text-stone-600">{tier2Contract.chainId}</p>        
             <p className='font-display text-white'>Connected to <b>{`${chain.chainId} (${chain.nativeCurrency.name})`}</b></p>
+            </>
         )}
         { isAuthenticated && false && (
           <>
@@ -105,24 +108,29 @@ function Mint() {
                 availableText={"Available at auction 6/28"}
               />
             </Tab.Panel>
-            <Tab.Panel>
-              <MintCollection
-                contract={tier2Contract}
-                name="Dealer's Choice"
-                nftImage={tier2NftImage}
-                nftWebPImage={tier2NftWebPImage}
-                availableText={"Available to mint 6/28"}
-              />
-            </Tab.Panel>
-            <Tab.Panel>
-              <MintCollection
-                contract={tier3Contract}
-                name="Neon Idol"
-                nftImage={tier3NftImage}
-                nftWebPImage={tier3NftWebPImage}
-                availableText={"Available to mint 6/28"}
-              />
-            </Tab.Panel>
+            {tier2Contract && (
+              <Tab.Panel>
+                <MintCollection
+                  contract={tier2Contract}
+                  name="Dealer's Choice"
+                  nftImage={tier2NftImage}
+                  nftWebPImage={tier2NftWebPImage}
+                  availableText={"Available to mint 6/28"}
+                />
+              </Tab.Panel>
+            )}
+            {tier3Contract && (
+              <Tab.Panel>
+                <MintCollection
+                  contract={tier3Contract}
+                  name="Neon Idol"
+                  nftImage={tier3NftImage}
+                  nftWebPImage={tier3NftWebPImage}
+                  availableText={"Available to mint 6/28"}
+                />
+              </Tab.Panel>
+            )}
+            {tier4Contract && (
               <Tab.Panel>
                 <MintCollection
                   contract={tier4Contract}
@@ -132,6 +140,7 @@ function Mint() {
                   availableText={"Available to mint 6/28"}
                 />
               </Tab.Panel>
+            )}
             </Tab.Panels>
           </Tab.Group>
         </div>

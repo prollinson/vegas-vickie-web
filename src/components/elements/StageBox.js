@@ -71,15 +71,11 @@ function StageBox({allStages, isLoading}) {
               </div>
             </div>
             <div className="flex flex-col pb-6">
-              <p className="font-display uppercase text-white text-md md:text-lg font-bold">Sale Closed</p>
+              <p className="font-display uppercase text-stone-500 text-md md:text-lg font-bold">Sale Closes</p>
             </div>
           </li>
         )}
       </ul>
-{/* 
-      { !currentStage() && (
-        <p>Sale will start {nextStage().startTime.toString()}</p>
-      )} */}
     </div> 
   )
 }

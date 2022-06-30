@@ -13,22 +13,25 @@ function MintedBox({contract}) {
     if(!isInitialized) return;
     const options = {
       address: user.get("ethAddress"),
-      chain: contract.chainId,
+      chain: `0x${Number(contract.chainId).toString(16)}`,
       token_address: contract.address,
     };
     const nfts = await Web3Api.account.getNFTsForContract(options);
 
     // TODO: Find Image for NFT if not cached
-    // let returnedNfts = nfts.result.map(async function(nft){
+    let returnedNfts = nfts.result.map(async function(nft){
 
-    //   //  let url = fixURL(nft.token_uri);
-    //   // let response = await fetch(nft.token_uri)
-    //   // console.log(response);
-    //   // let data = await response.json()
+      //  let url = fixURL(nft.token_uri);
+      let response = await fetch(nft.token_uri, {
+        mode: 'no-cors',
+      })
+      console.log(response);
+      let data = await response.json()
+      console.log(data);
 
       
-    //   return nft
-    // })
+      return nft
+    })
 
     setAllNfts(nfts.result);
   };

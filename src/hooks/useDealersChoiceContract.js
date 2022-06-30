@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from 'react';
 import { useMoralis, useMoralisWeb3Api, useMoralisWeb3ApiCall, useWeb3ExecuteFunction } from "react-moralis";
-import { chainId } from "../contracts.config";
+import useNetwork from "./useNetwork.js";
 
 function useDealersChoiceContract(contract) {
   const Web3Api = useMoralisWeb3Api();
@@ -10,17 +10,23 @@ function useDealersChoiceContract(contract) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
+  console.log(contract);
+
   let contractAddress = contract.address;
-  let chain = contract.chainId;
+  let chain = `0x${Number(contract.chainId).toString(16)}`;
   
   let ABI = contract.ABI;
 
-  // Get Total Supply
-  const totalSupplyOptions = {
+  let contractBase = {
     chain: chain,
     address: contractAddress,
-    function_name: "totalSupply",
     abi: ABI
+  }
+
+  // Get Total Supply
+  const totalSupplyOptions = {
+    ...contractBase,
+    function_name: "totalSupply",
   };
   const getTotalSupply = useMoralisWeb3ApiCall(
     Web3Api.native.runContractFunction,
@@ -29,10 +35,8 @@ function useDealersChoiceContract(contract) {
 
   // Get Max Supply
   const getMaxSupplyOptions = {
-      chain: chain,
-      address: contractAddress,
+      ...contractBase,
       function_name: "MAX_SUPPLY",
-      abi: ABI
     };
   const getMaxSupply = useMoralisWeb3ApiCall(
     Web3Api.native.runContractFunction,
@@ -42,10 +46,8 @@ function useDealersChoiceContract(contract) {
 
   // Get Mint Price
   const getMintPriceOptions = {
-    chain: chain,
-    address: contractAddress,
+    ...contractBase,
     function_name: "MINT_PRICE",
-    abi: ABI
   };
   const getMintPrice = useMoralisWeb3ApiCall(
     Web3Api.native.runContractFunction,
@@ -54,10 +56,8 @@ function useDealersChoiceContract(contract) {
 
   
   const allowlistReadOptions = {
-    chain: chain,
-    address: contractAddress,
+    ...contractBase,
     function_name: "allowlistSaleStartTime",
-    abi: ABI
   };
   const getAllowlistSaleStartTime = useMoralisWeb3ApiCall(
     Web3Api.native.runContractFunction,
@@ -66,10 +66,8 @@ function useDealersChoiceContract(contract) {
 
 
   const publicReadOptions = {
-    chain: chain,
-    address: contractAddress,
+    ...contractBase,
     function_name: "publicSaleStartTime",
-    abi: ABI
   };
   const getPublicSaleStartTime = useMoralisWeb3ApiCall(
     Web3Api.native.runContractFunction,
@@ -77,10 +75,8 @@ function useDealersChoiceContract(contract) {
   );
 
   const allowlistMinimumTierOptions = {
-    chain: chain,
-    address: contractAddress,
+    ...contractBase,
     function_name: "allowlistMinimumTier",
-    abi: ABI
   };
   const getMinimumRequiredTier = useMoralisWeb3ApiCall(
     Web3Api.native.runContractFunction,
@@ -88,21 +84,20 @@ function useDealersChoiceContract(contract) {
   );
 
   const walletLimitOptions = {
-    chain: chain,
-    address: contractAddress,
+    ...contractBase,
     function_name: "walletLimit",
-    abi: ABI
   };
 
   // Minting
 
   const mint = useWeb3ExecuteFunction();
   const mintOptions = function(mintPrice, _quantity){
+    console.log("mint contract", contract);
     return {
-      chain: chainId,
-      contractAddress: contractAddress,
-      functionName: "mint",
+      chain: chain,
+      contractAddress: contract.address,
       abi: ABI,
+      functionName: "mint",
       msgValue: mintPrice,
       params: {
         _quantity: _quantity,
@@ -113,10 +108,10 @@ function useDealersChoiceContract(contract) {
   const mintAllowlist = useWeb3ExecuteFunction();
   const mintAllowlistOptions = (mintCost, quantity, priorityTier, proof) => {
     return {
-      chain: chainId,
-      contractAddress: contractAddress,
-      functionName: "mintAllowlist",
+      chain: chain,
+      contractAddress: contract.address,
       abi: ABI,
+      functionName: "mintAllowlist",
       msgValue: mintCost,
       params: {
         _quantity: quantity,

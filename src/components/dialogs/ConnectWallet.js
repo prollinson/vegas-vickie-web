@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import { useMoralis } from 'react-moralis';
 import useUserInitialize from '../../hooks/useUserInitialize';
 import CoinbaseWalletWeb3Connector from '../../lib/moralis/CoinbaseWalletWeb3Connector';
-import contract from "../../models/contracts/DealersChoice";
+import useNetwork from '../../hooks/useNetwork.js';
 
 import vvLogo from '../../assets/vv-logo.png';
 import metamaskLogo from '../../assets/metamask.png';
@@ -15,13 +15,15 @@ import { useFlags } from 'flagsmith/react';
 export default function ConnectWallet({open, onClose}) {
   const {user, authenticate} = useMoralis();
   const { initUser } = useUserInitialize();
+  const {chainId} = useNetwork();
 
   // feature flags
   const flags = useFlags(['coinbase_wallet']);
 
-  const connectWallet = async () => {
+  const connectMetamaskWallet = async () => {
+    console.log(parseInt(chainId, 16));
     await authenticate({
-      chainId: contract.chainId,
+      chainId: parseInt(chainId, 16),
       signingMessage: "Sign into Vegas Vickie NFT",
 
       onComplete: async (user) => {
@@ -44,7 +46,7 @@ export default function ConnectWallet({open, onClose}) {
   const connectWalletConnect = async () => {
     await authenticate({
       provider: "walletconnect",
-      chainId: contract.chainId,
+      chainId: parseInt(chainId, 16),
 
       onComplete: async (user) => {
         console.log("Authenticated User through walletconnect", user);
@@ -65,11 +67,11 @@ export default function ConnectWallet({open, onClose}) {
   };
 
   const connectCoinbaseWallet = async () => {
-    console.log(contract.chainId);
-    console.log("Network id:", contract.chainId);
+    console.log(parseInt(chainId, 16));
+    console.log("Network id:", parseInt(chainId, 16));
     let user = await authenticate({
       connector: CoinbaseWalletWeb3Connector,
-      chainId: contract.chainId,
+      chainId: parseInt(chainId, 16),
       // Moralis
       signingMessage: "Sign into Vegas Vickie NFT",
       // CoinbaseWallet config
@@ -97,7 +99,7 @@ export default function ConnectWallet({open, onClose}) {
     authenticate({
       provider: "web3Auth",
       clientId: process.env.REACT_APP_WEB3_AUTH_CLIENT_ID,
-      chainId: contract.chainId,
+      chainId: parseInt(chainId, 16),
       theme: 'light',
       appLogo: vvLogo,
 
@@ -155,7 +157,7 @@ export default function ConnectWallet({open, onClose}) {
                   </Dialog.Title>
                   <p></p>
                   <div className="mt-2">
-                    <button onClick={connectWallet} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full"><span>MetaMask</span><img src={metamaskLogo} className="w-6"/></button>
+                    <button onClick={connectMetamaskWallet} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full"><span>MetaMask</span><img src={metamaskLogo} className="w-6"/></button>
                     <button onClick={connectWalletConnect} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full"><span>WalletConnect</span><img src={walletConnectLogo} className="w-6"/></button>
                     {flags.coinbase_wallet.enabled && (
                       <button onClick={connectCoinbaseWallet} className="flex items-center justify-between px-4 py-4 border text-base font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 hover:text-black mx-auto mt-2 border-1 border-stone-400 hover:border-vickie-yellow w-full"><span>Coinbase</span><img src={coinbaseLogo} className="w-6"/></button>
