@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Collections from './pages/Collections';
 import Story from './pages/Story';
 import Mint from './pages/mint/Mint';
+import Perks from './pages/Perks';
 
 import './App.css';
 import Helmet from 'react-helmet';
@@ -24,6 +25,7 @@ function App() {
           <Route path="collections" element={<Collections />} />
           <Route path="story" element={<Story />} />
           <Route path="mint" element={<Mint />} />
+          <Route path="perks" element={<Perks />} />
         </Route>
       </Routes>
     </FlagsmithProvider>

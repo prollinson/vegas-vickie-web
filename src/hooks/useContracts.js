@@ -5,6 +5,7 @@ import useNetwork from '../hooks/useNetwork.js';
 function useContracts() {
   const {init, chainId, chainName} = useNetwork();
   
+  const [tier1Contract, setTier1Contract] = useState();
   const [tier2Contract, setTier2Contract] = useState();
   const [tier3Contract, setTier3Contract] = useState();
   const [tier4Contract, setTier4Contract] = useState();
@@ -17,9 +18,16 @@ function useContracts() {
     console.log("chainName:", chainName);
     if(!chainName) return;
 
+    let tier1Contract = networkContracts[chainName]['VVOneAndOnly'];
     let tier2Contract = networkContracts[chainName]['VVDealersChoice'];
     let tier3Contract = networkContracts[chainName]['VVNeonIdol'];
     let tier4Contract = networkContracts[chainName]['VVOffTheRack'];
+
+    setTier1Contract({
+      chainId: chainId,
+      ABI: tier1Contract['abi'],
+      address: tier1Contract['address']
+    });
 
     setTier2Contract({
       chainId: chainId,
@@ -42,6 +50,7 @@ function useContracts() {
 
   return {
     initContracts: initContracts,
+    tier1Contract: tier1Contract,
     tier2Contract: tier2Contract,
     tier3Contract: tier3Contract,
     tier4Contract: tier4Contract
