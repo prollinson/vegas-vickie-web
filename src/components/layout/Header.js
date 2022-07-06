@@ -4,20 +4,31 @@ import { MenuIcon, XIcon, UserCircleIcon } from '@heroicons/react/outline'
 import { useMoralis } from "react-moralis";
 
 import { Link } from 'react-router-dom';
+import { useFlags } from 'flagsmith/react';
 
 import vvLogo from '../../assets/vv-logo-small.png';
 import vvLogoWebP from '../../assets/vv-logo-small_lossyalpha.webp';
 
 function Header() {
   const {isAuthenticated, logout, user} = useMoralis();
+  const flags = useFlags(['perks_and_benefits']);
 
-  const navItems = [
+  let navItems = [
     { name: 'Home', link: "/" },
     { name: 'Collections', link: "/collections" },
-    { name: 'Perks & Benefits', link: "/perks" },
     { name: 'Our Story', link: "/story" },
     { name: 'Mint', link: "/mint" }
   ];
+
+  if(flags.perks_and_benefits.enabled) {
+    navItems = [
+      { name: 'Home', link: "/" },
+      { name: 'Collections', link: "/collections" },
+      { name: 'Perks & Benefits', link: "/perks" },
+      { name: 'Our Story', link: "/story" },
+      { name: 'Mint', link: "/mint" }
+    ];
+  }
 
   return (
     <header className="col-span-12 flex flex-col bg-black border-b-2 border-[#130E04] sm:bg-header-dark overflow-hidden">

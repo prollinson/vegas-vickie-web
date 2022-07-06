@@ -1,7 +1,9 @@
 import { useMoralis } from 'react-moralis';
 import { useEffect, useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
+
 import useContracts from '../../hooks/useContracts';
+import { useFlags } from 'flagsmith/react';
 
 import ConnectWallet from '../../components/dialogs/ConnectWallet';
 import LoadingSpinner from '../../components/elements/LoadingSpinner';
@@ -22,6 +24,8 @@ function PerksIndex() {
   const [isAllNftsLoading, setIsAllNftsLoading] = useState(null);
 
   let navigate = useNavigate();
+
+  const flags = useFlags(['perks_and_benefits']);
 
   async function getNFTs(){
     if(!user) return;
@@ -49,6 +53,11 @@ function PerksIndex() {
 
   useEffect(() => {
     initContracts();
+
+    if(!flags.perks_and_benefits.enabled) {
+      navigate("/");
+    }
+
   }, [user, isInitialized]);
 
   useEffect(() => {

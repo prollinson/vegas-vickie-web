@@ -1,6 +1,8 @@
 
 import { Link } from 'react-router-dom';
 
+import { useFlags } from 'flagsmith/react';
+
 import discordLogo from '../../assets/discord-logo.svg';
 import twitterLogo from '../../assets/twitter-logo.svg';
 
@@ -8,13 +10,24 @@ let discordLink = 'https://discord.com/invite/vegasvickienft';
 let twitterLink = 'https://twitter.com/VegasVickie';
 
 function Footer() {
-  const navItems = [
+  const flags = useFlags(['perks_and_benefits']);
+
+  let navItems = [
     { name: 'Home', link: "/" },
     { name: 'Collections', link: "/collections" },
-    { name: 'Perks & Benefits', link: "/perks" },
     { name: 'Our Story', link: "/story" },
     { name: 'Mint', link: "/mint" },
   ];
+
+  if(flags.perks_and_benefits.enabled) {
+    navItems = [
+      { name: 'Home', link: "/" },
+      { name: 'Collections', link: "/collections" },
+      { name: 'Perks & Benefits', link: "/perks" },
+      { name: 'Our Story', link: "/story" },
+      { name: 'Mint', link: "/mint" },
+    ];
+  }
 
   return (
     <footer className="col-span-12 flex flex-col bg-black border-t border-[#1E1708]">
