@@ -42,6 +42,10 @@ function RedemptionForm({open, onClose, selectedPerk}) {
     console.log("selectedperk", selectedPerk);
     console.log(selectedPerk.id);
 
+    if(!firstName & !lastName || !email || !birthdate) {
+      setFormError('Please fill out all fields');
+    };
+
     let redemptionCode = null;
     try {
       redemptionCode = await Moralis.Cloud.run(
