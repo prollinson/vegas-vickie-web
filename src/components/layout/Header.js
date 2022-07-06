@@ -1,6 +1,6 @@
 
 import { Disclosure } from "@headlessui/react";
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon, UserCircleIcon } from '@heroicons/react/outline'
 import { useMoralis } from "react-moralis";
 
 import { Link } from 'react-router-dom';
@@ -9,7 +9,7 @@ import vvLogo from '../../assets/vv-logo-small.png';
 import vvLogoWebP from '../../assets/vv-logo-small_lossyalpha.webp';
 
 function Header() {
-  const {isAuthenticated, logout} = useMoralis();
+  const {isAuthenticated, logout, user} = useMoralis();
 
   const navItems = [
     { name: 'Home', link: "/" },
@@ -44,17 +44,34 @@ function Header() {
                   </picture>
                 </div>
                 <div className="hidden sm:relative sm:flex sm:space-x-8 font-display justify-center font-gilroy uppercase">
-                  <ul className="flex flex-inital text-white border-t border-gray-600 w-1/3 justify-center">
+                  <ul className="flex flex-inital text-white border-t border-gray-600 w-1/2 justify-center">
                     {navItems.map((item, index) => (
                       <li key={index} className="p-3 hover:text-vickie-yellow"><Link to={item.link}>{item.name}</Link></li>
                     ))}
                   </ul>
                 </div>
-                <div>
+                <div className="absolute top-0 right-0 p-5">
                   {isAuthenticated && (
                     <>
-                      <button onClick={ () => { logout() }} className="w-auto flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black mx-auto text-xl">Log out</button>
-                    </>
+                      <Disclosure as="user-menu" >
+                      <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
+                        <span className="sr-only">Open main menu</span>
+                        <UserCircleIcon className="block h-6 w-6" aria-hidden="true" />
+                        <span className="block w-32 truncate pl-1">{user.get("ethAddress")}</span>
+                      </Disclosure.Button>
+                      <Disclosure.Panel className="">
+                        <div className="pt-1 pb-2 space-y-1">
+                            <Disclosure.Button
+                              as="a"
+                              className="w-auto flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black mx-auto text-md"
+                              onClick={ () => { logout() }}
+                            >
+                              Log out
+                            </Disclosure.Button>
+                        </div>
+                      </Disclosure.Panel>
+                    </Disclosure>
+                  </>
                   )}
                 </div>
               </div>
@@ -64,8 +81,8 @@ function Header() {
               <div className="pt-1 pb-2 space-y-1">
                 {navItems.map((item, index) => (
                   <Disclosure.Button
-                    as="a"
-                    href={item.link}
+                    as={<Link />}
+                    to={item.link}
                     className="bg-gray-900 text-white block pl-3 pr-4 py-2 font-gilroy uppercase text-base font-medium"
                     key={index}
                   >

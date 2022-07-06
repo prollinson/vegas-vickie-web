@@ -100,44 +100,60 @@ function RedemptionForm({open, onClose, selectedPerk}) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-xl transform overflow-hidden rounded-2xl bg-stone-100 p-6 text-left align-middle shadow-xl transition-all">
                 {!redemptionCode && (
                   <>
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="font-display font-bold text-xl leading-6 uppercase text-gray-900"
                   >
                     Redeem Perks
                   </Dialog.Title>
-                  <p></p>
+
                   <div className="redemption-form">
-                    <form onSubmit={handleSubmit}>
-                      <p>First Name</p>
-                      <input type="name" value={firstName.value} onChange={(e) => setFirstname(e.target.value)} disabled={formDisabled}/>
+                    <p className='font-display text-black w-full pt-2'>Please enter your details below. On check-in, we will verify using these details so please ensure that they are correct.</p>
+                    <form onSubmit={handleSubmit} className="mt-4 w-2/3 mx-auto">
+                      <p className='font-display text-black w-full pt-2 font-bold uppercase'>First Name</p>
+                      <input className="w-full p-2" type="name" value={firstName.value} onChange={(e) => setFirstname(e.target.value)} disabled={formDisabled}/>
 
-                      <p>Last Name</p>
-                      <input type="name" value={lastName.value} onChange={(e) => setLastName(e.target.value)} disabled={formDisabled}/>
+                      <p className='font-display text-black w-full pt-2 font-bold uppercase'>Last Name</p>
+                      <input className="w-full p-2" type="name" value={lastName.value} onChange={(e) => setLastName(e.target.value)} disabled={formDisabled}/>
 
-                      <p>Email</p>
-                      <input type="email" value={email.value} onChange={(e) => setEmail(e.target.value)} disabled={formDisabled}/>
+                      <p className='font-display text-black w-full pt-2 font-bold uppercase'>Email</p>
+                      <input className="w-full p-2" type="email" value={email.value} onChange={(e) => setEmail(e.target.value)} disabled={formDisabled}/>
 
-                      <p>Date of Birth</p>
-                      <input type="input" value={birthdate.value} onChange={(e) => setBirthdate(e.target.value)} disabled={formDisabled}/>
+                      <p className='font-display text-black w-full pt-2 font-bold uppercase'>Date of Birth</p>
+                      <input className="w-full p-2" type="date" value={birthdate.value} onChange={(e) => setBirthdate(e.target.value)} disabled={formDisabled}/>
 
-                      <button type="submit">Submit</button>
+                      <div className='flex w-full justify-center'>
+                        <button type="submit" className='py-4 px-8 bg-vickie-yellow mt-4 font-display uppercase font-bold justify-center'>Submit</button>
+                      </div>
                     </form>
 
                     {formError && (
                       <p className="text-red-500">{formError}</p>
                     )}
+
+                    <p className='font-display text-black w-full pt-4'>Circa is a 21+ Casino. All guests must be 21 years or older.</p>
                   </div>
                   </>
                   )}
 
                   {redemptionCode && (
                     <>
-                    <h2>Your redemption code is</h2>
-                    <h1>{redemptionCode}</h1>
+                      <Dialog.Title
+                        as="h3"
+                        className="font-display font-bold text-xl leading-6 uppercase text-gray-900"
+                      >
+                        You're all set!
+                      </Dialog.Title>
+                      <p className='font-display text-black w-full pt-2'>Thanks. Here’s your redemption code that you can use when booking your room:</p>
+                      <div className='border border-stone-300 text-4xl flex justify-center p-4 mt-10 mb-10 bg-stone-200'>
+                        <p className='text-black'>{redemptionCode}</p>
+                      </div>
+                      <div className='flex w-full justify-center'>
+                        <button className='py-4 px-8 bg-vickie-yellow mt-4 font-display uppercase font-bold justify-center' onClick={handleOnClose}>Close</button>
+                      </div>
                     </>
                   )}
                 </Dialog.Panel>
