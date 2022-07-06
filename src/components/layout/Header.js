@@ -1,6 +1,7 @@
 
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import { useMoralis } from "react-moralis";
 
 import { Link } from 'react-router-dom';
 
@@ -8,9 +9,12 @@ import vvLogo from '../../assets/vv-logo-small.png';
 import vvLogoWebP from '../../assets/vv-logo-small_lossyalpha.webp';
 
 function Header() {
+  const {isAuthenticated, logout} = useMoralis();
+
   const navItems = [
     { name: 'Home', link: "/" },
     { name: 'Collections', link: "/collections" },
+    { name: 'Perks & Benefits', link: "/perks" },
     { name: 'Our Story', link: "/story" },
     { name: 'Mint', link: "/mint" }
   ];
@@ -45,6 +49,13 @@ function Header() {
                       <li key={index} className="p-3 hover:text-vickie-yellow"><Link to={item.link}>{item.name}</Link></li>
                     ))}
                   </ul>
+                </div>
+                <div>
+                  {isAuthenticated && (
+                    <>
+                      <button onClick={ () => { logout() }} className="w-auto flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black mx-auto text-xl">Log out</button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

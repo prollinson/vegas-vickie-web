@@ -32,6 +32,7 @@ function RedemptionForm({open, onClose, selectedPerk}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setFormError(null);
 
     if(!user) return;
     if(selectedPerk == null) {
