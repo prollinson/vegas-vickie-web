@@ -86,7 +86,7 @@ export default function ConnectWallet({open, onClose}) {
 
     console.log("Authenticated User through CoinbaseWallet", user);
 
-    user.set('provider', 'Coinbasewallet');
+    user.set('provider', 'coinbasewallet');
     user.save();
 
     initUser();

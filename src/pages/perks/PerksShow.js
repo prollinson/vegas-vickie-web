@@ -49,9 +49,9 @@ function PerksShow() {
   };
 
   async function getNFTs(){
-    if(!user) return;
     if(!isInitialized) return;
     setIsNftLoading(true);
+    setNftError(null);
 
     let result = await fetchAllTokenIds();
 
@@ -132,13 +132,6 @@ function PerksShow() {
         <div className='max-w-7xl mx-auto'>
         <ConnectWallet open={isConnectWalletOpen} onClose={() => setIsConnectWalletOpen(false)} />
         <RedemptionForm selectedPerk={selectedTokenPerk} open={isFormOpen} onClose={handleFormClose} />
-
-        {!isAuthenticated && (
-          <>
-            <button onClick={ () => { setIsConnectWalletOpen(true) }} className="w-auto flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black mx-auto text-xl">Connect Wallet</button>
-            <p className="font-display text-white w-full text-center pt-4">Connect your wallet to mint. Don't have a wallet? Let us know in <a href="https://discord.gg/vegasvickienft" className="hover:text-vickie-yellow">our discord</a>.</p>
-          </>
-        )}
       
         {/* Show Loading Spinner */}
         {isNftLoading && (
@@ -234,22 +227,38 @@ function PerksShow() {
                         ))}
                       </ul>
                     </div>
+
+                    {!isAuthenticated && (
+                    <div className='mt-10'>
+                      <button onClick={ () => { setIsConnectWalletOpen(true) }} className="w-auto flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black mx-auto text-xl">Connect Wallet</button>
+                      <p className="font-display text-white w-full text-center pt-4">Own this NFT? Connect your wallet to redeem your perks.</p>
+                    </div>
+                  )}
                   </div>
                 </div>
                 )}
               
               {/* Display is there are any perks asscoiated */}
               {(!tokenPerks || tokenPerks.length===0) && (
-                <div className='flex w-2/3 flex-col p-10'>
-                  <p className="font-display text-white text-md pb-6">This NFT has no perks</p>
+                <div className="border border-vickie-yellow bg-black w-full ml-10">
+                  <div className='flex w-full flex-col p-10'>
+                    <p className="text-2xl sm:text-3xl text-white font-gilroy font-bold tracking-widest uppercase">This NFT has no unredeemed perks</p>
+                  </div>
+
+                  {!isAuthenticated && (
+                    <div className='mt-10'>
+                      <button onClick={ () => { setIsConnectWalletOpen(true) }} className="w-auto flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black mx-auto text-xl">Connect Wallet</button>
+                      <p className="font-display text-white w-full text-center pt-4">Own this NFT? Connect your wallet to see redeemed perks.</p>
+                    </div>
+                  )}
                 </div>
               )}
 
-              {error && (
+              {/* {error && (
                 <div className='flex w-2/3 flex-col p-10'>
                   <p className="font-display text-white text-md pb-6">{error.message}</p>
                 </div>
-              )}
+              )} */}
 
               
               </div>
