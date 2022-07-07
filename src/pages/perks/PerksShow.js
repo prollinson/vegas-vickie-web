@@ -90,7 +90,7 @@ function PerksShow() {
   const isRedemptionUser = (perk) => {
     if(!user) return false;
 
-    return (perk.get("redemptionCustomer") && perk.get("redemptionCustomer").get("owner").id === user.id);
+    return (perk.get("redemptionCustomer") &&  perk.get("redemptionCustomer").get("owner") && perk.get("redemptionCustomer").get("owner").id === user.id);
   }
 
   const redeemPerks = function(selectedTokenPerk) {
@@ -169,7 +169,7 @@ function PerksShow() {
                       <ul>
                         {tokenPerks.map(tokenPerk => (
                           <>
-                            <li key={tokenPerk.id} className="border border-vickie-yellow bg-black">
+                            <li key={tokenPerk.id} className="border border-vickie-yellow bg-black mb-8">
                               <div className="p-10">
                                 <p className="text-2xl sm:text-3xl text-white font-gilroy font-bold tracking-widest uppercase">{tokenPerk.get("perk").get("marketingName")}</p>
 
@@ -178,7 +178,7 @@ function PerksShow() {
                                     <p className="font-display text-white text-md">Congratulations on owning a piece of Las Vegas history.  In addition to your unique digital artwork, this NFT comes with the items listed below.</p>
 
                                     <p className="font-display font-bold text-white text-lg md:text-lg uppercase mt-4">Booking Instructions</p>
-                                    <p className="font-display text-white text-md pt-2">Please redeem your utility by calling (702) 726-5498 and mentioning your three digit verification code. Circa is an adults only casino. All guests must be 21 years or older.</p>
+                                    <p className="font-display text-white text-md pt-2">Please redeem your utility by calling (702) 726-5498 and mentioning your three digit verification code. Please wait 24 hours before calling, so we can ensure your redemption has been processed.  Circa is an adults only casino. All guests must be 21 years or older.</p>
 
                                     {(tokenPerk.get("redemptionCustomer").get("redemptionCode") && tokenPerk.get("redemptionCustomer").get("redemptionCode").get("code") != null) && (
                                       <div className='border border-white text-4xl flex justify-center p-4 mt-10 mb-10 bg-stone-900'>
@@ -240,9 +240,9 @@ function PerksShow() {
               
               {/* Display is there are any perks asscoiated */}
               {(!tokenPerks || tokenPerks.length===0) && (
-                <div className="border border-vickie-yellow bg-black w-full ml-10">
-                  <div className='flex w-full flex-col p-10'>
-                    <p className="text-2xl sm:text-3xl text-white font-gilroy font-bold tracking-widest uppercase">This NFT has no unredeemed perks</p>
+                <div className="border border-vickie-yellow bg-black w-full ml-10 px-10 py-20">
+                  <div className='flex w-full flex-col'>
+                    <p className="text-xl sm:text-3xl text-white font-gilroy font-bold tracking-widest uppercase text-center">This NFT has no unredeemed perks</p>
                   </div>
 
                   {!isAuthenticated && (

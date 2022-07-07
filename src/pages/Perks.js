@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 
 import Header from "../components/layout/Header";
 import PageHeader from "../components/layout/PageHeader";
-import JoinCommunitySection from "../components/elements/JoinCommunitySection";
 import Footer from "../components/layout/Footer";
 
 function Perks() {
@@ -13,7 +12,6 @@ function Perks() {
 
       <Outlet />
       
-      <JoinCommunitySection />
       <Footer />
     </>
   )

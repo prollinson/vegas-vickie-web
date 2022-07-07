@@ -91,13 +91,14 @@ function PerksIndex() {
     <>
       <div className="col-span-12 w-full mx-auto pt-16 sm:py-24 border-t border-[#1E1708] bg-pattern">
         <div className='max-w-6xl mx-auto'>
+
           <ConnectWallet open={isConnectWalletOpen} onClose={() => setIsConnectWalletOpen(false)} />
 
           {!isAuthenticated && (
-            <>
+            <div className="flex flex-col justify-center bg-stone-900 p-10 rounded-md mx-5 md:mx-8">
               <button onClick={ () => { setIsConnectWalletOpen(true) }} className="w-auto flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black mx-auto text-xl">Connect Wallet</button>
-              <p className="font-display text-white w-full text-center pt-4">Connect your wallet to check the perks.</p>
-            </>
+              <p className="font-display text-white w-full text-center pt-4">Connect your wallet to see the NFTs you own and check/redeem the perks.</p>
+            </div>
           )}
 
           {isAllNftsLoading && (
@@ -131,11 +132,11 @@ function PerksIndex() {
           </div>
           )}
 
-          <div className="p-5 md:p-8">
-          <p className="text-2xl sm:text-3xl text-white font-gilroy font-bold tracking-widest uppercase pt-2">Perk Checker</p> 
+          <div className="px-5 md:px-8 mt-16">
+          <p className="text-2xl sm:text-3xl text-white font-gilroy font-bold tracking-widest uppercase pt-2">Check the Perks</p> 
             <p className="font-display text-white text-lg pb-6">Check the available perks for any NFT in our collections.</p>
             
-            <form onSubmit={(e) => checkPerks(e)}>
+            <form onSubmit={(e) => checkPerks(e)} className="">
               <select selected={checkTokenAddress} onChange={e => setCheckTokenAddress(e.target.value)} className="mx-2 w-46 p-2 border border-gray-300 rounded-md">
                 {contracts.map((contract) => (
                   <option key={contract.address} value={contract.address || ''}>{contract.name}</option>
