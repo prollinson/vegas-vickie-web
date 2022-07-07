@@ -1,6 +1,6 @@
 function Tier4Perks() {
-  let sectionHeading2 = "text-md sm:text-md text-white font-bold tracking-widest uppercase";
-  let bodyTextSmall = 'font-gilroy text-white text-md';
+  let sectionHeading2 = "text-sm sm:text-md text-white font-bold tracking-widest uppercase";
+  let bodyTextSmall = 'font-gilroy text-white text-sm md:text-md';
 
   return (
     <>

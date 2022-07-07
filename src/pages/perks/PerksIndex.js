@@ -132,7 +132,7 @@ function PerksIndex() {
           </div>
           )}
 
-          <div className="px-5 md:px-8 mt-16">
+          <div className="px-5 md:px-8 mt-8 md:mt-16 mb-16">
           <p className="text-2xl sm:text-3xl text-white font-gilroy font-bold tracking-widest uppercase pt-2">Check the Perks</p> 
             <p className="font-display text-white text-lg pb-6">Check the available perks for any NFT in our collections.</p>
             

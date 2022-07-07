@@ -44,6 +44,7 @@ export default function ConnectWallet({open, onClose}) {
   };
 
   const connectWalletConnect = async () => {
+    console.log(chainId);
     await authenticate({
       provider: "walletconnect",
       chainId: parseInt(chainId, 16),

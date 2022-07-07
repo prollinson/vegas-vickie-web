@@ -62,7 +62,7 @@ function Header() {
                   </ul>
                 </div>
                 <div className="absolute top-0 right-0 p-5">
-                  {isAuthenticated && (
+                  {false && isAuthenticated && (
                     <>
                       <Disclosure as="user-menu" >
                       <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-stone-400 hover:text-stone-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
@@ -92,12 +92,13 @@ function Header() {
               <div className="pt-1 pb-2 space-y-1">
                 {navItems.map((item, index) => (
                   <Disclosure.Button
-                    as={<Link />}
-                    to={item.link}
+                    as="div"
                     className="bg-gray-900 text-white block pl-3 pr-4 py-2 font-gilroy uppercase text-base font-medium"
                     key={index}
                   >
+                    <Link to={item.link} className="w-full">
                     {item.name}
+                    </Link>
                   </Disclosure.Button>
                 ))}
               </div>

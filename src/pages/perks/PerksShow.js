@@ -153,34 +153,32 @@ function PerksShow() {
           <div className="px-5 md:px-10">
             <div className="flex-col">
               <div className='w-full'>
-                <div className='flex-col mt-4 mb-8'>
-                  <p className="text-xl sm:text-xl text-white font-gilroy font-bold tracking-widest uppercase">{nft.name}</p> 
-                  <p className="text-2xl sm:text-3xl text-white font-gilroy font-bold tracking-widest uppercase pt-2">{getNameFromMetadata(nft)}</p> 
+                <div className='flex-col mt-0 md:mt-4 mb-8 md:mb-8'>
+                  <p className="text-lg sm:text-xl text-white font-gilroy font-bold tracking-widest uppercase">{nft.name}</p> 
+                  <p className="text-xl sm:text-3xl text-white font-gilroy font-bold tracking-widest uppercase pt-2">{getNameFromMetadata(nft)}</p> 
                 </div>
               </div>
-              <div className='flex w-full'>
-              <div className="flex-col">
-                <div className="w-72 aspect-2/3">
-                  <img src={getImageFromMetadata(nft)} className="w-full aspect-auto"/>
+              <div className='flex-col md:flex w-full'>
+                {/* Image */}
+                <div className="flex justify-center">
+                  <img src={getImageFromMetadata(nft)} className="w-32 md:w-full aspect-auto"/>
                 </div>
-                
-              </div>
 
-              {/* Show Loading Spinner */}
-              {isLoading && (
-                <LoadingSpinner />
-              )}
+                {/* Show Loading Spinner */}
+                {isLoading && (
+                  <LoadingSpinner />
+                )}
 
-              {/* Display Perks */}
-              {tokenPerks && tokenPerks.length > 0 && (
-                <div className='flex w-2/3 flex-col'>
-                  <div className='flex pl-10 flex-col justify-center'>
+                {/* Display Perks */}
+                {tokenPerks && tokenPerks.length > 0 && (
+                <div className='flex w-full md:w-2/3 md:flex-col'>
+                  <div className='flex pt-10 md:pt-0 md:pl-10 flex-col justify-center'>
                     <div className='"font-display text-white text-lg md:text-md uppercase"'>
                       <ul>
                         {tokenPerks.map(tokenPerk => (
                           <>
                             <li key={tokenPerk.id} className="border border-vickie-yellow bg-black mb-8">
-                              <div className="p-10">
+                              <div className="p-4 md:p-10">
                                 <p className="text-2xl sm:text-3xl text-white font-gilroy font-bold tracking-widest uppercase">{tokenPerk.get("perk").get("marketingName")}</p>
 
                                 {isRedemptionUser(tokenPerk) && (
