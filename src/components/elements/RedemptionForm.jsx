@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import RedemptionCustomer from '../../models/RedemptionCustomer';
 import { useMoralis } from 'react-moralis';
 
-function RedemptionForm({open, onClose, selectedPerk}) {
+function RedemptionForm({open, onClose, selectedPerk, requireDOB}) {
   const {Moralis, user} = useMoralis();  
 
   const [firstName, setFirstname] = useState('');
@@ -42,9 +42,15 @@ function RedemptionForm({open, onClose, selectedPerk}) {
     console.log("selectedperk", selectedPerk);
     console.log(selectedPerk.id);
 
-    if(!firstName & !lastName || !email || !birthdate) {
+    if(!firstName & !lastName || !email) {
       setFormError('Please fill out all fields');
     };
+
+    if(requireDOB && !birthdate) {
+      setFormError('Please fill out all fields');
+    }
+
+    if(formError) return false;
 
     let redemptionCode = null;
     try {
@@ -63,8 +69,6 @@ function RedemptionForm({open, onClose, selectedPerk}) {
       setFormError(error.message);
       return;
     }
-
-    console.log(redemptionCode.get("code"));
 
     setRedemptionCode(redemptionCode.get("code"));
   }
@@ -117,6 +121,11 @@ function RedemptionForm({open, onClose, selectedPerk}) {
                   <div className="redemption-form">
                     <p className='font-display text-black w-full pt-2'>Please enter your details below. On check-in, we will verify using these details so please ensure that they are correct.</p>
                     <form onSubmit={handleSubmit} className="mt-4 w-2/3 mx-auto">
+
+                      {formError && (
+                        <p className="text-red-500">{formError}</p>
+                      )}
+
                       <p className='font-display text-black w-full pt-2 font-bold uppercase'>First Name</p>
                       <input className="w-full p-2" type="name" value={firstName.value} onChange={(e) => setFirstname(e.target.value)} disabled={formDisabled}/>
 
@@ -126,17 +135,17 @@ function RedemptionForm({open, onClose, selectedPerk}) {
                       <p className='font-display text-black w-full pt-2 font-bold uppercase'>Email</p>
                       <input className="w-full p-2" type="email" value={email.value} onChange={(e) => setEmail(e.target.value)} disabled={formDisabled}/>
 
-                      <p className='font-display text-black w-full pt-2 font-bold uppercase'>Date of Birth</p>
-                      <input className="w-full p-2" type="date" value={birthdate.value} onChange={(e) => setBirthdate(e.target.value)} disabled={formDisabled}/>
+                      {requireDOB && (
+                        <>
+                          <p className='font-display text-black w-full pt-2 font-bold uppercase'>Date of Birth</p>
+                          <input className="w-full p-2" type="date" value={birthdate.value} onChange={(e) => setBirthdate(e.target.value)} disabled={formDisabled}/>
+                        </>
+                      )}
 
                       <div className='flex w-full justify-center'>
                         <button type="submit" className='py-4 px-8 bg-vickie-yellow mt-4 font-display uppercase font-bold justify-center'>Submit</button>
                       </div>
                     </form>
-
-                    {formError && (
-                      <p className="text-red-500">{formError}</p>
-                    )}
 
                     <p className='font-display text-black w-full pt-4'>Circa is a 21+ Casino. All guests must be 21 years or older.</p>
                   </div>

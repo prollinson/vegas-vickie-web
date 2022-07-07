@@ -8,6 +8,7 @@ import RedemptionForm from '../../components/elements/RedemptionForm';
 import Tier1Perks from '../../components/elements/perks/Tier1Perks';
 import Tier2Perks from '../../components/elements/perks/Tier2Perks';
 import Tier3Perks from '../../components/elements/perks/Tier3Perks';
+import Tier4Perks from '../../components/elements/perks/Tier4Perks';
 import LoadingSpinner from '../../components/elements/LoadingSpinner';
 
 function PerksShow() {
@@ -18,6 +19,7 @@ function PerksShow() {
   let params = useParams();
 
   const [selectedTokenPerk, setSelectedTokenPerk] = useState(null);
+  const [requireDOB, setRequireDOB] = useState(null);
 
   const {initContracts, tier1Contract, tier2Contract, tier3Contract, tier4Contract} = useContracts();
 
@@ -69,6 +71,7 @@ function PerksShow() {
     }
     setNft(nft);
     setIsNftLoading(false);
+    setNftError(null);
   };
 
   function imageURLFromIPFS(ipfsURL) {
@@ -96,6 +99,13 @@ function PerksShow() {
   const redeemPerks = function(selectedTokenPerk) {
     console.log(selectedTokenPerk);
     setSelectedTokenPerk(selectedTokenPerk);
+
+    if(selectedTokenPerk.get("perk").get("code") === "TIER4") {
+      setRequireDOB(true);
+    } else {
+      setRequireDOB(false);
+    }
+
     setIsFormOpen(true);
   }
 
@@ -131,7 +141,7 @@ function PerksShow() {
       <div className="col-span-12 w-full mx-auto pt-16 sm:py-24 border-t border-[#1E1708] bg-pattern">
         <div className='max-w-7xl mx-auto'>
         <ConnectWallet open={isConnectWalletOpen} onClose={() => setIsConnectWalletOpen(false)} />
-        <RedemptionForm selectedPerk={selectedTokenPerk} open={isFormOpen} onClose={handleFormClose} />
+        <RedemptionForm selectedPerk={selectedTokenPerk} open={isFormOpen} onClose={handleFormClose} requireDOB={requireDOB}/>
       
         {/* Show Loading Spinner */}
         {isNftLoading && (
@@ -202,6 +212,11 @@ function PerksShow() {
                                 {tokenPerk.get("perk").get("code") === "TIER3" && (
                                   <>
                                     <Tier3Perks />
+                                  </>
+                                )}
+                                {tokenPerk.get("perk").get("code") === "TIER4" && (
+                                  <>
+                                    <Tier4Perks />
                                   </>
                                 )}
                               </div>
