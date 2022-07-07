@@ -120,7 +120,7 @@ function RedemptionForm({open, onClose, selectedPerk, requireDOB}) {
 
                   <div className="redemption-form">
                     <p className='font-display text-black w-full pt-2'>Please enter your details below. On check-in, we will verify using these details so please ensure that they are correct.</p>
-                    <form onSubmit={handleSubmit} className="mt-4 w-2/3 mx-auto">
+                    <form onSubmit={handleSubmit} className="mt-4 md:w-2/3 mx-auto">
 
                       {formError && (
                         <p className="text-red-500">{formError}</p>

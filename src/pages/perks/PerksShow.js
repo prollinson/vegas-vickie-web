@@ -158,10 +158,12 @@ function PerksShow() {
                   <p className="text-xl sm:text-3xl text-white font-gilroy font-bold tracking-widest uppercase pt-2">{getNameFromMetadata(nft)}</p> 
                 </div>
               </div>
-              <div className='flex-col md:flex w-full'>
+              <div className='flex flex-col md:flex-row w-full gap-10'>
                 {/* Image */}
-                <div className="flex justify-center">
-                  <img src={getImageFromMetadata(nft)} className="w-32 md:w-full aspect-auto"/>
+                <div className="flex md:w-1/3 justify-center">
+                  <div className='w-52 md:w-full'>
+                    <img src={getImageFromMetadata(nft)} alt="NFT"/>
+                  </div>
                 </div>
 
                 {/* Show Loading Spinner */}
@@ -172,7 +174,7 @@ function PerksShow() {
                 {/* Display Perks */}
                 {tokenPerks && tokenPerks.length > 0 && (
                 <div className='flex w-full md:w-2/3 md:flex-col'>
-                  <div className='flex pt-10 md:pt-0 md:pl-10 flex-col justify-center'>
+                  <div className='flex md:pt-0 flex-col justify-center'>
                     <div className='"font-display text-white text-lg md:text-md uppercase"'>
                       <ul>
                         {tokenPerks.map(tokenPerk => (
@@ -196,7 +198,6 @@ function PerksShow() {
                                   </>
                                 )}
 
-
                                 {tokenPerk.get("perk").get("code") === "TIER1" && (
                                   <>
                                     <Tier1Perks />
@@ -219,7 +220,7 @@ function PerksShow() {
                                 )}
                               </div>
 
-                              <div className='flex bg-vickie-yellow py-3 px-6 items-center'>
+                              <div className='flex flex-col md:flex-row bg-vickie-yellow py-3 px-6 items-center'>
                               {tokenPerk.get("redeemedAt") == null && (
                                 <>
                                   <p className='text-md text-black'>These perks are available to redeem by {new Intl.DateTimeFormat("en-US", {year: "numeric",month: "long",day: "2-digit"}).format(tokenPerk.get("perk").get("expiresAt"))}</p>

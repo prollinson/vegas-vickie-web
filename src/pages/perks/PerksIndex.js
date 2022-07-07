@@ -106,23 +106,20 @@ function PerksIndex() {
           )}
 
           {allNfts && allNfts.length > 0 && (
-          <div className="px-5 md:px-8">
+          <div className="px-3 md:px-5 md:px-8">
             <p className="text-2xl sm:text-3xl text-white font-gilroy font-bold tracking-widest uppercase pt-2">Your NFTs</p> 
             <p className="font-display text-white text-lg pb-6">Our NFTs come with perks &amp; benefits.</p>
             <ul className="flex flex-1 flex-wrap gap-4 md:gap-6 justify-center">
               { allNfts.map(nft => (
-                <li key={nft.token_hash} className="w-full md:w-full flex pb-4">
-                  <div className="flex">
-                    <div className="w-72 aspect-2/3">
-                      <img src={nft.image_url} className="w-full aspect-auto"/>
-                    </div>
+                <li key={nft.token_hash} className="w-full md:w-full flex flex-col md:flex-row pb-4 mb-4 gap-4">
+                  <div className="flex w-72 justify-center">
+                    <img src={nft.image_url} className="md:w-full aspect-auto"/>
                   </div>
-                  <div className='flex w-2/3 flex-col'>
-                    <div className='flex pl-10'>
-                      <p className="text-xl sm:text-xl text-white font-gilroy font-bold tracking-widest uppercase">{nft.name}</p> 
-                      <p className="text-xl sm:text-xl text-white font-gilroy font-bold tracking-widest uppercase">{`#${nft.token_id}`}</p> 
+                  <div className='flex w-full flex-col pt-5 md:pt-0'>
+                    <div className='flex justify-center md:justify-start'>
+                      <p className="text-lg sm:text-xl text-white font-gilroy font-bold tracking-widest uppercase text-center">{nft.name} {`#${nft.token_id}`}</p> 
                     </div>
-                    <div className='flex pl-10'>
+                    <div className='flex justify-center md:justify-start'>
                       <Link to={`/perks/${nft.token_address}/${nft.token_id}`} className='py-4 px-8 bg-vickie-yellow mt-4 font-display uppercase font-bold justify-center'>View Perks &amp; Benefits</Link>
                     </div>
                   </div>
