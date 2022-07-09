@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://vegasvickienft.com",
   "dependencies": {
+    "@airbrake/browser": "^2.1.7",
     "@coinbase/wallet-sdk": "^3.3.0",
     "@headlessui/react": "^1.6.5",
     "@heroicons/react": "^1.0.6",

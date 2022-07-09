@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { MoralisProvider } from 'react-moralis';
 import { BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
+import ErrorBoundary from './components/ErrorBoundary';
 
 import { serverUrl, appId } from './moralis.config.js';
     
@@ -27,12 +28,14 @@ let rootElement = document.getElementById('root');
 // } else {
   render(
     <React.StrictMode>
-        <BrowserRouter>
-          <ScrollToTop />
-            <MoralisProvider serverUrl={serverUrl} appId={appId}>
-              <App />
-            </MoralisProvider>
-        </BrowserRouter>
+      <ErrorBoundary>
+          <BrowserRouter>
+            <ScrollToTop />
+              <MoralisProvider serverUrl={serverUrl} appId={appId}>
+                <App />
+              </MoralisProvider>
+          </BrowserRouter>
+        </ErrorBoundary>
     </React.StrictMode>,
     rootElement
   );
