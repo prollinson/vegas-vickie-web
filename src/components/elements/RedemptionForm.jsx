@@ -13,6 +13,7 @@ function RedemptionForm({open, onClose, selectedPerk, requireDOB}) {
 
   const [formError, setFormError] = useState(null);
 
+  const [isConfirmed, setIsConfirmed] = useState(false);
   const [redemptionCode, setRedemptionCode] = useState(null);
 
   const [formDisabled, setFormDisabled] = useState(false);
@@ -70,7 +71,11 @@ function RedemptionForm({open, onClose, selectedPerk, requireDOB}) {
       return;
     }
 
-    setRedemptionCode(redemptionCode.get("code"));
+    if(redemptionCode) {
+      setRedemptionCode(redemptionCode.get("code"));
+    }
+    
+    setIsConfirmed(true);
   }
 
   const handleOnClose = () => {
@@ -109,7 +114,7 @@ function RedemptionForm({open, onClose, selectedPerk, requireDOB}) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-xl transform overflow-hidden rounded-2xl bg-stone-100 p-6 text-left align-middle shadow-xl transition-all">
-                {!redemptionCode && (
+                {!isConfirmed && (
                   <>
                   <Dialog.Title
                     as="h3"
@@ -152,7 +157,7 @@ function RedemptionForm({open, onClose, selectedPerk, requireDOB}) {
                   </>
                   )}
 
-                  {redemptionCode && (
+                  {isConfirmed && (
                     <>
                       <Dialog.Title
                         as="h3"
@@ -160,10 +165,22 @@ function RedemptionForm({open, onClose, selectedPerk, requireDOB}) {
                       >
                         You're all set!
                       </Dialog.Title>
-                      <p className='font-display text-black w-full pt-2'>Thanks. Here’s your redemption code that you can use when booking your room:</p>
-                      <div className='border border-stone-300 text-4xl flex justify-center p-4 mt-10 mb-10 bg-stone-200'>
-                        <p className='text-black'>{redemptionCode}</p>
-                      </div>
+
+                      {redemptionCode && (
+                        <>
+                          <p className='font-display text-black w-full pt-2'>Thanks. Here's your redemption code that you can use when booking your room:</p>
+                          <div className='border border-stone-300 text-4xl flex justify-center p-4 mt-10 mb-10 bg-stone-200'>
+                            <p className='text-black'>{redemptionCode}</p>
+                          </div>
+                        </>
+                      )}
+
+                      {!redemptionCode && (
+                        <>
+                          <p className='font-display text-black w-full pt-2'>Thanks. To redeem your perks, please provide your name when at the Club One desk at Circa Resort and Casino, Las Vegas.</p>
+                        </>
+                      )}
+
                       <div className='flex w-full justify-center'>
                         <button className='py-4 px-8 bg-vickie-yellow mt-4 font-display uppercase font-bold justify-center' onClick={handleOnClose}>Close</button>
                       </div>

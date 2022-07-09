@@ -153,11 +153,11 @@ function Collections() {
             perks={tier1CollectorPerks}
             totalSupply={1}
             maxSupply={"1/1"}
-            mintPrice={"TBD"}
-            availableText={"Available at auction now"}
+            mintPrice={"Sold for 18.5 ETH"}
+            availableText={"Sold at auction for 18.5 ETH"}
             actionButton={(
               <a href={openSeaListing} target="_blank" className="w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow  hover:bg-white hover:text-black mx-auto">
-                Bid on OpenSea
+                View on OpenSea
               </a>
             )}
           />

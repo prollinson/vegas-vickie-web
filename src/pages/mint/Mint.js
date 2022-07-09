@@ -94,20 +94,11 @@ function Mint() {
 
         <Tab.Group>
           <Tab.List className="w-full flex md:flex-grow flex-wrap">
-            <Tab className={({ selected }) => selected ? tabStyle + ' bg-vickie-yellow text-white' : tabStyle}>The One and Only</Tab>
             <Tab className={({ selected }) => selected ? tabStyle + ' bg-vickie-yellow text-white' : tabStyle}>Dealers Choice</Tab>
             <Tab className={({ selected }) => selected ? tabStyle + ' bg-vickie-yellow text-white' : tabStyle}>Neon Idol</Tab>
             <Tab className={({ selected }) => selected ? tabStyle + ' bg-vickie-yellow text-white' : tabStyle}>Off the Rack</Tab>
           </Tab.List>
           <Tab.Panels>
-            <Tab.Panel>
-              <AuctionCollection
-                name="The One and Only"
-                nftImage={tier1NftImage}
-                nftWebPImage={tier1NftWebPImage}
-                availableText={"Available at auction 6/28"}
-              />
-            </Tab.Panel>
             {tier2Contract && (
               <Tab.Panel>
                 <MintCollection

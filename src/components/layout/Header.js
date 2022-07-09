@@ -62,7 +62,7 @@ function Header() {
                   </ul>
                 </div>
                 <div className="absolute top-0 right-0 p-5">
-                  {false && isAuthenticated && (
+                  {isAuthenticated && (
                     <>
                       <Disclosure as="user-menu" >
                       <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-stone-400 hover:text-stone-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">

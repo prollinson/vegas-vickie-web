@@ -26,19 +26,15 @@ export default function ConnectWallet({open, onClose}) {
       chainId: parseInt(chainId, 16),
       signingMessage: "Sign into Vegas Vickie NFT",
 
-      onComplete: async (user) => {
-        console.log("Authenticated User through Metamask", user);
-        
-        initUser();
-        onClose();
-      },
-
       onError: (error) => {
         console.error('ERROR IN AUTH:', error);
       },
 
       onSuccess: (obj) => {
-        console.info('SUCCESS IN AUTH:', obj);
+        console.log("Authenticated User through Metamask", user);
+        
+        initUser();
+        onClose();
       }
     });
   };
@@ -49,7 +45,7 @@ export default function ConnectWallet({open, onClose}) {
       provider: "walletconnect",
       chainId: parseInt(chainId, 16),
 
-      onComplete: async (user) => {
+      onSuccess: async (user) => {
         console.log("Authenticated User through walletconnect", user);
         
         // save the email and provider to User object, optionally check if already set
