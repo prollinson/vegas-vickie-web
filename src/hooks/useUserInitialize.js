@@ -4,12 +4,12 @@ import {useFlagsmith} from 'flagsmith/react';
 import useNetwork from "./useNetwork.js";
 
 function useUserInitialize() {
-  const {Moralis, user, enableWeb3, logout} = useMoralis();
+  const {Moralis, user, enableWeb3, isWeb3EnableLoading, logout} = useMoralis();
   const flagsmith = useFlagsmith();
   const {chainId} = useNetwork();
 
   const initUser = async function() {
-    if (user && !Moralis.ensureWeb3IsInstalled()) {
+    if (user && !Moralis.ensureWeb3IsInstalled() && !isWeb3EnableLoading) {
       const userProvider = user.get('provider');
       let providerOptions;
       switch (userProvider) {
@@ -40,7 +40,9 @@ function useUserInitialize() {
       } catch (err) {
         console.log(err);
       }
+    }
 
+    if(user) {
       flagsmith.identify(user.get("username"));
       flagsmith.setTrait('walletID', user.get("ethAddress"));
     }

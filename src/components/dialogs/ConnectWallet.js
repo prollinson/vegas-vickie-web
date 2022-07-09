@@ -21,7 +21,6 @@ export default function ConnectWallet({open, onClose}) {
   const flags = useFlags(['coinbase_wallet']);
 
   const connectMetamaskWallet = async () => {
-    console.log(parseInt(chainId, 16));
     await authenticate({
       chainId: parseInt(chainId, 16),
       signingMessage: "Sign into Vegas Vickie NFT",
@@ -40,10 +39,9 @@ export default function ConnectWallet({open, onClose}) {
   };
 
   const connectWalletConnect = async () => {
-    console.log(chainId);
     await authenticate({
       provider: "walletconnect",
-      chainId: parseInt(chainId, 16),
+      chainId: parseInt(chainId),
 
       onSuccess: async (user) => {
         console.log("Authenticated User through walletconnect", user);
@@ -66,7 +64,7 @@ export default function ConnectWallet({open, onClose}) {
   const connectCoinbaseWallet = async () => {
     console.log(parseInt(chainId, 16));
     console.log("Network id:", parseInt(chainId, 16));
-    let user = await authenticate({
+    await authenticate({
       connector: CoinbaseWalletWeb3Connector,
       chainId: parseInt(chainId, 16),
       // Moralis
@@ -76,17 +74,19 @@ export default function ConnectWallet({open, onClose}) {
       appLogoUrl: 'https://example.com/logo.png',
       darkMode: true,
 
+      onSuccess: async (user) => {
+        console.log("Authenticated User through CoinbaseWallet", user);
+
+        user.set('provider', 'coinbasewallet');
+        user.save();
+        initUser();
+      },
+
       onError: (error) => {
         console.log('ERROR IN AUTH:', error);
       }
     });
 
-    console.log("Authenticated User through CoinbaseWallet", user);
-
-    user.set('provider', 'coinbasewallet');
-    user.save();
-
-    initUser();
     onClose();
   };
 
@@ -100,7 +100,7 @@ export default function ConnectWallet({open, onClose}) {
       theme: 'light',
       appLogo: vvLogo,
 
-      onComplete: async (obj) => {        
+      onSuccess: async (user) => {        
         if(user) {
           user.set('provider', 'web3Auth')
           user.save()
