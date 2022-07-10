@@ -9,7 +9,7 @@ import ConnectWallet from '../../components/dialogs/ConnectWallet';
 import LoadingSpinner from '../../components/elements/LoadingSpinner';
 
 function PerksIndex() {
-  const {Moralis, user, isInitialized, isAuthenticated} = useMoralis();
+  const {Moralis, user, isInitialized, isAuthenticated, account} = useMoralis();
   const [allNfts, setAllNfts] = useState([]);
 
   const [checkTokenAddress, setCheckTokenAddress] = useState(null);
@@ -85,7 +85,7 @@ function PerksIndex() {
 
       setCheckTokenAddress(tier1Contract.address);
     }    
-  }, [tier1Contract, tier2Contract, tier3Contract, tier4Contract]);
+  }, [account, tier1Contract, tier2Contract, tier3Contract, tier4Contract]);
   
   return (
     <>

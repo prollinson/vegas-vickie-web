@@ -31,15 +31,17 @@ const defaultChainName = () => {
 }
 
 function useNetwork() {
-  // console.log("defaultChainName:", defaultChainName());
-  // console.log("defaultChainId:", defaultChainId());
   const {chain: connectedChain} = useChain();
   const [chainId, setChainId] = useState(defaultChainId());
   const [chainName, setChainName] = useState(defaultChainName());
 
   const init = () => {
-    setChainName(connectedChain != null ? connectedChain.name : defaultChainName());
+    setChainName(defaultChainName());
     setChainId(connectedChain != null ? connectedChain.chainId : defaultChainId());
+
+    if(chainId && supportedNetworks[chainId]) {
+      setChainName(supportedNetworks[chainId].name);
+    }
   }
 
   return {

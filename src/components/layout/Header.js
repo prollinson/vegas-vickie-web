@@ -3,15 +3,18 @@ import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon, UserCircleIcon } from '@heroicons/react/outline'
 import { useMoralis } from "react-moralis";
 
+import { useState } from "react";
 import { Link, NavLink } from 'react-router-dom';
 import { useFlags } from 'flagsmith/react';
+import ConnectWallet from '../dialogs/ConnectWallet';
 
 import vvLogo from '../../assets/vv-logo-small.png';
 import vvLogoWebP from '../../assets/vv-logo-small_lossyalpha.webp';
 
 function Header({showLogo=true}) {
-  const {isAuthenticated, logout, user} = useMoralis();
+  const {isAuthenticated, login, logout, user} = useMoralis();
   const flags = useFlags(['perks_and_benefits']);
+  const [isConnectWalletOpen, setIsConnectWalletOpen] = useState(false);
 
   let navItems = [
     { name: 'Home', link: "/" },
@@ -83,7 +86,23 @@ function Header({showLogo=true}) {
                       </div>
                     </div>
                   </>
-              </div>
+                </div>
+                )}
+                {!isAuthenticated && (
+                <div className="flex w-full sm:w-1/4 flex-row justify-end sm:justify-center items-center border-l border-stone-600 bg-stone-900 p-2">
+                  <>
+                    <div className="hidden sm:flex">
+                      <div className="pt-1 pb-2 space-y-1">
+                          <button
+                            className="w-auto flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-white uppercase bg-stone-600 hover:bg-white hover:text-black mx-auto text-sm"
+                            onClick={ () => setIsConnectWalletOpen(true) }
+                          >
+                            Login with Wallet
+                          </button>
+                      </div>
+                    </div>
+                  </>
+                </div>
                 )}
               </div>
             </div>
@@ -110,13 +129,21 @@ function Header({showLogo=true}) {
                     Log out
                   </Disclosure.Button>
                 )}
+                {!isAuthenticated && (
+                  <button
+                    className="w-auto bg-gray-900 text-white block pl-3 pr-4 py-2 font-gilroy uppercase text-base font-medium"
+                    onClick={ () => setIsConnectWalletOpen(true) }
+                  >
+                    Login
+                  </button>
+                )}
               </div>
             </Disclosure.Panel>
           </>
       )}
       </Disclosure>
 
-
+      <ConnectWallet open={isConnectWalletOpen} onClose={() => setIsConnectWalletOpen(false)} />
     </header>
   )
 }

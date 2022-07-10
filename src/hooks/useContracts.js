@@ -15,7 +15,6 @@ function useContracts() {
   }, []);
 
   const initContracts = () => {
-    console.log("chainName:", chainName);
     if(!chainName) return;
 
     let tier1Contract = networkContracts[chainName]['VVOneAndOnly'];
