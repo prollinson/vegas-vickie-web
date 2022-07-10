@@ -40,6 +40,7 @@ import utilityVIPExperiencesWebP from '../assets/vip-experiences.webp';
 
 import videoPreview from '../assets/video-preview_lossyalpha.webp';
 import JoinCommunitySection from '../components/elements/JoinCommunitySection';
+import Header from '../components/layout/Header';
 
 let faqs = [
   {
@@ -149,12 +150,15 @@ function Home() {
 
   return (
     <>
+      <Header showLogo={true}/>
+
+
       {/* logo Section */}
       <div className="col-span-12 bg-header-dark-small sm:bg-header-dark bg-cover">
-        <div className="max-w-7xl mx-auto sm:py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex md:flex-col sm:h-[80vh] md:items-center md:justify-center">
+        <div className="max-w-7xl mx-auto sm:py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex md:flex-col sm:h-[40vh] md:items-center md:justify-center">
             <picture>
               <source type="image/webp" srcSet={`${neonLogoMobileWebP} 656w, ${neonLogoWebP} 1794w, ${neonLogoLargeWebP} 2432w`} sizes="(min-width: 320px) 100vw,100vw" className="max-h-72 md:max-h-full m-0 md:m-auto aspect-auto"/>
-              <img src={neonLogo} alt="Neon Logo" className="max-h-72 md:max-h-full m-0 md:m-auto aspect-auto"/>
+              <img src={neonLogo} alt="Neon Logo" className="max-h-60 md:max-h-96 m-0 md:m-auto aspect-auto"/>
             </picture>
 
             {/* <div className="">
