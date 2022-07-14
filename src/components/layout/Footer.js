@@ -26,6 +26,7 @@ function Footer() {
       { name: 'Perks & Benefits', link: "/perks" },
       { name: 'Our Story', link: "/story" },
       { name: 'Mint', link: "/mint" },
+      { name: 'Leaderboard', link: "/leaderboard" },
     ];
   }
 

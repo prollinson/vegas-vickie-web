@@ -21,7 +21,8 @@ function Header({showLogo=true}) {
     { name: 'Collections', link: "/collections" },
     { name: 'Perks & Benefits', link: "/perks" },
     { name: 'Our Story', link: "/story" },
-    { name: 'Mint', link: "/mint" }
+    { name: 'Mint', link: "/mint" },
+    { name: 'Leaderboard', link: "/leaderboard", beta: true},
   ];
 
   return (
@@ -53,15 +54,16 @@ function Header({showLogo=true}) {
                 <div className="hidden sm:flex grow sm:space-x-8 font-display justify-center justify-self-stretch font-gilroy uppercase">
                   <ul className="flex flex-inital text-white font-bold leading-6 w-full justify-center">
                     {navItems.map((item, index) => (
-                      <li key={index} className={`flex flex-col justify-center`}>
+                      <li key={index} className={`flex flex-col justify-center relative`}>
                         <NavLink
                           exact
                           to={item.link}
                           className={({isActive}) =>
-                                      "block p-3 w-full h-full align-middle flex flex-col justify-center hover:text-vickie-yellow " + (isActive ? "text-vickie-yellow" : "text-white")
+                                      "block p-3 w-full h-full align-middle flex flex-row items-center justify-center hover:text-vickie-yellow " + (isActive ? "text-vickie-yellow" : "text-white")
                                     }
                         >
                         {item.name}
+                        {item.beta && <span className="text-xs bg-vickie-yellow text-black px-1 py-0.5 rounded h-5 ml-1">Beta</span>}
                         </NavLink>
                       </li>
                     ))}
