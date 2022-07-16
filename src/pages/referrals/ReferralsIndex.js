@@ -14,27 +14,25 @@ const ReferralsIndex = function() {
     <>
       <ConnectWallet open={isConnectWalletOpen} onClose={() => setIsConnectWalletOpen(false)} />
 
-      <div className="col-span-12 w-full mx-auto pt-16 sm:py-24 border-t border-[#1E1708] bg-pattern">
+      <div className="col-span-12 w-full mx-auto pt-16 pb-16 sm:py-24 border-t border-[#1E1708] bg-pattern px-5">
         <div className='max-w-4xl mx-auto'>
 
-          <p className="font-diaply text-white">Earn points by referring others to the VVNFT community.</p>
+          <p className="font-display text-white">Give points and earn points. Refer others to the VVNFT community to earn points.</p>
 
         {!isAuthenticated && (
-          <button
-            className="w-auto bg-gray-900 text-white block pl-3 pr-4 py-2 font-gilroy uppercase text-base font-medium"
-            onClick={ () => setIsConnectWalletOpen(true) }
-          >
-            Please Connect your wallet
+          <button onClick={ () => { setIsConnectWalletOpen(true) }} className="my-10 w-auto flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-black uppercase bg-vickie-yellow hover:bg-white hover:text-black mx-auto text-xl">
+            Connect Wallet
           </button>
         )}
 
         {isAuthenticated && (
-          <>
-            <p className="text-white">Your referral code</p>
-            <div className='border border-stone-300 text-xl flex justify-center p-4 mt-5 mb-10 bg-stone-200 font-bold'>
+          <div className="pt-8">
+            <h2 className="text-2xl sm:text-3xl text-white font-gilroy font-bold tracking-widest uppercase">Your Referral Code</h2>
+            <p className="font-display text-white">Share your unique referral code to earn points:</p>
+            <div className='border border-stone-300 text-sm md:text-xl flex justify-center p-4 mt-5 mb-10 bg-stone-200 font-bold break-all text-center'>
               <a href={`https://vegasvickienft.com/referrals/${user.get("username")}`}>https://vegasvickienft.com/referrals/{user.get("username")}</a>
             </div>
-          </>
+          </div>
         )}
 
         {isLoading && (<p className="font-display text-white">Loading...</p>)}
@@ -43,7 +41,7 @@ const ReferralsIndex = function() {
           <p className="font-display text-white">Error: {error.message}</p>
         )}
 
-        {referrals && referrals.length > 0 && (
+        {isAuthenticated && referrals && referrals.length > 0 && (
           <>
             <h2 className="text-2xl sm:text-3xl text-white font-gilroy font-bold tracking-widest uppercase">Your Referrals</h2>
             <p className="font-display text-white">Thanks, you have referred {referrals.length} users.</p>
@@ -55,7 +53,7 @@ const ReferralsIndex = function() {
           </>
         )}
 
-        {referrals && referrals.length === 0 && (
+        {isAuthenticated && referrals && referrals.length === 0 && (
           <>
             <p className="font-display text-white">You do not have any referrals</p>
           </>

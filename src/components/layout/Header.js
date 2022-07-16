@@ -44,7 +44,7 @@ function Header({showLogo=true}) {
               </div>
               <div className="flex h-20 w-full">
                 {showLogo && (
-                <div className="hidden sm:flex sm:flex-col md:flex-row place-content-center content-center justify-center align-center">
+                <div className="hidden shrink-0 sm:flex sm:flex-col md:flex-row place-content-center content-center justify-center align-center">
                   <picture>
                     <source srcSet={`${vvLogoWebP} 744w`} type="image/webp" />
                     <img src={vvLogo} alt="Vegas Vickie Logo" className="h-12 sm:h-20 aspect-[417/112]" />
@@ -56,7 +56,6 @@ function Header({showLogo=true}) {
                     {navItems.map((item, index) => (
                       <li key={index} className={`flex flex-col justify-center relative`}>
                         <NavLink
-                          exact
                           to={item.link}
                           className={({isActive}) =>
                                       "block p-3 w-full h-full align-middle flex flex-row items-center justify-center hover:text-vickie-yellow " + (isActive ? "text-vickie-yellow" : "text-white")
