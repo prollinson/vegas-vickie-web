@@ -32,7 +32,7 @@ const ReferralsIndex = function() {
           <>
             <p className="text-white">Your referral code</p>
             <div className='border border-stone-300 text-xl flex justify-center p-4 mt-5 mb-10 bg-stone-200 font-bold'>
-              <a href={`https://vegasvickienft.com/referral/${user.get("username")}`}>https://vegasvickienft.com/referral/{user.get("username")}</a>
+              <a href={`https://vegasvickienft.com/referrals/${user.get("username")}`}>https://vegasvickienft.com/referrals/{user.get("username")}</a>
             </div>
           </>
         )}

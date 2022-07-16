@@ -32,8 +32,6 @@ const ReferralsClaim = function() {
 
   return (
     <>
-      <Header />
-      <PageHeader pageTitle="Referrals" />
 
       <ConnectWallet open={isConnectWalletOpen} onClose={() => setIsConnectWalletOpen(false)} />
 
@@ -61,7 +59,6 @@ const ReferralsClaim = function() {
         </div>
       </div>
       
-      <Footer />
     </>
   );
 }
