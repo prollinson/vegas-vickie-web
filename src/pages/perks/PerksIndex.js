@@ -54,10 +54,6 @@ function PerksIndex() {
   useEffect(() => {
     initContracts();
 
-    if(!flags.perks_and_benefits.enabled) {
-      navigate("/");
-    }
-
   }, [user, isInitialized]);
 
   useEffect(() => {
