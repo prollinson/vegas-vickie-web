@@ -1,8 +1,8 @@
 /* global window */
-import verifyChainId from 'moralis/lib/node/utils/verifyChainId';
-import AbstractWeb3Connector from 'moralis/lib/node/Web3Connector/AbstractWeb3Connector';
-import { ConnectorEvents } from 'moralis/lib/node/Web3Connector/events';
-import { getMoralisRpcs } from 'moralis/lib/node/Web3Connector/MoralisRpcs';
+import verifyChainId from 'moralis-v1/lib/node/utils/verifyChainId';
+import AbstractWeb3Connector from 'moralis-v1/lib/node/Web3Connector/AbstractWeb3Connector';
+import { ConnectorEvents } from 'moralis-v1/lib/node/Web3Connector/events';
+import { getMoralisRpcs } from 'moralis-v1/lib/node/Web3Connector/MoralisRpcs';
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
 
 export const CoinbaseWalletEvent = Object.freeze({
