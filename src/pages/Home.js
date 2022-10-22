@@ -60,8 +60,8 @@ let faqs = [
     answer: 'Ethereum'
   },
   { 
-    question: 'What is the Vegas Vickie NFT Summer Bash?',
-    answer: 'It is a three day event for all Vegas Vickie NFT owners held at various locations at Circa Resort & Casino.'
+    question: 'What was the Vegas Vickie NFT Summer Bash?',
+    answer: 'It was a three day event held in June 2022 for all Vegas Vickie NFT owners held at various locations at Circa Resort & Casino.'
   }
 ]
 
@@ -173,8 +173,8 @@ function Home() {
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 md:flex sm:min-h-screen md:items-center md:justify-center">
           <div className='md:w-full md:h-fit'>
             <h1 className={`${heroHeading} text-white mb-4`}>Own iconic artwork. Access legendary perks and VIP experiences at Circa Resort &amp; Casino</h1>
-            <p className={`${bodyText} py-4 sm:w-2/3`}>Vegas Vickie NFT, a first for a Las Vegas casino, is an opportunity to own iconic art and get access to VIP experiences at Circa: exclusive entry to the Vegas Vickie NFT Summer Bash, hotel rooms and VIP experiences.  We will have four collections based on BORBAY’s Vegas Vickie.</p>
-            <p className={`${bodyText} sm:w-2/3`}>We plan exclusive in-person events for NFT holders this summer and will be building out future games and utility.</p>
+            <p className={`${bodyText} py-4 sm:w-2/3`}>Vegas Vickie NFT, a first for a Las Vegas casino, is an opportunity to own iconic art and get access to VIP experiences at Circa: exclusive entry to the Vegas Vickie NFT events, hotel rooms and VIP experiences.  We have four collections based on BORBAY’s Vegas Vickie.</p>
+            <p className={`${bodyText} sm:w-2/3`}>We held an exclusive in-person Summer Bash for NFT holders last summer and will be holding future events, games and utility.</p>
             
             <div className="flex flex-row flex-initial pt-2 items-center mt-8 space-x-4">
               <a href={discordLink} target="_window" className="w-full md:w-auto flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-full text-black uppercase bg-vickie-yellow hover:bg-white">Join the Community</a>
@@ -263,7 +263,7 @@ function Home() {
                   <h1 className={`${sectionHeading2} text-white`}>Dealer's Choice</h1>
                 </div>
               </div>
-              <p className={`${bodyTextSmall}`}>A deck of cards plus two surprises. Yet to be revealed.</p>
+              <p className={`${bodyTextSmall}`}>A deck of cards plus two surprises.</p>
               <p className={`${bodyTextSmall}`}><Link to="collections" className="hover:text-vickie-yellow font-bold mt-2 block">See the perks &amp; benefits &gt;</Link></p>
             </div>
           </div>
@@ -354,8 +354,8 @@ function Home() {
               <img src={utilitySummerBash} alt="People at Stadium Swim" className='w-full' />
             </picture>
             <div className=''>
-              <h1 className={`${sectionHeading2} text-white pt-4 sm:pt-8 pb-2`}>Summer Bash</h1>
-              <p className={`${bodyTextSmall}`}>An exclusive VIP party for all Vegas Vickie NFT holders held at Circa Resort &amp; Casino. This three day event will incorporate some of Circa's top venues such as Stadium Swim, Legacy Club Rooftop Cocktails, and more. </p>
+              <h1 className={`${sectionHeading2} text-white pt-4 sm:pt-8 pb-2`}>NFT Events</h1>
+              <p className={`${bodyTextSmall}`}>Exclusive VIP parties for all Vegas Vickie NFT holders held at Circa Resort &amp; Casino.</p>
             </div>
           </div>
 

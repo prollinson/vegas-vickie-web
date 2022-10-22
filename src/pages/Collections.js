@@ -24,8 +24,8 @@ function Collections() {
   
   let tier1CollectorPerks = [
     {
-      name: 'Founder\'s Suite',
-      description: '3 Night stay in a founder\'s suite to be used at the summer bash or within one year of purchase.'
+      name: 'Circa Stay package',
+      description: '3-night stay in a Founder\'s suite to be used within one year of purchase.'
     },
     {
       name: 'Limo Transport',
@@ -36,17 +36,17 @@ function Collections() {
       description: 'Welcome cocktail at Vegas Vickies.'
     },
     {
-      name: 'Complimentary entry to Summer Bash + Owner\'s suite',
-      description: 'Complimentary access to the Vegas Vickie Summer Bash at Stadium Swim with an Owner\'s Suite.'
+      name: '$1000 Food & Beverage Credit',
+      description:  '$1000 to spend on food & drinks during your stay.'
+     },
+    {
+      name: 'Discounted rates and perks',
+      description: 'Discounted rates and perks during additional Vegas Vickie NFT events w/Founder\'s Perks.'
     },
     {
-      name: 'VIP Welcome + Open bar',
-      description: 'Welcome reception at Legacy Club w/ a Derek & Borbay meet & greet. Open bar.'
-    },
-   {
-     name: '$1000 Food & Beverage Credit',
-     description:  '$1000 to spend on food & drinks during your stay.'
-    },
+      name: '',
+      description:  'Entry to holder raffles, giveaways and special experiences.'
+     },
    {
      name: '',
      description:  'Includes a Glass print of your artwork & Circa coffee table book.'
@@ -59,8 +59,8 @@ function Collections() {
 
   let tier2CollectorPerks = [
     {
-      name: 'Suite for 3 Nights',
-      description: '(3) Night stay in a suite room to be used at the summer bash or within one year of purchase.'
+      name: 'Circa Stay package',
+      description: '3-night stay in a suite room'
     },
     {
       name: 'Limo Pick-up & Drop-off',
@@ -71,16 +71,20 @@ function Collections() {
       description :'Welcome cocktail at Vegas Vickies.'
     },
     {
-      name: 'Entry to Summer Bash + Cabana',
-      description :'Complimentary access to the Vegas Vickie Summer Bash at Stadium Swim with a paired cabana.'
-    },
-    {
-      name: 'Welcome Reception + Open bar',
-      description :'Access to the Legacy Club welcome reception party with open bar'
-    },
-    {
       name: '$500 Food & Beverage Credit',
       description: '$500 to spend on food & drinks during your stay.'
+    },
+    {
+      name: 'Discounted rates and perks',
+      description: 'Discounted rates and perks during additional Vegas Vickie NFT events (outside of annual stay package)'
+    },
+    {
+      name: 'Entry (with +1) to all Vegas Vickie NFT events',
+      description: ''
+    },
+    {
+      name: 'Entry to holder raffles, giveaways and special experiences',
+      description: ''
     },
     {
       name: 'Circa Coffee Table Book',
@@ -94,20 +98,28 @@ function Collections() {
 
   let tier3CollectorPerks = [
     {
-      name: 'Room for 3 nights',
-      description: '(3) Night stay in a standard room to be used at the summer bash or within one year of purchase.'
+      name: 'Circa Stay package',
+      description: '3-night stay in a standard room.'
     },
     {
       name: 'Welcome Cocktail',
       description :'Welcome cocktail at Vegas Vickies.'
     },
     {
-      name: 'Entry to Summer Bash + Lounge Chairs',
-      description :'Complimentary access to the Vegas Vickie Summer Bash at Stadium Swim with lounge chairs based on availability.'
-    },
-    {
       name: '$250 Food & Beverage Credit',
       description: '$250 to spend on food & drink during your stay.'
+    },
+    {
+      name: 'Discounted rates and perks',
+      description: 'Discounted rates and perks during additional Vegas Vickie NFT events (outside of annual stay package)'
+    },
+    {
+      name: 'Entry (with +1) to all Vegas Vickie NFT events',
+      description: ''
+    },
+    {
+      name: 'Entry to holder raffles, giveaways and special experiences',
+      description: ''
     },
     {
       name: 'Plus future perks, benefits and utility',
@@ -121,16 +133,20 @@ function Collections() {
       description :'Digital artwork'
     },
     {
-      name: 'Invitation to Summer Bash',
-      description :'Invitation to the weekend & GA admission to the Vegas Vickie Summer Bash at Stadium Swim'
-    },
-    {
-      name: 'Welcome Bag',
-      description :'Welcome bag to be picked up at Club One'
+      name: 'Entry (with +1) to all Vegas Vickie NFT events',
+      description: ''
     },
     {
       name: 'Welcome Cocktail',
       description :'Welcome cocktail at Vegas Vickies.'
+    },
+    {
+      name: 'Welcome Bag (x1)',
+      description :'Welcome bag to be picked up at Club One'
+    },
+    {
+      name: 'Entry to holder raffles, giveaways and special experiences',
+      description: ''
     },
     {
       name: 'Plus future perks, benefits and utility',
