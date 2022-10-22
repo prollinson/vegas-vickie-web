@@ -16,10 +16,9 @@ import tier1Preview from '../assets/the-one-and-only.png';
 import tier1PreviewWebP from '../assets/the-one-and-only_lossyalpha.webp';
 import tier1PreviewMobileWebP from '../assets/the-one-and-only_560x_lossyalpha.webp';
 
-import tier2Preview from '../assets/dealers-choice.png';
-import tier2PreviewWebP from '../assets/dealers-choice_lossyalpha.webp';
-import tier2PreviewMobileWebP from '../assets/dealers-choice_560x_lossyalpha.webp';
-import tier2PreviewVideo from '../assets/dealers-choice.mp4'
+import tier2Preview from '../assets/dealers-choice-ace-spaces.png';
+import tier2PreviewWebP from '../assets/dealers-choice-ace-spaces_lossyalpha.webp';
+import tier2PreviewMobileWebP from '../assets/dealers-choice-ace-spaces_560x_lossyalpha.webp';
 
 import tier3Preview from '../assets/neon-idol.png';
 import tier3PreviewWebP from '../assets/neon-idol_lossyalpha.webp';
@@ -239,12 +238,9 @@ function Home() {
               }}
             className='w-full flex flex-col border-b-2 border-[#1E1708] sm:border-0 pb-5 sm:pb-0'>
 
-            <video muted playsInline onMouseOver={playVideo} className="hidden sm:block">
-              <source src={tier2PreviewVideo} type="video/mp4"/>
-            </video>
             <picture>
               <source type="image/webp" srcSet={`${tier2PreviewMobileWebP} 560w, ${tier2PreviewWebP}`} />
-              <img src={tier2Preview} alt="Preview of Dealer's Choice NFT" className='w-full sm:hidden aspect-auto' />
+              <img src={tier2Preview} alt="Preview of Dealer's Choice NFT" className='w-full aspect-auto' />
             </picture>
             
             <div ref={refCard2Description}

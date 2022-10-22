@@ -7,8 +7,8 @@ import Footer from '../components/layout/Footer';
 import tier1NftImage from '../assets/the-one-and-only.png';
 import tier1NftWebPImage from '../assets/the-one-and-only_lossyalpha.webp';
 
-import tier2NftImage from '../assets/dealers-choice.png';
-import tier2NftWebPImage from '../assets/dealers-choice_lossyalpha.webp';
+import tier2NftImage from '../assets/dealers-choice-ace-spaces.png';
+import tier2NftWebPImage from '../assets/dealers-choice-ace-spaces_lossyalpha.webp';
 
 import tier3NftImage from '../assets/neon-idol.png';
 import tier3NftWebPImage from '../assets/neon-idol_lossyalpha.webp';

@@ -25,6 +25,10 @@ module.exports = {
       sizes: { width: "560", height: "" }
     },
     {
+      src: './src/assets/dealers-choice-ace-spaces.png',
+      sizes: { width: "560", height: "" }
+    },
+    {
       src: './src/assets/neon-idol.png',
       sizes: { width: "560", height: "" }
     },
